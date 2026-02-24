@@ -1,2 +1,2 @@
 # uomx.ai
-UmobAI Labs
+UmobAI Labs 2026
