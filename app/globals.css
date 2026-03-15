@@ -1,0 +1,178 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --background: #050505;
+  --foreground: #f6f7fb;
+  --muted: rgba(226, 232, 240, 0.68);
+  --panel: rgba(255, 255, 255, 0.05);
+  --panel-border: rgba(255, 255, 255, 0.1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 24%),
+    radial-gradient(circle at 85% 12%, rgba(79, 70, 229, 0.22), transparent 22%),
+    radial-gradient(circle at 50% 120%, rgba(14, 165, 233, 0.12), transparent 28%),
+    var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+  background-size: 64px 64px;
+  mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.9), transparent 92%);
+  opacity: 0.42;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(5, 5, 5, 0.05), rgba(5, 5, 5, 0.7)),
+    radial-gradient(circle at center, transparent 55%, rgba(5, 5, 5, 0.55) 100%);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  background: rgba(59, 130, 246, 0.35);
+  color: #ffffff;
+}
+
+section {
+  scroll-margin-top: 96px;
+}
+
+@layer components {
+  .section-shell {
+    @apply mx-auto w-full max-w-7xl px-6 sm:px-8 lg:px-10;
+  }
+
+  .glass-panel {
+    @apply border border-white/10 bg-white/5 backdrop-blur-xl;
+    box-shadow:
+      inset 0 1px 0 rgba(255, 255, 255, 0.04),
+      0 24px 120px rgba(37, 99, 235, 0.14);
+  }
+
+  .glass-button {
+    @apply inline-flex items-center justify-center rounded-full border border-white/15 bg-white/5 px-6 py-3 text-sm font-semibold text-white/90 backdrop-blur-lg transition-all duration-300;
+  }
+
+  .glass-button:hover {
+    @apply -translate-y-1 border-blue-500/30 bg-white/10 text-white;
+    box-shadow: 0 16px 64px rgba(59, 130, 246, 0.18);
+  }
+
+  .primary-button {
+    @apply inline-flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 to-indigo-500 px-6 py-3 text-sm font-semibold text-white transition-all duration-300;
+    box-shadow: 0 16px 72px rgba(59, 130, 246, 0.35);
+  }
+
+  .primary-button:hover {
+    @apply -translate-y-1 from-blue-500 to-indigo-400;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-500 via-sky-400 to-indigo-400 bg-clip-text text-transparent;
+  }
+
+  .section-kicker {
+    @apply text-sm font-semibold tracking-[0.3em] text-blue-200/65;
+  }
+}
+
+.text-balance {
+  text-wrap: balance;
+}
+
+.hero-grid-mask {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.065) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.065) 1px, transparent 1px);
+  background-size: 52px 52px;
+  mask-image: radial-gradient(circle at center, rgba(0, 0, 0, 0.9), transparent 88%);
+}
+
+.network-glow {
+  background:
+    radial-gradient(circle at center, rgba(96, 165, 250, 0.58), rgba(59, 130, 246, 0.16) 34%, transparent 70%);
+}
+
+.animated-beam {
+  animation: beam 6.5s linear infinite;
+}
+
+.float-slow {
+  animation: float-slow 16s ease-in-out infinite;
+}
+
+.float-reverse {
+  animation: float-reverse 18s ease-in-out infinite;
+}
+
+@keyframes beam {
+  0% {
+    transform: translateX(-18%) translateY(0%);
+    opacity: 0.12;
+  }
+  50% {
+    opacity: 0.65;
+  }
+  100% {
+    transform: translateX(118%) translateY(0%);
+    opacity: 0.08;
+  }
+}
+
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(18px, -24px, 0) scale(1.06);
+  }
+}
+
+@keyframes float-reverse {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(-22px, 16px, 0) scale(0.96);
+  }
+}
