@@ -57,8 +57,8 @@
 
       html {
         scroll-behavior: smooth;
-        -webkit-text-size-adjust: 100%;
-        text-size-adjust: 100%;
+        -webkit-text-size-adjust: none !important;
+        text-size-adjust: none !important;
       }
 
       body {
@@ -70,6 +70,12 @@
           #050505;
         color: rgba(248, 250, 252, 0.96);
         overflow-x: hidden;
+        -webkit-text-size-adjust: none !important;
+        text-size-adjust: none !important;
+      }
+
+      body * {
+        max-height: 1000000px;
       }
 
       .grid-overlay::before {
@@ -1391,7 +1397,7 @@
         .mission-title {
           font-size: clamp(2.55rem, 10.4vw, 3.25rem) !important;
           letter-spacing: 0.08em;
-          line-height: 1.1;
+          line-height: 1.16;
         }
 
         #hero [data-i18n="hero_subtitle"] {
@@ -1422,6 +1428,8 @@
           font-size: clamp(1.68rem, 8vw, 2.08rem);
           letter-spacing: 0.07em;
           -webkit-text-stroke: 0.72px rgba(248, 250, 252, 0.78);
+          white-space: normal;
+          overflow-wrap: anywhere;
         }
 
         #bottom-cta [data-i18n="cta_desc"] {
@@ -1472,7 +1480,7 @@
         .mission-title {
           font-size: clamp(2.18rem, 9.9vw, 2.72rem) !important;
           letter-spacing: 0.05em;
-          line-height: 1.12;
+          line-height: 1.18;
         }
 
         #hero [data-i18n="hero_subtitle"] {
@@ -1497,6 +1505,8 @@
           font-size: clamp(1.38rem, 7.2vw, 1.74rem);
           letter-spacing: 0.05em;
           -webkit-text-stroke: 0.68px rgba(248, 250, 252, 0.78);
+          white-space: normal;
+          overflow-wrap: anywhere;
         }
 
         #bottom-cta [data-i18n="cta_desc"] {
@@ -2417,8 +2427,8 @@
           moats_eyebrow: "技术底座",
           moats_title: "2x2 硬核技术栈",
           moats_desc: "以图谱推理、沙盒执行、信创适配与机密计算构建真正适用于高责任场景的重型智能平台。",
-          moat_open_hint: "展开详情",
-          moat_close_hint: "收起详情",
+          moat_open_hint: "详情",
+          moat_close_hint: "收起",
           moat_1_title: "图谱检索多跳推理",
           moat_1_desc: "解决长文本法律卷宗的精准关联。",
           moat_1_detail: "通过动态实体关系图、案号索引、债权穿透链与语义证据桥接，系统可以沿资金流、控制链和法定顺位执行多跳召回，在万页卷宗中保持稳定、可验证的全局上下文。",
@@ -2520,8 +2530,8 @@
           moats_eyebrow: "Deep Tech Stack",
           moats_title: "2x2 Hardcore Technical Grid",
           moats_desc: "Graph reasoning, symbolic sandboxing, sovereign compute optimization, and confidential deployment form the heavyweight substrate behind production-grade agents.",
-          moat_open_hint: "Open Detail",
-          moat_close_hint: "Close Detail",
+          moat_open_hint: "Detail",
+          moat_close_hint: "Close",
           moat_1_title: "Graph Retrieval & Multi-hop Reasoning",
           moat_1_desc: "Resolve long-form legal records with precise relational recall.",
           moat_1_detail: "Dynamic entity graphs, docket indexing, liability chains, and evidence bridges allow the system to traverse capital flows, control links, and ranking logic while keeping full, verifiable context across massive records.",
@@ -2591,6 +2601,16 @@
         const cue = card.querySelector(".moat-mobile-cue");
         if (!cue) return;
         cue.textContent = open ? copy.moat_close_hint : copy.moat_open_hint;
+      }
+
+      function lockWechatTextAutosize() {
+        document.documentElement.style.setProperty("-webkit-text-size-adjust", "none", "important");
+        document.documentElement.style.setProperty("text-size-adjust", "none", "important");
+
+        if (document.body) {
+          document.body.style.setProperty("-webkit-text-size-adjust", "none", "important");
+          document.body.style.setProperty("text-size-adjust", "none", "important");
+        }
       }
 
       function stopMoatTypewriter(node) {
@@ -2669,6 +2689,7 @@
           if (copy[key]) node.setAttribute("placeholder", copy[key]);
         });
 
+        lockWechatTextAutosize();
         syncMoatDetails(copy);
         langCurrentLabel.textContent = language === "zh" ? "🇨🇳 中文" : "🇺🇸 English";
         submitButton.textContent = copy.modal_submit;
@@ -2814,6 +2835,18 @@
       window.addEventListener("scroll", () => {
         root.style.setProperty("--scroll-shift", `${window.scrollY}px`);
       }, { passive: true });
+
+      document.addEventListener("DOMContentLoaded", lockWechatTextAutosize);
+      window.addEventListener("load", () => {
+        lockWechatTextAutosize();
+        window.setTimeout(lockWechatTextAutosize, 240);
+        window.setTimeout(lockWechatTextAutosize, 900);
+        window.setTimeout(lockWechatTextAutosize, 1600);
+      });
+      window.addEventListener("pageshow", () => {
+        lockWechatTextAutosize();
+        window.setTimeout(lockWechatTextAutosize, 320);
+      });
 
       applyLanguage(currentLanguage);
     </script>
