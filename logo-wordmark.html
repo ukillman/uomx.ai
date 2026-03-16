@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Umob.AI Agent OS Logo Wordmark</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg-0: #05070b;
+        --bg-1: #09090b;
+        --ice-0: #f0fdff;
+        --ice-1: #d4f5ff;
+        --ice-2: #b5e9ff;
+        --ice-3: #7dd3fc;
+        --glow-a: rgba(125, 211, 252, 0.35);
+        --glow-b: rgba(34, 211, 238, 0.18);
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        min-height: 100%;
+      }
+
+      body {
+        display: grid;
+        place-items: center;
+        overflow: hidden;
+        background:
+          radial-gradient(circle at 20% 18%, rgba(34, 211, 238, 0.08), transparent 26%),
+          radial-gradient(circle at 78% 24%, rgba(56, 189, 248, 0.08), transparent 22%),
+          radial-gradient(circle at 52% 84%, rgba(125, 211, 252, 0.05), transparent 28%),
+          linear-gradient(180deg, var(--bg-0), var(--bg-1));
+      }
+
+      .logo-stage {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3rem 4rem;
+      }
+
+      .logo-stage::before {
+        content: "";
+        position: absolute;
+        inset: 12% 10%;
+        border-radius: 999px;
+        background: radial-gradient(circle, rgba(125, 211, 252, 0.14), transparent 70%);
+        filter: blur(40px);
+        transform: scale(1.08);
+        pointer-events: none;
+      }
+
+      .logo-wordmark {
+        position: relative;
+        z-index: 1;
+        margin: 0;
+        font-family: "Raleway", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+        font-weight: 100;
+        font-size: clamp(1.6rem, 4vw, 4.5rem);
+        line-height: 1.05;
+        letter-spacing: 0.22em;
+        white-space: nowrap;
+        color: transparent;
+        background: linear-gradient(
+          90deg,
+          var(--ice-0) 0%,
+          var(--ice-1) 26%,
+          var(--ice-2) 62%,
+          var(--ice-3) 100%
+        );
+        -webkit-background-clip: text;
+        background-clip: text;
+        text-transform: none;
+        text-shadow:
+          0 0 10px var(--glow-a),
+          0 0 24px var(--glow-b),
+          0 0 44px rgba(56, 189, 248, 0.08);
+        filter: drop-shadow(0 0 12px rgba(34, 211, 238, 0.22));
+      }
+
+      .logo-wordmark::after {
+        content: "Umob.AI Agent OS";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        color: rgba(191, 239, 255, 0.12);
+        filter: blur(10px);
+      }
+
+      @media (max-width: 640px) {
+        .logo-stage {
+          padding: 2rem 1.5rem;
+        }
+
+        .logo-wordmark {
+          letter-spacing: 0.15em;
+          font-size: clamp(1.2rem, 7vw, 2rem);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="logo-stage">
+      <h1 class="logo-wordmark">Umob.AI Agent OS</h1>
+    </div>
+  </body>
+</html>

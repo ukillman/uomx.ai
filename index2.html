@@ -13,7 +13,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Raleway:wght@100;200;300&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Raleway:wght@100;200;300&display=swap"
       rel="stylesheet"
     />
     <script src="https://cdn.tailwindcss.com"></script>
@@ -23,7 +23,8 @@
         theme: {
           extend: {
             fontFamily: {
-              sans: ["Inter", "system-ui", "sans-serif"]
+              sans: ["Inter", "system-ui", "sans-serif"],
+              raleway: ["Raleway", "Inter", "system-ui", "sans-serif"]
             }
           }
         }
@@ -41,6 +42,7 @@
 
       body {
         font-family: "Inter", system-ui, sans-serif;
+        font-weight: 300;
         background:
           radial-gradient(circle at 15% 10%, rgba(59, 130, 246, 0.08), transparent 26%),
           radial-gradient(circle at 82% 8%, rgba(14, 165, 233, 0.06), transparent 22%),
@@ -48,28 +50,29 @@
           #09090b;
       }
 
-      .wordmark-glow {
-        font-family: "Raleway", "Avenir Next", "Helvetica Neue", Arial, sans-serif;
-        font-weight: 100;
-        letter-spacing: 0.18em;
-        color: transparent;
-        background: linear-gradient(90deg, #f0fdff 0%, #d4f5ff 28%, #b5e9ff 62%, #7dd3fc 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
-        text-shadow:
-          0 0 10px rgba(125, 211, 252, 0.35),
-          0 0 24px rgba(34, 211, 238, 0.18),
-          0 0 44px rgba(56, 189, 248, 0.08);
-        filter: drop-shadow(0 0 12px rgba(34, 211, 238, 0.22));
+      h1,
+      h2,
+      h3 {
+        font-family: "Raleway", "Inter", system-ui, sans-serif;
+        font-weight: 200;
       }
 
-      .wordmark-glow::after {
-        content: attr(data-text);
-        position: absolute;
-        inset: 0;
-        z-index: -1;
-        color: rgba(191, 239, 255, 0.12);
-        filter: blur(10px);
+      .brand-wordmark {
+        font-family: "Raleway", "Inter", system-ui, sans-serif;
+        font-weight: 100;
+        letter-spacing: 0.15em;
+        text-shadow:
+          0 0 12px rgba(34, 211, 238, 0.4),
+          0 0 28px rgba(34, 211, 238, 0.18);
+      }
+
+      .hero-wordmark {
+        font-family: "Raleway", "Inter", system-ui, sans-serif;
+        font-weight: 100;
+        letter-spacing: 0.15em;
+        text-shadow:
+          0 0 12px rgba(34, 211, 238, 0.4),
+          0 0 32px rgba(34, 211, 238, 0.18);
       }
 
       .grid-overlay::before {
@@ -348,10 +351,7 @@
               <span class="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-[0_8px_30px_rgba(0,0,0,0.25)]">
                 <span class="h-4 w-4 rounded-full bg-blue-400 shadow-[0_0_20px_rgba(59,130,246,0.5)]"></span>
               </span>
-              <span
-                class="wordmark-glow relative whitespace-nowrap text-[0.78rem] leading-none sm:text-[0.9rem] lg:text-[1rem]"
-                data-text="Umob.AI Agent OS"
-              >
+              <span class="brand-wordmark font-['Raleway'] text-sm font-[100] tracking-[0.15em] text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 via-cyan-200 to-teal-100 drop-shadow-[0_0_12px_rgba(34,211,238,0.4)] sm:text-base md:text-lg">
                 Umob.AI Agent OS
               </span>
             </a>
@@ -424,19 +424,15 @@
                   <span data-i18n="hero_badge">Universal AI Infrastructure</span>
                 </div>
 
-                <h1
-                  class="wordmark-glow relative mt-8 whitespace-nowrap text-5xl leading-[0.92] sm:text-6xl lg:text-7xl"
-                  data-i18n="hero_title"
-                  data-text="Umob.AI Agent OS"
-                >
+                <h1 class="hero-wordmark mt-8 font-['Raleway'] text-5xl font-[100] leading-[0.92] tracking-[0.15em] text-transparent bg-clip-text bg-gradient-to-r from-cyan-100 via-cyan-200 to-teal-100 drop-shadow-[0_0_12px_rgba(34,211,238,0.4)] sm:text-6xl lg:text-7xl" data-i18n="hero_title">
                   Umob.AI Agent OS
                 </h1>
 
-                <p class="mt-5 text-lg font-medium text-blue-300 sm:text-xl" data-i18n="hero_subheadline">
+                <p class="mt-5 font-['Raleway'] text-lg font-[200] tracking-[0.08em] text-zinc-300 sm:text-xl" data-i18n="hero_subheadline">
                   Powered by deepNirvana™ Reasoning Engine.
                 </p>
 
-                <p class="mt-7 max-w-3xl text-base leading-8 text-zinc-400 sm:text-lg" data-i18n="hero_description">
+                <p class="mt-7 max-w-3xl text-base font-light leading-8 text-zinc-400 sm:text-lg" data-i18n="hero_description">
                   一个底座，无限边界。为极高容错率行业打造的通用智能体操作系统。&lt;1% 幻觉率，50% 成本骤降，10倍效能跃升。沉淀十余年行业积淀与深厚研发，深度适配国产大模型生态。
                 </p>
 
