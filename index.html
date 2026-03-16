@@ -72,6 +72,15 @@
         filter: blur(10px);
       }
 
+      .hero-wordmark {
+        display: block;
+        max-width: 11.5ch;
+        letter-spacing: 0.12em;
+        line-height: 0.96;
+        white-space: normal;
+        text-wrap: balance;
+      }
+
       .grid-overlay::before {
         content: "";
         position: fixed;
@@ -425,7 +434,7 @@
                 </div>
 
                 <h1
-                  class="wordmark-glow relative mt-8 whitespace-nowrap text-5xl leading-[0.92] sm:text-6xl lg:text-7xl"
+                  class="wordmark-glow hero-wordmark relative mt-8 text-5xl sm:text-6xl lg:text-[5.5rem]"
                   data-i18n="hero_title"
                   data-text="Umob.AI Agent OS"
                 >
