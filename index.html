@@ -57,6 +57,8 @@
 
       html {
         scroll-behavior: smooth;
+        -webkit-text-size-adjust: 100%;
+        text-size-adjust: 100%;
       }
 
       body {
@@ -67,6 +69,7 @@
           radial-gradient(circle at 50% 82%, rgba(34, 211, 238, 0.04), transparent 24%),
           #050505;
         color: rgba(248, 250, 252, 0.96);
+        overflow-x: hidden;
       }
 
       .grid-overlay::before {
@@ -1124,6 +1127,102 @@
         margin-top: 1rem;
       }
 
+      .moat-title-row {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        gap: 1rem;
+      }
+
+      .moat-title-row > :first-child {
+        flex: 1 1 auto;
+      }
+
+      .moat-mobile-cue {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.42rem;
+        padding: 0.44rem 0.7rem;
+        border-radius: 999px;
+        border: 1px solid rgba(56, 189, 248, 0.18);
+        background: rgba(56, 189, 248, 0.08);
+        color: rgba(226, 232, 240, 0.78);
+        font-size: 0.62rem;
+        letter-spacing: 0.18em;
+        line-height: 1;
+        white-space: nowrap;
+        transition:
+          border-color 0.28s ease,
+          background 0.28s ease,
+          color 0.28s ease,
+          transform 0.28s ease;
+      }
+
+      .moat-mobile-cue::before {
+        content: "";
+        width: 0.4rem;
+        height: 0.4rem;
+        border-radius: 999px;
+        background: rgba(103, 232, 249, 0.92);
+        box-shadow: 0 0 14px rgba(56, 189, 248, 0.36);
+      }
+
+      .moat-mobile-cue::after {
+        content: "›";
+        font-size: 0.84rem;
+        opacity: 0.82;
+        transform: translateY(-0.02rem);
+        transition: transform 0.28s ease;
+      }
+
+      .moat-card[data-mobile-open="true"] {
+        border-color: rgba(56, 189, 248, 0.28);
+        box-shadow: 0 0 32px rgba(56, 189, 248, 0.12);
+      }
+
+      .moat-card[data-mobile-open="true"] .moat-mobile-cue {
+        border-color: rgba(103, 232, 249, 0.26);
+        background: rgba(56, 189, 248, 0.12);
+        color: rgba(248, 250, 252, 0.96);
+        transform: translateY(-1px);
+      }
+
+      .moat-card[data-mobile-open="true"] .moat-mobile-cue::after {
+        transform: rotate(90deg);
+      }
+
+      .moat-detail[data-streaming="true"]::after {
+        content: "";
+        display: inline-block;
+        width: 0.08rem;
+        height: 1em;
+        margin-left: 0.18rem;
+        vertical-align: -0.1em;
+        background: rgba(103, 232, 249, 0.82);
+        box-shadow: 0 0 12px rgba(56, 189, 248, 0.34);
+        animation: moatCaretBlink 0.9s steps(1, end) infinite;
+      }
+
+      @keyframes moatCaretBlink {
+        0%,
+        48% {
+          opacity: 1;
+        }
+
+        49%,
+        100% {
+          opacity: 0;
+        }
+      }
+
+      .bottom-cta-title {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: center;
+        gap: 0.16em 0.34em;
+      }
+
       .modal-shell {
         transition: opacity 0.28s ease, visibility 0.28s ease;
       }
@@ -1260,7 +1359,8 @@
 
       @media (max-width: 640px) {
         .hero-orbit-shell {
-          padding: 0.18rem 1.1rem 1.4rem;
+          max-width: 100%;
+          padding: 0.18rem 0.75rem 1.3rem;
         }
 
         .hero-orbit-svg {
@@ -1273,6 +1373,68 @@
           gap: 0.14em 0.26em;
         }
 
+        .hero-orbit-shell .hero-brand-glass {
+          font-size: clamp(1.68rem, 8.9vw, 2.3rem);
+          letter-spacing: 0.11em;
+          -webkit-text-stroke: 0.78px rgba(248, 250, 252, 0.8);
+        }
+
+        .hero-brand-inline {
+          letter-spacing: 0.12em;
+          -webkit-text-stroke: 0.74px rgba(248, 250, 252, 0.8);
+        }
+
+        .slogan-line {
+          letter-spacing: 0.3em;
+        }
+
+        .mission-title {
+          font-size: clamp(2.55rem, 10.4vw, 3.25rem) !important;
+          letter-spacing: 0.08em;
+          line-height: 1.1;
+        }
+
+        #hero [data-i18n="hero_subtitle"] {
+          max-width: 92%;
+          font-size: 1rem;
+          line-height: 1.85;
+        }
+
+        #hero [data-i18n="hero_note"] {
+          max-width: 90%;
+          line-height: 1.9;
+        }
+
+        #bottom-cta .bottom-cta-title {
+          gap: 0.24em 0.34em;
+          letter-spacing: 0.08em;
+          line-height: 1.14;
+        }
+
+        #bottom-cta .cta-title-prefix,
+        #bottom-cta .cta-title-suffix,
+        #bottom-cta .bottom-cta-brand {
+          display: block;
+          width: 100%;
+        }
+
+        #bottom-cta .bottom-cta-brand {
+          font-size: clamp(1.68rem, 8vw, 2.08rem);
+          letter-spacing: 0.07em;
+          -webkit-text-stroke: 0.72px rgba(248, 250, 252, 0.78);
+        }
+
+        #bottom-cta [data-i18n="cta_desc"] {
+          max-width: 90%;
+          font-size: 0.98rem;
+          line-height: 1.84;
+        }
+
+        .moat-mobile-cue {
+          font-size: 0.58rem;
+          letter-spacing: 0.14em;
+        }
+
         .orbit-brand {
           padding: 0.18em 0.68em 0.28em;
         }
@@ -1281,6 +1443,72 @@
         .orbit-brand-front,
         .orbit-sweeper {
           inset: -0.68em -0.96em -0.76em;
+        }
+      }
+
+      @media (max-width: 420px) {
+        .nav-wordmark {
+          letter-spacing: 0.08em;
+        }
+
+        .hero-orbit-shell {
+          padding: 0.14rem 0.35rem 1.18rem;
+        }
+
+        .hero-orbit-shell .hero-brand-glass {
+          font-size: clamp(1.46rem, 8.2vw, 1.92rem);
+          letter-spacing: 0.08em;
+          line-height: 1;
+        }
+
+        .hero-brand-inline {
+          letter-spacing: 0.09em;
+        }
+
+        .slogan-line {
+          letter-spacing: 0.24em;
+        }
+
+        .mission-title {
+          font-size: clamp(2.18rem, 9.9vw, 2.72rem) !important;
+          letter-spacing: 0.05em;
+          line-height: 1.12;
+        }
+
+        #hero [data-i18n="hero_subtitle"] {
+          max-width: 94%;
+          font-size: 0.96rem;
+          line-height: 1.8;
+        }
+
+        #hero [data-i18n="hero_note"] {
+          max-width: 92%;
+          font-size: 0.92rem;
+          line-height: 1.82;
+        }
+
+        #bottom-cta .bottom-cta-title {
+          font-size: clamp(1.88rem, 8.9vw, 2.22rem) !important;
+          letter-spacing: 0.05em;
+          line-height: 1.12;
+        }
+
+        #bottom-cta .bottom-cta-brand {
+          font-size: clamp(1.38rem, 7.2vw, 1.74rem);
+          letter-spacing: 0.05em;
+          -webkit-text-stroke: 0.68px rgba(248, 250, 252, 0.78);
+        }
+
+        #bottom-cta [data-i18n="cta_desc"] {
+          max-width: 92%;
+          font-size: 0.92rem;
+          line-height: 1.78;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .moat-mobile-cue {
+          display: none;
         }
       }
 
@@ -1748,22 +1976,23 @@
                 </p>
               </div>
 
-              <div class="mt-12 grid gap-6 md:grid-cols-2">
-                <article class="moat-card glass-panel reveal rounded-[1.8rem] border border-cyan-400/20 p-7 transition-all duration-300 hover:border-cyan-300/30 hover:shadow-[0_0_32px_rgba(56,189,248,0.12)]" data-delay="1">
-                  <button type="button" class="moat-toggle w-full text-left">
-                    <p class="headline-thin text-lg tracking-[0.16em] text-[#D4D4D8]" data-i18n="moat_1_title">图谱检索多跳推理</p>
+                <div class="mt-12 grid gap-6 md:grid-cols-2">
+                  <article class="moat-card glass-panel reveal rounded-[1.8rem] border border-cyan-400/20 p-7 transition-all duration-300 hover:border-cyan-300/30 hover:shadow-[0_0_32px_rgba(56,189,248,0.12)]" data-delay="1">
+                  <button type="button" class="moat-toggle w-full text-left" aria-expanded="false">
+                    <div class="moat-title-row">
+                      <p class="headline-thin text-lg tracking-[0.16em] text-[#D4D4D8]" data-i18n="moat_1_title">图谱检索多跳推理</p>
+                      <span class="moat-mobile-cue" data-i18n="moat_open_hint">展开详情</span>
+                    </div>
                     <p class="mt-4 text-sm font-light leading-7 text-zinc-400" data-i18n="moat_1_desc">解决长文本法律卷宗的精准关联。</p>
                     <p class="moat-detail text-sm font-light leading-7 text-zinc-400" data-i18n="moat_1_detail">通过动态实体关系图、案号索引、债权穿透链与语义证据桥接，系统可以沿资金流、控制链和法定顺位执行多跳召回，在万页卷宗中保持稳定、可验证的全局上下文。</p>
                   </button>
                 </article>
 
                 <article class="moat-card glass-panel reveal rounded-[1.8rem] p-7 transition-all duration-300 hover:border-cyan-300/30 hover:shadow-[0_0_32px_rgba(56,189,248,0.12)]" data-delay="2">
-                  <button type="button" class="moat-toggle w-full text-left">
-                    <div class="flex items-center justify-between">
+                  <button type="button" class="moat-toggle w-full text-left" aria-expanded="false">
+                    <div class="moat-title-row">
                       <p class="headline-thin text-lg tracking-[0.16em] text-white" data-i18n="moat_2_title">神经-符号执行沙盒</p>
-                      <span class="flex h-8 w-8 items-center justify-center rounded-full border border-cyan-400/20 bg-cyan-300/10">
-                        <span class="h-2.5 w-2.5 rounded-full bg-cyan-300 shadow-[0_0_14px_rgba(56,189,248,0.5)]"></span>
-                      </span>
+                      <span class="moat-mobile-cue" data-i18n="moat_open_hint">展开详情</span>
                     </div>
                     <p class="mt-4 text-sm font-light leading-7 text-zinc-300" data-i18n="moat_2_desc">确保 Agent 生成的法律文书 100% 符合法定程序。</p>
                     <p class="moat-detail text-sm font-light leading-7 text-zinc-300" data-i18n="moat_2_detail">大模型负责卷宗理解、事实抽取与结构规划，法定顺位、文书模板约束、程序节点校验和息费测算交由受限符号沙盒执行，实现可审计、可回放、可追责的生成闭环。</p>
@@ -1771,16 +2000,22 @@
                 </article>
 
                 <article class="moat-card glass-panel reveal rounded-[1.8rem] p-7 transition-all duration-300 hover:border-cyan-300/30 hover:shadow-[0_0_32px_rgba(56,189,248,0.12)]" data-delay="1">
-                  <button type="button" class="moat-toggle w-full text-left">
-                    <p class="headline-thin text-lg tracking-[0.16em] text-[#D4D4D8]" data-i18n="moat_3_title">信创全栈适配</p>
+                  <button type="button" class="moat-toggle w-full text-left" aria-expanded="false">
+                    <div class="moat-title-row">
+                      <p class="headline-thin text-lg tracking-[0.16em] text-[#D4D4D8]" data-i18n="moat_3_title">信创全栈适配</p>
+                      <span class="moat-mobile-cue" data-i18n="moat_open_hint">展开详情</span>
+                    </div>
                     <p class="mt-4 text-sm font-light leading-7 text-zinc-400" data-i18n="moat_3_desc">深度优化国产算力与信创环境下的推理效率。</p>
                     <p class="moat-detail text-sm font-light leading-7 text-zinc-400" data-i18n="moat_3_detail">从模型量化、KV Cache 管理、向量检索链路到服务编排均针对信创算力栈调优，在本土政企基础设施下保持高吞吐、低抖动和稳定 SLA。</p>
                   </button>
                 </article>
 
                 <article class="moat-card glass-panel reveal rounded-[1.8rem] p-7 transition-all duration-300 hover:border-cyan-300/30 hover:shadow-[0_0_32px_rgba(56,189,248,0.12)]" data-delay="2">
-                  <button type="button" class="moat-toggle w-full text-left">
-                    <p class="headline-thin text-lg tracking-[0.16em] text-[#D4D4D8]" data-i18n="moat_4_title">私有化机密计算</p>
+                  <button type="button" class="moat-toggle w-full text-left" aria-expanded="false">
+                    <div class="moat-title-row">
+                      <p class="headline-thin text-lg tracking-[0.16em] text-[#D4D4D8]" data-i18n="moat_4_title">私有化机密计算</p>
+                      <span class="moat-mobile-cue" data-i18n="moat_open_hint">展开详情</span>
+                    </div>
                     <p class="mt-4 text-sm font-light leading-7 text-zinc-400" data-i18n="moat_4_desc">数据不出机房，保障国家政务数据安全。</p>
                     <p class="moat-detail text-sm font-light leading-7 text-zinc-400" data-i18n="moat_4_detail">支持内网隔离部署、密钥分域管理、审计追踪和机密执行环境，确保案件数据、文书草稿、推理过程与检索索引均在受控边界内完成闭环处理。</p>
                   </button>
@@ -1978,10 +2213,10 @@
             <div class="mx-auto max-w-5xl">
               <div class="glass-panel reveal rounded-[2rem] px-6 py-10 text-center sm:px-10" data-delay="1">
                 <p class="headline-thin text-xs tracking-[0.28em] text-cyan-300" data-i18n="cta_eyebrow">优先接入</p>
-                <h2 class="headline-thin mt-7 text-3xl tracking-[0.14em] text-[#D4D4D8] sm:text-4xl">
-                  <span data-i18n="cta_title_prefix">让</span>
-                  <span class="hero-brand-inline">Umob.AI Agent OS</span>
-                  <span data-i18n="cta_title_suffix">进入真实生产现场</span>
+                <h2 class="bottom-cta-title headline-thin mt-7 text-3xl tracking-[0.14em] text-[#D4D4D8] sm:text-4xl">
+                  <span class="cta-title-prefix" data-i18n="cta_title_prefix">让</span>
+                  <span class="bottom-cta-brand hero-brand-inline">Umob.AI Agent OS</span>
+                  <span class="cta-title-suffix" data-i18n="cta_title_suffix">进入真实生产现场</span>
                 </h2>
                 <p class="mx-auto mt-5 max-w-3xl text-sm font-light leading-7 text-zinc-500 sm:text-base" data-i18n="cta_desc">
                   深耕法律破产行业，以十二年行业经验和重型技术底座支持高责任场景落地。
@@ -2182,6 +2417,8 @@
           moats_eyebrow: "技术底座",
           moats_title: "2x2 硬核技术栈",
           moats_desc: "以图谱推理、沙盒执行、信创适配与机密计算构建真正适用于高责任场景的重型智能平台。",
+          moat_open_hint: "展开详情",
+          moat_close_hint: "收起详情",
           moat_1_title: "图谱检索多跳推理",
           moat_1_desc: "解决长文本法律卷宗的精准关联。",
           moat_1_detail: "通过动态实体关系图、案号索引、债权穿透链与语义证据桥接，系统可以沿资金流、控制链和法定顺位执行多跳召回，在万页卷宗中保持稳定、可验证的全局上下文。",
@@ -2283,6 +2520,8 @@
           moats_eyebrow: "Deep Tech Stack",
           moats_title: "2x2 Hardcore Technical Grid",
           moats_desc: "Graph reasoning, symbolic sandboxing, sovereign compute optimization, and confidential deployment form the heavyweight substrate behind production-grade agents.",
+          moat_open_hint: "Open Detail",
+          moat_close_hint: "Close Detail",
           moat_1_title: "Graph Retrieval & Multi-hop Reasoning",
           moat_1_desc: "Resolve long-form legal records with precise relational recall.",
           moat_1_detail: "Dynamic entity graphs, docket indexing, liability chains, and evidence bridges allow the system to traverse capital flows, control links, and ranking logic while keeping full, verifiable context across massive records.",
@@ -2344,7 +2583,76 @@
       const successState = document.getElementById("success-state");
       const formMessage = document.getElementById("form-message");
       const moatCards = document.querySelectorAll(".moat-card");
+      const moatTypewriters = new WeakMap();
+      const moatMobileMedia = window.matchMedia("(max-width: 767px)");
       let currentLanguage = localStorage.getItem("umob_crystal_lang") || "zh";
+
+      function setMoatCue(card, open, copy) {
+        const cue = card.querySelector(".moat-mobile-cue");
+        if (!cue) return;
+        cue.textContent = open ? copy.moat_close_hint : copy.moat_open_hint;
+      }
+
+      function stopMoatTypewriter(node) {
+        const timer = moatTypewriters.get(node);
+        if (timer) {
+          clearTimeout(timer);
+          moatTypewriters.delete(node);
+        }
+        node.dataset.streaming = "false";
+      }
+
+      function streamMoatDetail(node, text) {
+        stopMoatTypewriter(node);
+        node.textContent = "";
+        node.dataset.streaming = "true";
+
+        let index = 0;
+
+        function step() {
+          index += 1;
+          node.textContent = text.slice(0, index);
+
+          if (index >= text.length) {
+            node.dataset.streaming = "false";
+            moatTypewriters.delete(node);
+            return;
+          }
+
+          const char = text[index - 1];
+          const delay = /[，。！？；：,.!?]/.test(char) ? 56 : /[A-Za-z0-9]/.test(char) ? 18 : 28;
+          const timer = window.setTimeout(step, delay);
+          moatTypewriters.set(node, timer);
+        }
+
+        step();
+      }
+
+      function syncMoatDetails(copy) {
+        moatCards.forEach((card) => {
+          const detail = card.querySelector(".moat-detail");
+          const isOpen = card.dataset.mobileOpen === "true";
+
+          setMoatCue(card, isOpen, copy);
+
+          if (!detail) return;
+
+          const key = detail.dataset.i18n;
+          detail.dataset.fullText = copy[key] || detail.textContent.trim();
+
+          if (window.innerWidth < 768) {
+            if (isOpen) {
+              streamMoatDetail(detail, detail.dataset.fullText);
+            } else {
+              stopMoatTypewriter(detail);
+              detail.textContent = "";
+            }
+          } else {
+            stopMoatTypewriter(detail);
+            detail.textContent = detail.dataset.fullText;
+          }
+        });
+      }
 
       function applyLanguage(language) {
         const copy = translations[language] || translations.zh;
@@ -2361,6 +2669,7 @@
           if (copy[key]) node.setAttribute("placeholder", copy[key]);
         });
 
+        syncMoatDetails(copy);
         langCurrentLabel.textContent = language === "zh" ? "🇨🇳 中文" : "🇺🇸 English";
         submitButton.textContent = copy.modal_submit;
         currentLanguage = language;
@@ -2455,10 +2764,44 @@
         button.addEventListener("click", () => {
           if (window.innerWidth < 768) {
             const isOpen = card.dataset.mobileOpen === "true";
+            moatCards.forEach((otherCard) => {
+              const otherButton = otherCard.querySelector(".moat-toggle");
+              const otherDetail = otherCard.querySelector(".moat-detail");
+
+              if (otherCard !== card) {
+                otherCard.dataset.mobileOpen = "false";
+                if (otherButton) otherButton.setAttribute("aria-expanded", "false");
+                if (otherDetail) {
+                  stopMoatTypewriter(otherDetail);
+                  otherDetail.textContent = "";
+                }
+              }
+            });
+
             card.dataset.mobileOpen = isOpen ? "false" : "true";
+            button.setAttribute("aria-expanded", isOpen ? "false" : "true");
+            syncMoatDetails(translations[currentLanguage] || translations.zh);
           }
         });
       });
+
+      function handleMoatViewportChange() {
+        if (!moatMobileMedia.matches) {
+          moatCards.forEach((card) => {
+            card.dataset.mobileOpen = "false";
+            const button = card.querySelector(".moat-toggle");
+            if (button) button.setAttribute("aria-expanded", "false");
+          });
+        }
+
+        syncMoatDetails(translations[currentLanguage] || translations.zh);
+      }
+
+      if (typeof moatMobileMedia.addEventListener === "function") {
+        moatMobileMedia.addEventListener("change", handleMoatViewportChange);
+      } else if (typeof moatMobileMedia.addListener === "function") {
+        moatMobileMedia.addListener(handleMoatViewportChange);
+      }
 
       const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry) => {
