@@ -183,7 +183,7 @@
       }
 
       .hero-orbit-shell {
-        --hero-orbit-duration: 8.8s;
+        --hero-orbit-duration: 6s;
         position: relative;
         width: fit-content;
         padding: clamp(0.3rem, 0.8vw, 0.6rem) clamp(3.2rem, 8vw, 8rem) clamp(1.8rem, 4.2vw, 3.4rem);
@@ -241,84 +241,120 @@
       }
 
       .hero-orbit-comet-front-halo {
+        transform-box: fill-box;
+        transform-origin: center;
         animation: hero-orbit-front-halo-pulse var(--hero-orbit-duration) linear infinite;
       }
 
       .hero-orbit-comet-front-tail {
+        transform-box: fill-box;
+        transform-origin: right center;
         animation: hero-orbit-front-tail-pulse var(--hero-orbit-duration) linear infinite;
       }
 
       .hero-orbit-comet-front-tail-core,
       .hero-orbit-comet-front-body {
+        transform-box: fill-box;
+        transform-origin: center;
         animation: hero-orbit-front-body-pulse var(--hero-orbit-duration) linear infinite;
       }
 
       @keyframes hero-orbit-front-halo-pulse {
-        0%,
-        50% {
+        0% {
           opacity: 0;
+          transform: scale(0.5);
         }
 
-        62% {
+        22% {
+          opacity: 0.06;
+          transform: scale(0.66);
+        }
+
+        36% {
           opacity: 0.34;
+          transform: scale(0.98);
         }
 
-        75% {
+        50% {
           opacity: 1;
+          transform: scale(1.42);
         }
 
-        88% {
-          opacity: 0.42;
+        64% {
+          opacity: 0.52;
+          transform: scale(1.08);
         }
 
+        80%,
         100% {
-          opacity: 0.18;
+          opacity: 0.1;
+          transform: scale(0.62);
         }
       }
 
       @keyframes hero-orbit-front-tail-pulse {
-        0%,
-        50% {
+        0% {
           opacity: 0;
+          transform: scaleX(0.28) scaleY(0.5);
         }
 
-        60% {
-          opacity: 0.3;
+        22% {
+          opacity: 0.08;
+          transform: scaleX(0.42) scaleY(0.62);
         }
 
-        75% {
-          opacity: 0.98;
+        38% {
+          opacity: 0.42;
+          transform: scaleX(0.86) scaleY(0.9);
         }
 
-        90% {
-          opacity: 0.4;
+        50% {
+          opacity: 1;
+          transform: scaleX(1.28) scaleY(1.18);
         }
 
+        64% {
+          opacity: 0.46;
+          transform: scaleX(0.94) scaleY(0.94);
+        }
+
+        80%,
         100% {
-          opacity: 0.16;
+          opacity: 0.08;
+          transform: scaleX(0.34) scaleY(0.54);
         }
       }
 
       @keyframes hero-orbit-front-body-pulse {
-        0%,
-        50% {
+        0% {
           opacity: 0;
+          transform: scale(0.68);
         }
 
-        62% {
-          opacity: 0.48;
+        22% {
+          opacity: 0.14;
+          transform: scale(0.78);
         }
 
-        75% {
+        38% {
+          opacity: 0.54;
+          transform: scale(0.98);
+        }
+
+        50% {
           opacity: 1;
+          transform: scale(1.18);
         }
 
-        88% {
-          opacity: 0.56;
+        64% {
+          opacity: 0.58;
+          transform: scale(1.02);
         }
 
+        80%,
         100% {
-          opacity: 0.26;
+          opacity: 0.12;
+          transform: scale(0.72);
         }
       }
 
@@ -1683,10 +1719,10 @@
                       <ellipse class="hero-orbit-comet-front-tail-core" cx="-54" cy="0" rx="56" ry="5.6" fill="url(#heroOrbitFrontTailCoreGradient)"></ellipse>
                       <circle class="hero-orbit-comet-front-body" cx="0" cy="0" r="10.5" fill="url(#heroOrbitFrontBodyGradient)"></circle>
                       <circle cx="-2" cy="-2" r="3.1" fill="#FFFFFF" opacity="0.98"></circle>
-                      <animateMotion dur="8.8s" repeatCount="indefinite" rotate="auto" keyTimes="0;0.5;1" keyPoints="0;0;1" calcMode="linear">
+                      <animateMotion dur="6s" repeatCount="indefinite" rotate="auto" keyTimes="0;1" keyPoints="0;1" calcMode="linear">
                         <mpath href="#heroOrbitLowerPath"></mpath>
                       </animateMotion>
-                      <animate attributeName="opacity" dur="8.8s" repeatCount="indefinite" values="0;0;0.34;1;0.54;0.18" keyTimes="0;0.5;0.62;0.75;0.9;1"></animate>
+                      <animate attributeName="opacity" dur="6s" repeatCount="indefinite" values="0;0.04;0.3;1;0.42;0.08" keyTimes="0;0.22;0.34;0.5;0.64;1"></animate>
                     </g>
                   </svg>
                 </div>
