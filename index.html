@@ -659,6 +659,10 @@
           0 0 12px rgba(56, 189, 248, 0.08);
       }
 
+      .hero-title-base {
+        font-size: 2.25rem;
+      }
+
       .mission-title {
         letter-spacing: 0.14em;
         line-height: 1.04;
@@ -1397,7 +1401,11 @@
         .mission-title {
           font-size: clamp(2.55rem, 10.4vw, 3.25rem) !important;
           letter-spacing: 0.08em;
-          line-height: 1.24;
+          line-height: 1.34;
+          text-wrap: balance;
+          white-space: normal;
+          word-break: normal;
+          overflow-wrap: anywhere;
         }
 
         #hero [data-i18n="hero_subtitle"] {
@@ -1480,7 +1488,11 @@
         .mission-title {
           font-size: clamp(2.18rem, 9.9vw, 2.72rem) !important;
           letter-spacing: 0.05em;
-          line-height: 1.26;
+          line-height: 1.4;
+          text-wrap: balance;
+          white-space: normal;
+          word-break: normal;
+          overflow-wrap: anywhere;
         }
 
         #hero [data-i18n="hero_subtitle"] {
@@ -1683,7 +1695,7 @@
                   下一代破产行业商用解决方案
                 </p>
 
-                <h1 class="hero-title-tech mission-title mx-auto mt-8 max-w-5xl text-4xl sm:text-5xl lg:text-7xl" data-i18n="hero_title">
+                <h1 class="hero-title-tech hero-title-base mission-title mx-auto mt-8 max-w-5xl sm:text-5xl lg:text-7xl" data-i18n="hero_title">
                   将确定性智能体平台带入生产环境。
                 </h1>
 
