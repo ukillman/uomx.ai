@@ -26,8 +26,8 @@ export function FooterSection() {
       <div className="section-shell">
         <Reveal>
           <div className="glass-panel relative overflow-hidden rounded-[2rem] p-6 sm:p-8 lg:p-10">
-            <div className="absolute left-[-8%] top-[-12%] h-56 w-56 rounded-full bg-blue-500/16 blur-[120px]" />
-            <div className="absolute right-[-5%] top-[12%] h-64 w-64 rounded-full bg-indigo-500/18 blur-[120px]" />
+            <div className="absolute left-[-8%] top-[-12%] h-56 w-56 rounded-full bg-cyan-400/6 blur-[120px]" />
+            <div className="absolute right-[-5%] top-[12%] h-64 w-64 rounded-full bg-violet-500/6 blur-[120px]" />
 
             <div className="relative grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-end">
               <div className="max-w-3xl">
@@ -55,9 +55,9 @@ export function FooterSection() {
               {contactColumns.map((column) => (
                 <div
                   key={column.title}
-                  className="rounded-[1.75rem] border border-white/10 bg-black/35 p-5"
+                  className="rounded-[1.75rem] border border-white/10 bg-white/[0.025] p-5"
                 >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-blue-200">
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-white/78">
                     <column.icon className="h-5 w-5" />
                   </div>
                   <p className="mt-5 text-sm uppercase tracking-[0.24em] text-white/40">

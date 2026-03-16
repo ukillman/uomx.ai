@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { BadgeCheck, Globe2, MapPinned } from "lucide-react";
 
 import { Reveal } from "@/components/ui/reveal";
@@ -31,7 +32,7 @@ export function AboutSection() {
             <div className="mt-10 grid gap-4 sm:grid-cols-2">
               <div className="glass-panel rounded-[1.75rem] p-5">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-black/35 text-blue-200">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-white/78">
                     <MapPinned className="h-5 w-5" />
                   </div>
                   <div>
@@ -43,7 +44,7 @@ export function AboutSection() {
 
               <div className="glass-panel rounded-[1.75rem] p-5">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-black/35 text-blue-200">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-white/78">
                     <Globe2 className="h-5 w-5" />
                   </div>
                   <div>
@@ -60,10 +61,20 @@ export function AboutSection() {
                   key={item}
                   className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/70"
                 >
-                  <BadgeCheck className="h-4 w-4 text-blue-300" />
+                  <BadgeCheck className="h-4 w-4 text-white/72" />
                   {item}
                 </div>
               ))}
+            </div>
+
+            <div className="mt-8 overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.025]">
+              <Image
+                src="/visuals/lab-system.svg"
+                alt="Umob.AI system architecture visual"
+                width={960}
+                height={760}
+                className="h-auto w-full"
+              />
             </div>
           </Reveal>
 
@@ -75,10 +86,10 @@ export function AboutSection() {
               </h3>
 
               <div className="relative mt-10 space-y-8">
-                <div className="absolute left-[19px] top-2 h-[calc(100%-1rem)] w-px bg-gradient-to-b from-blue-400/80 via-indigo-400/40 to-transparent" />
+                <div className="absolute left-[19px] top-2 h-[calc(100%-1rem)] w-px bg-gradient-to-b from-white/28 via-white/16 to-transparent" />
                 {timeline.map((item) => (
                   <div key={item.year} className="relative pl-14">
-                    <div className="absolute left-0 top-1.5 flex h-10 w-10 items-center justify-center rounded-full border border-blue-400/20 bg-blue-500/10 text-sm font-semibold text-blue-200">
+                    <div className="absolute left-0 top-1.5 flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-sm font-semibold text-white/78">
                       {item.year.slice(-2)}
                     </div>
                     <p className="text-sm uppercase tracking-[0.26em] text-white/42">{item.year}</p>
@@ -88,7 +99,7 @@ export function AboutSection() {
                 ))}
               </div>
 
-              <div className="mt-10 rounded-[1.75rem] border border-white/10 bg-black/35 p-5">
+              <div className="mt-10 rounded-[1.75rem] border border-white/10 bg-white/[0.025] p-5">
                 <p className="text-xs uppercase tracking-[0.24em] text-white/40">Strategic Direction</p>
                 <div className="mt-5 grid gap-4 sm:grid-cols-3">
                   {[

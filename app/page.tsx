@@ -7,9 +7,10 @@ import { SolutionsSection } from "@/components/site/solutions-section";
 
 export default function HomePage() {
   return (
-    <div className="relative min-h-screen overflow-x-clip bg-[#050505] text-white">
-      <div className="pointer-events-none absolute left-1/2 top-0 h-[720px] w-[720px] -translate-x-1/2 rounded-full bg-blue-600/12 blur-[180px]" />
-      <div className="pointer-events-none absolute right-[-10%] top-[28%] h-[520px] w-[520px] rounded-full bg-indigo-600/10 blur-[180px]" />
+    <div className="relative min-h-screen overflow-x-clip bg-[#0a0a0a] text-white">
+      <div className="pointer-events-none absolute left-1/2 top-0 h-[540px] w-[540px] -translate-x-1/2 rounded-full bg-cyan-400/6 blur-[160px]" />
+      <div className="pointer-events-none absolute right-[-6%] top-[22%] h-[440px] w-[440px] rounded-full bg-violet-500/6 blur-[170px]" />
+      <div className="pointer-events-none absolute left-[-8%] top-[60%] h-[360px] w-[360px] rounded-full bg-white/[0.03] blur-[150px]" />
       <Navbar />
       <main className="relative z-10">
         <HeroSection />

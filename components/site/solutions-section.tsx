@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, Building2, Factory, Landmark } from "lucide-react";
 import { useMemo, useState } from "react";
@@ -15,6 +16,7 @@ type Solution = {
   icon: typeof Building2;
   outcomes: string[];
   capabilities: string[];
+  image: string;
 };
 
 const stats = [
@@ -36,7 +38,8 @@ const solutions: Solution[] = [
       "将购房人债权、施工债权、银行债权纳入统一图谱",
       "支撑大规模投票、公告、问答与结果追踪"
     ],
-    capabilities: ["海量材料清洗", "表决编排", "合规风控", "多角色协同"]
+    capabilities: ["海量材料清洗", "表决编排", "合规风控", "多角色协同"],
+    image: "/visuals/workspace-overview.svg"
   },
   {
     id: "manufacturing",
@@ -50,7 +53,8 @@ const solutions: Solution[] = [
       "辅助识别低效资产与核心经营单元",
       "生成可比交易摘要与方案评估文书"
     ],
-    capabilities: ["资产拓扑建模", "方案推演", "文书生成", "交易溯源"]
+    capabilities: ["资产拓扑建模", "方案推演", "文书生成", "交易溯源"],
+    image: "/visuals/workspace-overview.svg"
   },
   {
     id: "group",
@@ -64,7 +68,8 @@ const solutions: Solution[] = [
       "为多家机构提供统一口径的事实底座",
       "通过权限分层和审计留痕强化安全控制"
     ],
-    capabilities: ["关联方识别", "多机构工作台", "权限矩阵", "审计追踪"]
+    capabilities: ["关联方识别", "多机构工作台", "权限矩阵", "审计追踪"],
+    image: "/visuals/workspace-overview.svg"
   }
 ];
 
@@ -90,11 +95,12 @@ export function SolutionsSection() {
         <div className="mt-14 grid gap-5 lg:grid-cols-3">
           {stats.map((stat, index) => (
             <Reveal key={stat.label} delay={index * 0.08}>
-              <div className="glass-panel rounded-[2rem] p-6 sm:p-7">
-                <p className="gradient-text text-5xl font-semibold tracking-[-0.08em] sm:text-6xl">
+              <div className="glass-panel relative rounded-[2rem] p-6 sm:p-7">
+                <div className="absolute inset-x-7 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
+                <p className="text-5xl font-semibold tracking-[-0.08em] text-white sm:text-6xl">
                   {stat.value}
                 </p>
-                <p className="mt-4 text-lg text-white/65">{stat.label}</p>
+                <p className="mt-4 text-lg text-white/62">{stat.label}</p>
               </div>
             </Reveal>
           ))}
@@ -108,12 +114,12 @@ export function SolutionsSection() {
                   key={solution.id}
                   type="button"
                   onClick={() => setActiveId(solution.id)}
-                  className={`glass-panel w-full rounded-[1.75rem] p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-blue-500/30 ${
-                    solution.id === activeId ? "border-blue-500/40 bg-blue-500/10" : ""
+                  className={`glass-panel w-full rounded-[1.75rem] p-5 text-left transition-all duration-300 hover:-translate-y-1 hover:border-cyan-300/18 ${
+                    solution.id === activeId ? "border-white/16 bg-white/[0.05]" : ""
                   }`}
                 >
                   <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-black/35 text-blue-200">
+                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04] text-white/78">
                       <solution.icon className="h-6 w-6" />
                     </div>
                     <div>
@@ -146,18 +152,28 @@ export function SolutionsSection() {
                         {activeSolution.description}
                       </p>
                     </div>
-                    <div className="rounded-full border border-white/10 bg-black/35 px-4 py-2 text-sm text-white/60">
+                    <div className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/60">
                       {activeSolution.subtitle}
                     </div>
                   </div>
 
+                  <div className="mt-8 overflow-hidden rounded-[1.75rem] border border-white/10 bg-white/[0.025]">
+                    <Image
+                      src={activeSolution.image}
+                      alt={`${activeSolution.title} workspace visual`}
+                      width={1180}
+                      height={860}
+                      className="h-auto w-full"
+                    />
+                  </div>
+
                   <div className="mt-8 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
-                    <div className="rounded-[1.75rem] border border-white/10 bg-black/35 p-5">
+                    <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.025] p-5">
                       <p className="text-xs uppercase tracking-[0.24em] text-white/40">Outcomes</p>
                       <div className="mt-5 space-y-3">
                         {activeSolution.outcomes.map((outcome, index) => (
                           <div key={outcome} className="flex gap-4">
-                            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-blue-400/20 bg-blue-500/10 text-xs font-semibold text-blue-200">
+                            <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-xs font-medium text-white/78">
                               0{index + 1}
                             </div>
                             <p className="pt-1 text-sm leading-6 text-white/72">{outcome}</p>
@@ -166,13 +182,13 @@ export function SolutionsSection() {
                       </div>
                     </div>
 
-                    <div className="rounded-[1.75rem] border border-white/10 bg-black/35 p-5">
+                    <div className="rounded-[1.75rem] border border-white/10 bg-white/[0.025] p-5">
                       <p className="text-xs uppercase tracking-[0.24em] text-white/40">Capability Stack</p>
                       <div className="mt-5 flex flex-wrap gap-3">
                         {activeSolution.capabilities.map((capability) => (
                           <span
                             key={capability}
-                            className="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2 text-sm text-white/75"
+                            className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-sm text-white/75"
                           >
                             {capability}
                           </span>
@@ -186,8 +202,8 @@ export function SolutionsSection() {
                         <div className="mt-4 space-y-3">
                           {["数据摄取", "智能推理", "协同决策", "合规交付"].map((lane, index) => (
                             <div key={lane} className="flex items-center gap-3">
-                              <div className="h-px flex-1 bg-gradient-to-r from-blue-400/45 to-transparent" />
-                              <div className="rounded-full border border-white/10 bg-black/40 px-3 py-2 text-sm text-white/72">
+                              <div className="h-px flex-1 bg-gradient-to-r from-white/22 to-transparent" />
+                              <div className="rounded-full border border-white/10 bg-white/[0.025] px-3 py-2 text-sm text-white/72">
                                 {lane}
                               </div>
                               <div className="text-xs text-white/35">0{index + 1}</div>
@@ -198,7 +214,7 @@ export function SolutionsSection() {
                     </div>
                   </div>
 
-                  <a href="#contact" className="glass-button mt-8">
+                  <a href="#contact" className="primary-button mt-8">
                     深入了解该方案
                     <ArrowUpRight className="ml-2 h-4 w-4" />
                   </a>

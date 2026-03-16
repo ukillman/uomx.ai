@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="page-title">优破案 4.0 | 破产案件数字化解决方案</title>
+    <meta
+      id="page-description"
+      name="description"
+      content="优破案 4.0 沉淀十余年行业经验，面向破产案件管理提供覆盖全生命周期的数字化解决方案，强调数据主权与本土合规。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              canvas: "#0A0A0A",
+              ink: "#F8FAFC",
+              muted: "#94A3B8",
+              line: "rgba(255,255,255,0.10)",
+              panel: "rgba(255,255,255,0.04)",
+              cyan: "#22D3EE",
+              violet: "#8B5CF6"
+            },
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"]
+            },
+            boxShadow: {
+              glass: "0 24px 80px rgba(0,0,0,0.35)",
+              glow: "0 0 0 1px rgba(34,211,238,0.16), 0 12px 40px rgba(34,211,238,0.18)"
+            }
+          }
+        }
+      };
+    </script>
+    <style>
+      :root {
+        color-scheme: light;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        background: #fbfbfb;
+        color: #0f172a;
+      }
+
+      .tech-grid::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(15, 23, 42, 0.035) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(15, 23, 42, 0.035) 1px, transparent 1px);
+        background-size: 36px 36px;
+        opacity: 0.18;
+      }
+
+      .tech-grid::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background:
+          linear-gradient(180deg, rgba(251, 251, 251, 0), rgba(251, 251, 251, 0.9)),
+          radial-gradient(circle at center, rgba(255, 255, 255, 0), rgba(15, 23, 42, 0.03));
+      }
+
+      .glass {
+        background: rgba(255, 255, 255, 0.88);
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        backdrop-filter: blur(18px);
+        -webkit-backdrop-filter: blur(18px);
+        box-shadow: 0 20px 48px rgba(15, 23, 42, 0.08);
+      }
+
+      .text-accent {
+        color: #1e3a8a;
+      }
+
+      .primary-button {
+        border: 1px solid #23415f;
+        background: linear-gradient(180deg, #23415f, #1f3650);
+        box-shadow: 0 10px 24px rgba(35, 65, 95, 0.12);
+      }
+
+      .primary-button:hover {
+        background: linear-gradient(180deg, #284968, #223d58);
+        box-shadow: 0 14px 28px rgba(35, 65, 95, 0.16);
+      }
+
+      [data-reveal] {
+        opacity: 0;
+        transform: translateY(1rem);
+        transition:
+          opacity 820ms cubic-bezier(0.16, 1, 0.3, 1),
+          transform 820ms cubic-bezier(0.16, 1, 0.3, 1);
+        will-change: opacity, transform;
+      }
+
+      [data-reveal].is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .product-window {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 250, 252, 0.98)),
+          radial-gradient(circle at top right, rgba(59, 130, 246, 0.06), transparent 26%);
+      }
+
+      .preview-grid {
+        background-image:
+          linear-gradient(rgba(15, 23, 42, 0.04) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(15, 23, 42, 0.04) 1px, transparent 1px);
+        background-size: 36px 36px;
+      }
+
+      .glow-panel {
+        box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+      }
+
+      .hero-stage {
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 250, 252, 0.98)),
+          linear-gradient(135deg, rgba(37, 99, 235, 0.03), transparent 50%);
+      }
+
+      .paper-card {
+        background: rgba(255, 255, 255, 0.86);
+        border: 1px solid rgba(15, 23, 42, 0.08);
+        box-shadow: 0 20px 40px rgba(15, 23, 42, 0.08);
+      }
+
+      .primary-button,
+      .primary-button * {
+        color: #ffffff !important;
+      }
+
+      .text-white {
+        color: #0f172a !important;
+      }
+
+      .text-slate-500 {
+        color: #64748b !important;
+      }
+
+      .text-slate-400,
+      .text-slate-300,
+      .text-slate-200 {
+        color: #475569 !important;
+      }
+
+      .border-white\/10,
+      .border-white\/15,
+      .border-white\/20,
+      .border-white\/35,
+      .border-white\/40,
+      .border-white\/50,
+      .border-white\/60 {
+        border-color: rgba(15, 23, 42, 0.08) !important;
+      }
+
+      .bg-black\/20,
+      .bg-black\/25,
+      .bg-black\/30 {
+        background-color: rgba(255, 255, 255, 0.82) !important;
+      }
+
+      .bg-cyan\/10 {
+        background-color: rgba(226, 232, 240, 0.72) !important;
+      }
+
+      .bg-cyan\/50,
+      .bg-cyan\/60,
+      .bg-cyan\/70 {
+        background-color: rgba(100, 116, 139, 0.42) !important;
+      }
+
+      .border-cyan\/20,
+      .border-cyan\/30 {
+        border-color: rgba(59, 130, 246, 0.16) !important;
+      }
+
+      .bg-white\/5,
+      .bg-white\/10,
+      .bg-white\/15,
+      .bg-white\/20,
+      .bg-white\/\[0\.03\],
+      .bg-white\/\[0\.04\],
+      .bg-white\/\[0\.05\] {
+        background-color: rgba(248, 250, 252, 0.92) !important;
+      }
+
+      .shadow-inner {
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8);
+      }
+    </style>
+  </head>
+  <body class="bg-[#FBFBFB] text-slate-900 antialiased">
+    <div class="tech-grid relative min-h-screen overflow-hidden">
+      <div class="relative z-10">
+        <nav class="fixed inset-x-0 top-0 z-50 w-full border-b border-gray-200 bg-white/70 backdrop-blur-md dark:border-gray-800 dark:bg-black/70">
+          <div class="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
+            <a href="#top" class="text-lg font-semibold tracking-[-0.04em] sm:text-xl">
+              Umob<span class="text-accent">.AI</span>
+            </a>
+            <div class="hidden items-center gap-7 text-sm text-slate-300 md:flex">
+              <a href="#features" class="transition hover:text-white" data-i18n="nav_features">能力</a>
+              <a href="#integrations" class="transition hover:text-white" data-i18n="nav_stack">技术栈</a>
+              <a href="#runtime" class="transition hover:text-white" data-i18n="nav_runtime">运行时</a>
+              <a href="#contact" class="transition hover:text-white" data-i18n="nav_access">联系</a>
+            </div>
+            <div class="hidden items-center gap-3 md:flex">
+              <div class="relative" data-lang-switcher>
+                <button
+                  type="button"
+                  data-lang-trigger
+                  aria-haspopup="menu"
+                  aria-expanded="false"
+                  class="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3.5 py-2.5 text-sm font-medium text-white/90 backdrop-blur-md transition-all duration-200 hover:bg-white/10"
+                >
+                  <span class="text-base leading-none">🌐</span>
+                  <span data-lang-current>🇨🇳 中文</span>
+                  <svg data-lang-chevron width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-white/55 transition-transform duration-200">
+                    <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <div
+                  data-lang-menu
+                  class="invisible pointer-events-none absolute right-0 top-[calc(100%+0.25rem)] z-50 w-56 rounded-2xl border border-gray-100 bg-white/90 p-2 opacity-0 shadow-[0_18px_48px_rgba(0,0,0,0.2)] backdrop-blur-md transition-all duration-200 ease-out dark:border-gray-800 dark:bg-gray-900/90"
+                >
+                  <button
+                    type="button"
+                    data-lang-option="zh"
+                    class="flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left text-sm font-semibold text-slate-900 transition-colors hover:bg-black/[0.03] dark:text-white dark:hover:bg-white/[0.04]"
+                  >
+                    <span>🇨🇳 中文 (Chinese)</span>
+                    <svg data-lang-check="zh" width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-slate-500 dark:text-slate-300">
+                      <path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    data-lang-option="en"
+                    class="mt-1 flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left text-sm text-slate-600 transition-colors hover:bg-black/[0.03] dark:text-slate-300 dark:hover:bg-white/[0.04]"
+                  >
+                    <span>🇺🇸 English</span>
+                    <svg data-lang-check="en" width="14" height="14" viewBox="0 0 24 24" fill="none" class="hidden text-slate-500 dark:text-slate-300">
+                      <path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <a
+                href="#contact"
+                class="primary-button inline-flex items-center rounded-full px-5 py-2.5 text-sm font-medium text-white transition-all duration-300"
+              >
+                <span data-i18n="nav_cta">预约演示</span>
+              </a>
+            </div>
+            <div class="flex items-center gap-2 md:hidden">
+              <div class="relative" data-lang-switcher>
+                <button
+                  type="button"
+                  data-lang-trigger
+                  aria-haspopup="menu"
+                  aria-expanded="false"
+                  class="inline-flex h-10 items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 text-xs font-medium text-white/90 backdrop-blur-md transition-all duration-200 hover:bg-white/10"
+                >
+                  <span class="text-sm leading-none">🌐</span>
+                  <span data-lang-current>🇨🇳 中文</span>
+                  <svg data-lang-chevron width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-white/55 transition-transform duration-200">
+                    <path d="m6 9 6 6 6-6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <div
+                  data-lang-menu
+                  class="invisible pointer-events-none absolute right-0 top-[calc(100%+0.25rem)] z-50 w-56 rounded-2xl border border-gray-100 bg-white/90 p-2 opacity-0 shadow-[0_18px_48px_rgba(0,0,0,0.2)] backdrop-blur-md transition-all duration-200 ease-out dark:border-gray-800 dark:bg-gray-900/90"
+                >
+                  <button
+                    type="button"
+                    data-lang-option="zh"
+                    class="flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left text-sm font-semibold text-slate-900 transition-colors hover:bg-black/[0.03] dark:text-white dark:hover:bg-white/[0.04]"
+                  >
+                    <span>🇨🇳 中文 (Chinese)</span>
+                    <svg data-lang-check="zh" width="14" height="14" viewBox="0 0 24 24" fill="none" class="text-slate-500 dark:text-slate-300">
+                      <path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    data-lang-option="en"
+                    class="mt-1 flex w-full items-center justify-between rounded-xl px-3 py-2.5 text-left text-sm text-slate-600 transition-colors hover:bg-black/[0.03] dark:text-slate-300 dark:hover:bg-white/[0.04]"
+                  >
+                    <span>🇺🇸 English</span>
+                    <svg data-lang-check="en" width="14" height="14" viewBox="0 0 24 24" fill="none" class="hidden text-slate-500 dark:text-slate-300">
+                      <path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </button>
+                </div>
+              </div>
+              <button
+                id="menu-toggle"
+                type="button"
+                class="glass inline-flex h-10 w-10 items-center justify-center rounded-xl"
+                aria-label="Toggle menu"
+              >
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-white">
+                  <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                </svg>
+              </button>
+            </div>
+          </div>
+          <div id="mobile-menu" class="mx-auto hidden max-w-7xl px-1 pt-3 md:hidden">
+            <div class="glass rounded-2xl px-5 py-4">
+              <div class="flex flex-col gap-3 text-sm text-slate-300">
+                <a href="#features" class="transition hover:text-white" data-i18n="nav_features">能力</a>
+                <a href="#integrations" class="transition hover:text-white" data-i18n="nav_stack">技术栈</a>
+                <a href="#runtime" class="transition hover:text-white" data-i18n="nav_runtime">运行时</a>
+                <a href="#contact" class="transition hover:text-white" data-i18n="nav_access">联系</a>
+                <a
+                  href="#contact"
+                  class="primary-button mt-2 inline-flex items-center justify-center rounded-full px-5 py-2.5 text-white transition-all duration-300"
+                >
+                  <span data-i18n="nav_cta">预约演示</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <main id="top">
+          <section class="px-4 pb-16 pt-32 sm:px-6 lg:px-8 lg:pb-24 lg:pt-36">
+            <div class="mx-auto max-w-7xl">
+              <div class="grid gap-14 lg:grid-cols-[minmax(0,1.02fr)_minmax(420px,0.98fr)] lg:items-center">
+                <div class="max-w-4xl" data-reveal>
+                  <div class="inline-flex items-center gap-3 rounded-full border border-slate-200 bg-white px-4 py-2 text-sm text-slate-600 shadow-sm">
+                    <span class="h-2.5 w-2.5 rounded-full bg-slate-500"></span>
+                    <span data-i18n="hero_badge">优破案 4.0 · 自 2014 年持续服务行业</span>
+                  </div>
+                  <h1 class="mt-8 max-w-4xl text-5xl font-semibold leading-[1.04] tracking-[-0.05em] text-slate-900 sm:text-6xl lg:text-7xl" data-i18n="hero_title">
+                    优破案 4.0：让破产管理更高效、更专业
+                  </h1>
+                  <p class="mt-6 max-w-3xl text-lg leading-8 text-slate-600 sm:text-xl" data-i18n="hero_subtitle">
+                    沉淀十余年行业经验，深度融合 AI 技术。为管理人提供覆盖全生命周期的破产案件数字化解决方案。
+                  </p>
+                  <div class="mt-10 flex flex-col gap-4 sm:flex-row">
+                    <a
+                      href="#contact"
+                      class="primary-button inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-medium text-white transition-all duration-300"
+                    >
+                      <span data-i18n="hero_cta_primary">预约演示</span>
+                    </a>
+                    <a
+                      href="#features"
+                      class="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-6 py-3.5 text-sm font-medium text-slate-700 shadow-sm transition duration-300 hover:border-slate-300 hover:bg-slate-50"
+                    >
+                      <span data-i18n="hero_cta_secondary">查看功能方案</span>
+                    </a>
+                  </div>
+                  <div class="mt-8 flex flex-wrap gap-3 text-sm text-slate-600">
+                    <span class="rounded-full border border-slate-200 bg-white px-4 py-2" data-i18n="hero_chip_1">十余年实务经验</span>
+                    <span class="rounded-full border border-slate-200 bg-white px-4 py-2" data-i18n="hero_chip_2">数据主权优先</span>
+                    <span class="rounded-full border border-slate-200 bg-white px-4 py-2" data-i18n="hero_chip_3">本土合规部署</span>
+                  </div>
+                </div>
+
+                <div id="runtime" class="mx-auto w-full max-w-2xl" data-reveal data-delay="120">
+                  <div class="hero-stage relative overflow-hidden rounded-[2.5rem] border border-slate-200 bg-white p-5 shadow-[0_24px_60px_rgba(15,23,42,0.08)] sm:p-6">
+                    <div class="absolute inset-0 bg-[linear-gradient(rgba(15,23,42,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(15,23,42,0.03)_1px,transparent_1px)] bg-[size:28px_28px] opacity-70"></div>
+                    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(30,64,175,0.04),transparent_36%),radial-gradient(circle_at_bottom_right,rgba(15,23,42,0.03),transparent_40%)]"></div>
+
+                    <div class="relative h-[360px] sm:h-[430px]">
+                      <div class="paper-card absolute inset-x-8 top-8 rounded-[1.75rem] p-5 sm:inset-x-10 sm:p-6">
+                        <div class="flex items-center justify-between">
+                          <div class="flex items-center gap-2">
+                            <span class="h-2.5 w-2.5 rounded-full bg-slate-300"></span>
+                            <span class="h-2.5 w-2.5 rounded-full bg-slate-200"></span>
+                            <span class="h-2.5 w-2.5 rounded-full bg-slate-200"></span>
+                          </div>
+                          <div class="h-2.5 w-24 rounded-full bg-slate-200"></div>
+                        </div>
+                        <div class="mt-6 grid gap-4 lg:grid-cols-[1.05fr_0.95fr]">
+                          <div class="rounded-[1.4rem] border border-slate-200 bg-[#fcfcfb] p-4">
+                            <div class="flex items-center gap-3">
+                              <div class="flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-slate-700">
+                                  <path d="M7 4h7l3 3v13H7z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                                  <path d="M14 4v4h4M10 12h4M10 16h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                                </svg>
+                              </div>
+                              <div class="flex-1 space-y-2">
+                                <div class="h-2.5 w-28 rounded-full bg-slate-200"></div>
+                                <div class="h-2 w-36 rounded-full bg-slate-100"></div>
+                              </div>
+                            </div>
+                            <div class="mt-5 space-y-3">
+                              <div class="rounded-2xl border border-slate-200 bg-white px-3 py-3">
+                                <div class="h-2.5 w-24 rounded-full bg-slate-200"></div>
+                                <div class="mt-2 h-2 w-40 rounded-full bg-slate-100"></div>
+                              </div>
+                              <div class="rounded-2xl border border-slate-200 bg-white px-3 py-3">
+                                <div class="h-2.5 w-20 rounded-full bg-slate-200"></div>
+                                <div class="mt-2 h-2 w-36 rounded-full bg-slate-100"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="rounded-[1.4rem] border border-slate-200 bg-[#fcfcfb] p-4">
+                            <div class="flex items-center justify-between">
+                              <div class="h-2.5 w-20 rounded-full bg-slate-200"></div>
+                              <div class="flex h-10 w-10 items-center justify-center rounded-full border border-blue-200 bg-blue-50">
+                                <div class="h-3 w-3 rounded-full bg-blue-600"></div>
+                              </div>
+                            </div>
+                            <div class="mt-6 flex items-start gap-4">
+                              <div class="mt-1 h-24 w-px bg-slate-200"></div>
+                              <div class="flex-1 space-y-4">
+                                <div class="rounded-2xl border border-slate-200 bg-white px-3 py-3">
+                                  <div class="h-2.5 w-24 rounded-full bg-slate-200"></div>
+                                  <div class="mt-2 h-2 w-28 rounded-full bg-slate-100"></div>
+                                </div>
+                                <div class="rounded-2xl border border-slate-200 bg-white px-3 py-3">
+                                  <div class="h-2.5 w-28 rounded-full bg-slate-200"></div>
+                                  <div class="mt-2 h-2 w-24 rounded-full bg-slate-100"></div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="paper-card absolute right-6 top-12 z-20 w-[40%] min-w-[170px] max-w-[220px] rounded-2xl p-4 sm:right-8">
+                        <div class="flex items-center justify-between">
+                          <div class="h-2.5 w-16 rounded-full bg-slate-200"></div>
+                          <div class="flex h-10 w-10 items-center justify-center rounded-full border border-emerald-200 bg-emerald-50">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-emerald-600">
+                              <path d="m5 13 4 4L19 7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
+                          </div>
+                        </div>
+                        <div class="mt-5 space-y-2.5">
+                          <div class="h-2.5 w-24 rounded-full bg-slate-200"></div>
+                          <div class="h-2 w-20 rounded-full bg-slate-100"></div>
+                        </div>
+                      </div>
+
+                      <div class="paper-card absolute bottom-6 left-6 z-20 w-[42%] min-w-[180px] max-w-[240px] rounded-2xl p-4 sm:left-8 sm:p-5">
+                        <div class="flex items-center justify-between">
+                          <div class="flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" class="text-slate-700">
+                              <path d="M12 3 6.5 5.5v5.2c0 3.6 2.3 6.4 5.5 7.5 3.2-1.1 5.5-3.9 5.5-7.5V5.5L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                              <path d="M10.5 10.5V9.4a1.5 1.5 0 1 1 3 0v1.1M9.8 10.5h4.4v3.8H9.8z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                            </svg>
+                          </div>
+                          <div class="h-2.5 w-16 rounded-full bg-slate-200"></div>
+                        </div>
+                        <div class="mt-5 rounded-2xl border border-slate-200 bg-white p-3">
+                          <div class="grid grid-cols-3 gap-2">
+                            <div class="h-8 rounded-xl bg-slate-100"></div>
+                            <div class="h-8 rounded-xl bg-slate-200"></div>
+                            <div class="h-8 rounded-xl bg-slate-100"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="mt-14 rounded-[2rem] border border-slate-200 bg-white px-6 py-8 shadow-[0_20px_50px_rgba(15,23,42,0.06)] sm:px-8" data-reveal data-delay="160">
+                <div class="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+                  <div class="max-w-3xl">
+                    <p class="text-xs uppercase tracking-[0.28em] text-slate-500" data-i18n="trust_eyebrow">自 2014 年起的真实案件服务经验</p>
+                    <h2 class="mt-3 text-2xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-3xl" data-i18n="trust_title">
+                      十余年持续迭代，面向破产案件全生命周期提供稳健支撑。
+                    </h2>
+                  </div>
+                  <p class="max-w-2xl text-sm leading-7 text-slate-600" data-i18n="trust_desc">
+                    从优破案系统上线，到 3.0 的流程化建设，再到 4.0 的智能化升级，我们始终围绕真实案件、真实角色与真实合规要求打磨产品。
+                  </p>
+                </div>
+
+                <div class="mt-8 grid gap-4 md:grid-cols-3">
+                  <article class="rounded-[1.5rem] border border-slate-200 bg-[#FCFCFB] p-5">
+                    <p class="text-xs uppercase tracking-[0.24em] text-slate-500" data-i18n="trust_card_1_label">2014 Launch</p>
+                    <h3 class="mt-3 text-2xl font-semibold tracking-[-0.04em] text-slate-900">2014</h3>
+                    <p class="mt-3 text-sm leading-7 text-slate-600" data-i18n="trust_card_1_desc">优破案系统发布，开始服务破产案件数字化管理。</p>
+                  </article>
+                  <article class="rounded-[1.5rem] border border-slate-200 bg-[#FCFCFB] p-5">
+                    <p class="text-xs uppercase tracking-[0.24em] text-slate-500" data-i18n="trust_card_2_label">2018 Milestone</p>
+                    <h3 class="mt-3 text-2xl font-semibold tracking-[-0.04em] text-slate-900">2018</h3>
+                    <p class="mt-3 text-sm leading-7 text-slate-600" data-i18n="trust_card_2_desc">3.0 版本里程碑，沉淀材料流转、债权核验与协同管理经验。</p>
+                  </article>
+                  <article class="rounded-[1.5rem] border border-slate-200 bg-[#FCFCFB] p-5">
+                    <p class="text-xs uppercase tracking-[0.24em] text-slate-500" data-i18n="trust_card_3_label">2026 AI Evolution</p>
+                    <h3 class="mt-3 text-2xl font-semibold tracking-[-0.04em] text-slate-900">2026</h3>
+                    <p class="mt-3 text-sm leading-7 text-slate-600" data-i18n="trust_card_3_desc">4.0 智能化升级，在坚持本土合规与数据主权前提下引入 AI 能力。</p>
+                  </article>
+                </div>
+              </div>
+
+              <div class="mt-16" data-reveal data-delay="220">
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <p class="text-xs uppercase tracking-[0.32em] text-slate-500" data-i18n="preview_eyebrow">系统工作界面</p>
+                    <h2 class="mt-3 text-2xl font-semibold tracking-[-0.04em] text-slate-900 sm:text-3xl" data-i18n="preview_title">
+                      面向真实业务流程的案件管理工作界面。
+                    </h2>
+                  </div>
+                  <p class="max-w-2xl text-sm leading-7 text-slate-600" data-i18n="preview_desc">
+                    以案件进度、材料核验、节点提醒和权限控制为核心，帮助管理人团队更稳妥地推进复杂案件的日常执行。
+                  </p>
+                </div>
+
+                <div class="glow-panel product-window preview-grid relative mt-8 overflow-hidden rounded-[2rem] border border-slate-200 p-4 sm:p-5">
+                  <div class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan/45 to-transparent"></div>
+                  <div class="flex items-center justify-between rounded-[1.5rem] border border-white/10 bg-white/[0.04] px-4 py-3">
+                    <div class="flex items-center gap-2">
+                      <span class="h-3 w-3 rounded-full bg-white/20"></span>
+                      <span class="h-3 w-3 rounded-full bg-white/15"></span>
+                      <span class="h-3 w-3 rounded-full bg-white/10"></span>
+                    </div>
+                    <div class="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[11px] uppercase tracking-[0.24em] text-slate-400" data-i18n="preview_badge">
+                      系统预览
+                    </div>
+                  </div>
+
+                  <div class="relative mt-4 grid overflow-hidden rounded-[1.75rem] border border-slate-200 bg-[#F8FAFC] lg:grid-cols-[220px_1fr]">
+                    <aside class="border-b border-white/10 bg-white/[0.03] p-5 lg:border-b-0 lg:border-r">
+                      <div class="flex items-center gap-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/[0.04]">
+                          <div class="h-4 w-4 rounded-full bg-cyan/70 shadow-[0_0_18px_rgba(47,107,255,0.35)]"></div>
+                        </div>
+                        <div>
+                          <div class="h-3 w-20 rounded-full bg-white/20"></div>
+                          <div class="mt-2 h-2.5 w-14 rounded-full bg-white/10"></div>
+                        </div>
+                      </div>
+                      <div class="mt-8 space-y-3">
+                        <div class="flex items-center gap-3 rounded-2xl border border-cyan/20 bg-cyan/10 px-3 py-3">
+                          <div class="h-4 w-4 rounded-full border border-white/30"></div>
+                          <div class="h-2.5 w-24 rounded-full bg-white/30"></div>
+                        </div>
+                        <div class="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-3 py-3">
+                          <div class="h-4 w-4 rounded-full border border-white/20"></div>
+                          <div class="h-2.5 w-20 rounded-full bg-white/15"></div>
+                        </div>
+                        <div class="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-3 py-3">
+                          <div class="h-4 w-4 rounded-full border border-white/20"></div>
+                          <div class="h-2.5 w-16 rounded-full bg-white/15"></div>
+                        </div>
+                        <div class="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-3 py-3">
+                          <div class="h-4 w-4 rounded-full border border-white/20"></div>
+                          <div class="h-2.5 w-24 rounded-full bg-white/15"></div>
+                        </div>
+                      </div>
+                    </aside>
+
+                    <div class="relative p-5 sm:p-6">
+                      <div class="pr-0 lg:pr-72">
+                        <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                          <div>
+                            <div class="h-4 w-36 rounded-full bg-white/18"></div>
+                            <div class="mt-3 h-2.5 w-52 rounded-full bg-white/10"></div>
+                          </div>
+                          <div class="rounded-full border border-white/10 bg-white/[0.04] px-4 py-2">
+                            <div class="h-2.5 w-24 rounded-full bg-cyan/50"></div>
+                          </div>
+                        </div>
+
+                        <div class="mt-8 rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5">
+                          <div class="h-3 w-36 rounded-full bg-white/16"></div>
+                          <div class="mt-8 relative">
+                            <div class="absolute left-4 right-4 top-5 h-px bg-gradient-to-r from-white/0 via-white/15 to-white/0"></div>
+                            <div class="grid gap-10 sm:grid-cols-4">
+                              <div class="relative">
+                                <div class="mx-auto h-10 w-10 rounded-full border border-cyan/30 bg-cyan/10 shadow-[0_0_24px_rgba(47,107,255,0.25)]"></div>
+                                <div class="mx-auto mt-4 h-2.5 w-16 rounded-full bg-white/20"></div>
+                                <div class="mx-auto mt-2 h-2 w-12 rounded-full bg-white/10"></div>
+                              </div>
+                              <div class="relative">
+                                <div class="mx-auto h-10 w-10 rounded-full border border-white/15 bg-white/[0.04]"></div>
+                                <div class="mx-auto mt-4 h-2.5 w-16 rounded-full bg-white/16"></div>
+                                <div class="mx-auto mt-2 h-2 w-12 rounded-full bg-white/10"></div>
+                              </div>
+                              <div class="relative">
+                                <div class="mx-auto h-10 w-10 rounded-full border border-white/15 bg-white/[0.04]"></div>
+                                <div class="mx-auto mt-4 h-2.5 w-16 rounded-full bg-white/16"></div>
+                                <div class="mx-auto mt-2 h-2 w-12 rounded-full bg-white/10"></div>
+                              </div>
+                              <div class="relative">
+                                <div class="mx-auto h-10 w-10 rounded-full border border-white/15 bg-white/[0.04]"></div>
+                                <div class="mx-auto mt-4 h-2.5 w-16 rounded-full bg-white/16"></div>
+                                <div class="mx-auto mt-2 h-2 w-12 rounded-full bg-white/10"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div class="mt-5 grid gap-4 xl:grid-cols-2">
+                          <div class="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4">
+                            <div class="h-3 w-24 rounded-full bg-white/16"></div>
+                            <div class="mt-5 space-y-3">
+                              <div class="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4">
+                                <div class="h-2.5 w-28 rounded-full bg-white/20"></div>
+                                <div class="mt-3 h-2 w-44 rounded-full bg-white/10"></div>
+                              </div>
+                              <div class="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4">
+                                <div class="h-2.5 w-24 rounded-full bg-white/20"></div>
+                                <div class="mt-3 h-2 w-36 rounded-full bg-white/10"></div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-4">
+                            <div class="h-3 w-28 rounded-full bg-white/16"></div>
+                            <div class="mt-5 space-y-3">
+                              <div class="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4">
+                                <div class="h-2.5 w-32 rounded-full bg-white/20"></div>
+                                <div class="mt-3 h-2 w-40 rounded-full bg-white/10"></div>
+                              </div>
+                              <div class="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4">
+                                <div class="h-2.5 w-20 rounded-full bg-white/20"></div>
+                                <div class="mt-3 h-2 w-32 rounded-full bg-white/10"></div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div class="glow-panel mt-5 rounded-[1.5rem] border border-cyan/20 bg-white/[0.05] p-4 backdrop-blur-xl lg:absolute lg:right-6 lg:top-24 lg:mt-0 lg:w-64">
+                        <div class="flex items-center justify-between">
+                          <div class="h-3 w-24 rounded-full bg-cyan/60"></div>
+                          <div class="rounded-full border border-cyan/20 bg-cyan/10 px-2 py-1">
+                            <div class="h-2 w-8 rounded-full bg-cyan/70"></div>
+                          </div>
+                        </div>
+                        <div class="mt-5 rounded-2xl border border-white/10 bg-black/20 p-4">
+                          <div class="h-2.5 w-28 rounded-full bg-white/20"></div>
+                          <div class="mt-3 h-2 w-40 rounded-full bg-white/10"></div>
+                          <div class="mt-2 h-2 w-32 rounded-full bg-white/10"></div>
+                        </div>
+                        <div class="mt-4 rounded-2xl border border-white/10 bg-black/20 p-4">
+                          <div class="h-2.5 w-24 rounded-full bg-white/20"></div>
+                          <div class="mt-3 h-2 w-36 rounded-full bg-white/10"></div>
+                          <div class="mt-2 h-2 w-28 rounded-full bg-white/10"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="integrations" class="px-4 py-10 sm:px-6 lg:px-8 lg:py-12">
+            <div class="mx-auto max-w-7xl">
+              <div class="glass rounded-[2rem] px-6 py-8 sm:px-8" data-reveal>
+                <div class="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+                  <div>
+                    <p class="text-xs uppercase tracking-[0.32em] text-slate-500" data-i18n="stack_eyebrow">信创与本土合规</p>
+                    <h2 class="mt-3 text-2xl font-semibold tracking-[-0.04em] text-white sm:text-3xl" data-i18n="stack_title">
+                      以数据主权和本土合规为优先的部署底座。
+                    </h2>
+                  </div>
+                  <p class="max-w-xl text-sm leading-7 text-slate-400" data-i18n="stack_desc">
+                    支持本地化部署、私域知识库、权限隔离与过程留痕，满足法院、管理人和政企环境的稳健要求。
+                  </p>
+                </div>
+                <div class="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+                  <article
+                    data-reveal
+                    data-delay="60"
+                    class="group rounded-[1.75rem] border border-white/10 bg-white/[0.03] px-5 py-5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-cyan/20 hover:bg-white/[0.05] hover:shadow-[0_20px_60px_rgba(34,211,238,0.08)]"
+                  >
+                    <div class="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-black/20 text-white transition-colors duration-300 group-hover:border-cyan/25 group-hover:bg-cyan/10 group-hover:text-cyan-200">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <rect x="9" y="9" width="6" height="6" rx="1.5" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M12 4v3M12 17v3M4 12h3M17 12h3M7 7l2 2M15 15l2 2M17 7l-2 2M9 15l-2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <circle cx="12" cy="12" r="1.25" fill="currentColor"/>
+                      </svg>
+                    </div>
+                    <h3 class="mt-6 text-lg font-semibold tracking-[-0.03em] text-white" data-i18n="stack_card_1_title">私有化知识与模型底座</h3>
+                    <p class="mt-3 text-sm leading-7 text-slate-400" data-i18n="stack_card_1_desc">
+                      支持本地部署与专属知识库校对，确保案件核心数据留存在可控环境中。
+                    </p>
+                  </article>
+                  <article
+                    data-reveal
+                    data-delay="150"
+                    class="group rounded-[1.75rem] border border-white/10 bg-white/[0.03] px-5 py-5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-cyan/20 hover:bg-white/[0.05] hover:shadow-[0_20px_60px_rgba(34,211,238,0.08)]"
+                  >
+                    <div class="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-black/20 text-white transition-colors duration-300 group-hover:border-cyan/25 group-hover:bg-cyan/10 group-hover:text-cyan-200">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M5 18c1.4-2.4 3.8-3.5 7-3.5s5.6 1.1 7 3.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                        <path d="M4 10.5c0-4.1 3.4-7.5 8-7.5m8 7.5c0-4.1-3.4-7.5-8-7.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" opacity="0.45"/>
+                      </svg>
+                    </div>
+                    <h3 class="mt-6 text-lg font-semibold tracking-[-0.03em] text-white" data-i18n="stack_card_2_title">数据主权与本土合规</h3>
+                    <p class="mt-3 text-sm leading-7 text-slate-400" data-i18n="stack_card_2_desc">
+                      围绕本地存储、权限分级、调用审计与流程留痕设计，优先满足法律与政务场景要求。
+                    </p>
+                  </article>
+                  <article
+                    data-reveal
+                    data-delay="240"
+                    class="group rounded-[1.75rem] border border-white/10 bg-white/[0.03] px-5 py-5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-cyan/20 hover:bg-white/[0.05] hover:shadow-[0_20px_60px_rgba(34,211,238,0.08)]"
+                  >
+                    <div class="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-black/20 text-white transition-colors duration-300 group-hover:border-cyan/25 group-hover:bg-cyan/10 group-hover:text-cyan-200">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M7.5 18h9a4.5 4.5 0 0 0 .4-9A5.5 5.5 0 0 0 6.3 10 4 4 0 0 0 7.5 18Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M9 14.5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                    <h3 class="mt-6 text-lg font-semibold tracking-[-0.03em] text-white" data-i18n="stack_card_3_title">政务级专属云部署</h3>
+                    <p class="mt-3 text-sm leading-7 text-slate-400" data-i18n="stack_card_3_desc">
+                      华为云。满足法院与政企系统最高等级的等保合规与安全要求。
+                    </p>
+                  </article>
+                  <article
+                    data-reveal
+                    data-delay="330"
+                    class="group rounded-[1.75rem] border border-white/10 bg-white/[0.03] px-5 py-5 backdrop-blur-md transition-all duration-300 hover:-translate-y-1 hover:border-cyan/20 hover:bg-white/[0.05] hover:shadow-[0_20px_60px_rgba(34,211,238,0.08)]"
+                  >
+                    <div class="flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-black/20 text-white transition-colors duration-300 group-hover:border-cyan/25 group-hover:bg-cyan/10 group-hover:text-cyan-200">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+                        <path d="M12 3 5.5 6v5.5c0 4.3 2.8 7.7 6.5 9 3.7-1.3 6.5-4.7 6.5-9V6L12 3Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                        <rect x="9.2" y="10.2" width="5.6" height="4.8" rx="1.2" stroke="currentColor" stroke-width="1.5"/>
+                        <path d="M10.5 10.2V9.3a1.5 1.5 0 1 1 3 0v.9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                      </svg>
+                    </div>
+                    <h3 class="mt-6 text-lg font-semibold tracking-[-0.03em] text-white" data-i18n="stack_card_4_title">安全审计与边缘加密</h3>
+                    <p class="mt-3 text-sm leading-7 text-slate-400" data-i18n="stack_card_4_desc">
+                      覆盖传输、存储、调用与导出环节，提供更稳健的数据保护和审计能力。
+                    </p>
+                  </article>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="features" class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+            <div class="mx-auto max-w-7xl">
+              <div class="max-w-3xl" data-reveal>
+                <p class="text-xs uppercase tracking-[0.32em] text-slate-500" data-i18n="features_eyebrow">核心功能</p>
+                <h2 class="mt-4 text-3xl font-semibold tracking-[-0.05em] text-white sm:text-5xl" data-i18n="features_title">
+                  围绕破产案件日常管理设计的实用功能。
+                </h2>
+                <p class="mt-5 text-lg leading-8 text-slate-400" data-i18n="features_desc">
+                  聚焦材料处理、智能辅助与合规控制，帮助团队在复杂案件中保持一致、可追溯、可执行。
+                </p>
+              </div>
+
+              <div class="mt-12 grid gap-6 lg:grid-cols-3">
+                <article data-reveal data-delay="40" class="glass rounded-[2rem] p-6 sm:p-7">
+                  <div class="flex items-center justify-between">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white">
+                        <path d="M4 7h16M7 12h10M10 17h4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                      </svg>
+                    </div>
+                    <span class="text-xs uppercase tracking-[0.26em] text-slate-500" data-i18n="feature_1_label">材料</span>
+                  </div>
+                  <h3 class="mt-8 text-2xl font-semibold tracking-[-0.04em] text-white" data-i18n="feature_1_title">
+                    卷宗解析与检索辅助
+                  </h3>
+                  <p class="mt-4 text-base leading-7 text-slate-400" data-i18n="feature_1_desc">
+                    支持对申报材料、证据附件和历史文档进行结构化整理与快速检索，减轻人工翻找压力。
+                  </p>
+                  <div class="mt-8 rounded-2xl border border-white/10 bg-black/20 px-4 py-4 text-sm leading-6 text-slate-400" data-i18n="feature_1_note">
+                    优先基于私域知识库与案件上下文进行校对，降低误读风险。
+                  </div>
+                </article>
+
+                <article data-reveal data-delay="140" class="glass rounded-[2rem] p-6 sm:p-7">
+                  <div class="flex items-center justify-between">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white">
+                        <path d="M5 12h4m6 0h4M12 5v4m0 6v4M8 8l2.5 2.5M16 16l-2.5-2.5M16 8l-2.5 2.5M8 16l2.5-2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+                      </svg>
+                    </div>
+                    <span class="text-xs uppercase tracking-[0.26em] text-slate-500" data-i18n="feature_2_label">协同</span>
+                  </div>
+                  <h3 class="mt-8 text-2xl font-semibold tracking-[-0.04em] text-white" data-i18n="feature_2_title">
+                    智能辅助工具
+                  </h3>
+                  <p class="mt-4 text-base leading-7 text-slate-400" data-i18n="feature_2_desc">
+                    围绕通知、核验、汇总与文书起草等高频环节提供稳定辅助，帮助团队提升处理一致性。
+                  </p>
+                  <div class="mt-8 rounded-2xl border border-white/10 bg-black/20 px-4 py-4 text-sm leading-6 text-slate-400" data-i18n="feature_2_note">
+                    所有辅助流程均可按角色权限配置，并保留操作留痕。
+                  </div>
+                </article>
+
+                <article data-reveal data-delay="240" class="glass rounded-[2rem] p-6 sm:p-7">
+                  <div class="flex items-center justify-between">
+                    <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
+                      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white">
+                        <path d="M12 3l7 4v5c0 4.5-2.9 7.9-7 9-4.1-1.1-7-4.5-7-9V7l7-4Z" stroke="currentColor" stroke-width="1.5" />
+                        <path d="M9.5 12 11 13.5 14.5 10" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                      </svg>
+                    </div>
+                    <span class="text-xs uppercase tracking-[0.26em] text-slate-500" data-i18n="feature_3_label">合规</span>
+                  </div>
+                  <h3 class="mt-8 text-2xl font-semibold tracking-[-0.04em] text-white" data-i18n="feature_3_title">
+                    数据主权与本土合规
+                  </h3>
+                  <p class="mt-4 text-base leading-7 text-slate-400" data-i18n="feature_3_desc">
+                    支持本地化部署、权限分级、过程审计与数据隔离，把数据安全和本土合规放在首位。
+                  </p>
+                  <div class="mt-8 rounded-2xl border border-white/10 bg-black/20 px-4 py-4 text-sm leading-6 text-slate-400" data-i18n="feature_3_note">
+                    适配法院、管理人和政企客户对安全、审计和交付方式的要求。
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <section class="px-4 py-8 sm:px-6 lg:px-8 lg:py-12">
+            <div class="mx-auto grid max-w-7xl gap-6 lg:grid-cols-[1.05fr_0.95fr]">
+              <div data-reveal class="glass rounded-[2rem] p-6 sm:p-8">
+                <p class="text-xs uppercase tracking-[0.32em] text-slate-500" data-i18n="discipline_eyebrow">流程治理</p>
+                <h2 class="mt-4 text-3xl font-semibold tracking-[-0.05em] text-white" data-i18n="discipline_title">
+                  为复杂案件提供可追溯、可审计的流程控制。
+                </h2>
+                <p class="mt-5 max-w-2xl text-base leading-8 text-slate-400" data-i18n="discipline_desc">
+                  围绕材料流转、角色权限、节点进度与文书生成建立稳健控制，帮助团队在真实案件中保持执行质量。
+                </p>
+                <div class="mt-8 grid gap-4 sm:grid-cols-3">
+                  <div class="rounded-2xl border border-white/10 bg-black/20 px-4 py-4">
+                    <p class="text-xs uppercase tracking-[0.24em] text-slate-500" data-i18n="discipline_card_1_title">状态</p>
+                    <p class="mt-3 text-sm leading-6 text-slate-300" data-i18n="discipline_card_1_desc">统一掌握案件进度、材料状态与待办节点。</p>
+                  </div>
+                  <div class="rounded-2xl border border-white/10 bg-black/20 px-4 py-4">
+                    <p class="text-xs uppercase tracking-[0.24em] text-slate-500" data-i18n="discipline_card_2_title">策略</p>
+                    <p class="mt-3 text-sm leading-6 text-slate-300" data-i18n="discipline_card_2_desc">按角色权限和流程规则配置系统行为。</p>
+                  </div>
+                  <div class="rounded-2xl border border-white/10 bg-black/20 px-4 py-4">
+                    <p class="text-xs uppercase tracking-[0.24em] text-slate-500" data-i18n="discipline_card_3_title">审计</p>
+                    <p class="mt-3 text-sm leading-6 text-slate-300" data-i18n="discipline_card_3_desc">关键操作、修改过程和输出结果可追溯可复核。</p>
+                  </div>
+                </div>
+              </div>
+
+              <div data-reveal data-delay="120" class="glass rounded-[2rem] p-6 sm:p-8">
+                <p class="text-xs uppercase tracking-[0.32em] text-slate-500" data-i18n="flow_eyebrow">执行流程</p>
+                <div class="mt-6 space-y-4">
+                  <div class="flex items-start gap-4 rounded-2xl border border-white/10 bg-black/20 px-4 py-4">
+                    <span class="mt-1 flex h-7 w-7 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xs text-white">01</span>
+                    <div>
+                      <p class="text-sm font-medium text-white" data-i18n="flow_1_title">接收并整理材料</p>
+                      <p class="mt-2 text-sm leading-6 text-slate-400" data-i18n="flow_1_desc">统一归集案件材料、债权申报信息与历史文档，建立清晰的检索入口。</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-4 rounded-2xl border border-white/10 bg-black/20 px-4 py-4">
+                    <span class="mt-1 flex h-7 w-7 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xs text-white">02</span>
+                    <div>
+                      <p class="text-sm font-medium text-white" data-i18n="flow_2_title">智能辅助处理</p>
+                      <p class="mt-2 text-sm leading-6 text-slate-400" data-i18n="flow_2_desc">在核验、汇总、通知和文书起草等环节提供辅助，减轻重复性工作负担。</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-4 rounded-2xl border border-white/10 bg-black/20 px-4 py-4">
+                    <span class="mt-1 flex h-7 w-7 items-center justify-center rounded-full border border-white/10 bg-white/5 text-xs text-white">03</span>
+                    <div>
+                      <p class="text-sm font-medium text-white" data-i18n="flow_3_title">校对并留痕</p>
+                      <p class="mt-2 text-sm leading-6 text-slate-400" data-i18n="flow_3_desc">基于私域知识库、规则校验与审计留痕，确保输出内容更严谨、更可复核。</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+            <div class="mx-auto max-w-7xl">
+              <div class="glass rounded-[2rem] px-6 py-8 sm:px-8 sm:py-10">
+                <div class="max-w-4xl" data-reveal>
+                  <h2 class="text-3xl font-semibold tracking-[-0.05em] text-slate-900 sm:text-5xl" data-i18n="impact_title">
+                    务实可见的业务价值
+                  </h2>
+                  <p class="mt-5 text-lg leading-8 text-slate-600" data-i18n="impact_desc">
+                    围绕材料处理、债权核验、流程协同和文书起草等核心场景，帮助管理人团队在不改变专业判断前提下提升工作质量与效率。
+                  </p>
+                </div>
+
+                <div class="mt-10 grid gap-4 lg:grid-cols-3">
+                  <article
+                    data-reveal
+                    data-delay="40"
+                    class="rounded-[1.75rem] border border-slate-200 bg-white px-5 py-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(15,23,42,0.08)]"
+                  >
+                    <div class="text-3xl font-semibold tracking-[-0.05em] text-slate-900 sm:text-4xl" data-i18n="impact_card_1_stat">成本优化</div>
+                    <h3 class="mt-6 text-lg font-semibold tracking-[-0.03em] text-slate-900" data-i18n="impact_card_1_title">
+                      有效优化团队人力成本与沟通损耗
+                    </h3>
+                    <p class="mt-4 text-sm leading-7 text-slate-600" data-i18n="impact_card_1_desc">
+                      通过流程协同、材料归档与节点提醒，减少重复录入与跨角色沟通带来的隐性消耗。
+                    </p>
+                  </article>
+
+                  <article
+                    data-reveal
+                    data-delay="140"
+                    class="rounded-[1.75rem] border border-slate-200 bg-white px-5 py-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(15,23,42,0.08)]"
+                  >
+                    <div class="text-3xl font-semibold tracking-[-0.05em] text-slate-900 sm:text-4xl" data-i18n="impact_card_2_stat">流程提效</div>
+                    <h3 class="mt-6 text-lg font-semibold tracking-[-0.03em] text-slate-900" data-i18n="impact_card_2_title">
+                      显著提升复杂卷宗处理与债权核验效率
+                    </h3>
+                    <p class="mt-4 text-sm leading-7 text-slate-600" data-i18n="impact_card_2_desc">
+                      针对海量材料整理、债权信息比对和节点追踪等高频环节提供稳定辅助，帮助团队更快完成关键工作。
+                    </p>
+                  </article>
+
+                  <article
+                    data-reveal
+                    data-delay="240"
+                    class="rounded-[1.75rem] border border-blue-200 bg-blue-50/50 px-5 py-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_12px_30px_rgba(37,99,235,0.08)]"
+                  >
+                    <div class="text-4xl font-semibold tracking-[-0.05em] text-slate-900 sm:text-5xl tabular-nums" data-i18n="impact_card_3_stat">&lt; 1%</div>
+                    <h3 class="mt-6 text-lg font-semibold tracking-[-0.03em] text-slate-900" data-i18n="impact_card_3_title">
+                      法律文书生成严谨性
+                    </h3>
+                    <p class="mt-4 text-sm leading-7 text-slate-700" data-i18n="impact_card_3_desc">
+                      基于私域知识库校对，确保法律文书生成的严谨性。
+                    </p>
+                  </article>
+                </div>
+
+                <div
+                  data-reveal
+                  data-delay="320"
+                  class="mt-8 flex flex-wrap items-center gap-3 rounded-[1.5rem] border border-slate-200 bg-white px-4 py-4 text-sm text-slate-600"
+                >
+                  <span class="rounded-full border border-slate-200 bg-[#FCFCFB] px-3 py-1.5" data-i18n="impact_badge_1">⚖️ 破产重整</span>
+                  <span class="rounded-full border border-slate-200 bg-[#FCFCFB] px-3 py-1.5" data-i18n="impact_badge_2">🏛️ 政企合规</span>
+                  <span class="rounded-full border border-slate-200 bg-[#FCFCFB] px-3 py-1.5" data-i18n="impact_badge_3">📁 卷宗管理</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section class="bg-gray-50 px-4 py-16 dark:bg-black sm:px-6 lg:px-8 lg:py-20">
+            <div class="mx-auto max-w-7xl">
+              <div class="max-w-4xl" data-reveal>
+                <h2 class="text-3xl font-semibold tracking-[-0.05em] text-gray-950 dark:text-white sm:text-5xl" data-i18n="moat_title">
+                  底层能力与合规保障
+                </h2>
+                <p class="mt-5 text-lg leading-8 text-slate-600 dark:text-slate-400" data-i18n="moat_desc">
+                  结合多年案件实务经验和持续研发投入，为高复杂度业务提供稳健、可审计、可本地化部署的底层支撑。
+                </p>
+              </div>
+
+              <div class="mt-12 grid grid-cols-1 gap-8 md:grid-cols-2">
+                <article
+                  data-reveal
+                  data-delay="40"
+                  class="rounded-2xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(47,107,255,0.1)] dark:border-gray-800 dark:bg-gray-900"
+                >
+                  <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-gray-200 bg-gray-50 text-gray-950 dark:border-gray-800 dark:bg-black dark:text-white">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <path d="M8 8h8v8H8z" stroke="currentColor" stroke-width="1.5"/>
+                      <path d="M12 3v3M12 18v3M3 12h3M18 12h3M6.5 6.5l2 2M15.5 15.5l2 2M17.5 6.5l-2 2M8.5 15.5l-2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <h3 class="mt-6 text-xl font-semibold tracking-[-0.03em] text-gray-950 dark:text-white" data-i18n="moat_card_1_title">
+                    知识编排与提示治理
+                  </h3>
+                  <p class="mt-4 text-sm leading-7 tracking-[-0.01em] text-slate-600 dark:text-slate-400" data-i18n="moat_card_1_desc">
+                    围绕材料类型、角色任务与案件阶段配置系统提示和知识来源，提升输出稳定性与可复核性。
+                  </p>
+                </article>
+
+                <article
+                  data-reveal
+                  data-delay="120"
+                  class="rounded-2xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(47,107,255,0.1)] dark:border-gray-800 dark:bg-gray-900"
+                >
+                  <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-gray-200 bg-gray-50 text-gray-950 dark:border-gray-800 dark:bg-black dark:text-white">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <circle cx="6" cy="8" r="2" stroke="currentColor" stroke-width="1.5"/>
+                      <circle cx="18" cy="6" r="2" stroke="currentColor" stroke-width="1.5"/>
+                      <circle cx="18" cy="18" r="2" stroke="currentColor" stroke-width="1.5"/>
+                      <circle cx="8" cy="18" r="2" stroke="currentColor" stroke-width="1.5"/>
+                      <path d="M7.7 9.1 10 12m6-4.1-3 3M16.3 16.6l-6.6.8M8.2 16l2.4-2.6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <h3 class="mt-6 text-xl font-semibold tracking-[-0.03em] text-gray-950 dark:text-white" data-i18n="moat_card_2_title">
+                    关联关系检索与辅助分析
+                  </h3>
+                  <p class="mt-4 text-sm leading-7 tracking-[-0.01em] text-slate-600 dark:text-slate-400" data-i18n="moat_card_2_desc">
+                    针对股权结构、债权关联和材料引用关系提供更贴近业务语境的辅助检索与分析能力。
+                  </p>
+                </article>
+
+                <article
+                  data-reveal
+                  data-delay="200"
+                  class="rounded-2xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(47,107,255,0.1)] dark:border-gray-800 dark:bg-gray-900"
+                >
+                  <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-gray-200 bg-gray-50 text-gray-950 dark:border-gray-800 dark:bg-black dark:text-white">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <path d="M4 5.5h6v13H4zM14 5.5h6v13h-6z" stroke="currentColor" stroke-width="1.5"/>
+                      <path d="M7 9.5h0M7 13h0M7 16.5h0M17 9l2 2-2 2M15 13l-2 2 2 2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                  </div>
+                  <h3 class="mt-6 text-xl font-semibold tracking-[-0.03em] text-gray-950 dark:text-white" data-i18n="moat_card_3_title">
+                    规则校对与安全执行
+                  </h3>
+                  <p class="mt-4 text-sm leading-7 tracking-[-0.01em] text-slate-600 dark:text-slate-400" data-i18n="moat_card_3_desc">
+                    将规则校验、过程限制与输出复核纳入系统流程，降低复杂测算和文书生成环节的偏差风险。
+                  </p>
+                </article>
+
+                <article
+                  data-reveal
+                  data-delay="280"
+                  class="rounded-2xl border border-gray-200 bg-white p-8 transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_10px_40px_rgba(47,107,255,0.1)] dark:border-gray-800 dark:bg-gray-900"
+                >
+                  <div class="flex h-12 w-12 items-center justify-center rounded-2xl border border-gray-200 bg-gray-50 text-gray-950 dark:border-gray-800 dark:bg-black dark:text-white">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                      <path d="M8 8h8v8H8z" stroke="currentColor" stroke-width="1.5"/>
+                      <path d="M12 3v3M12 18v3M3 12h3M18 12h3M6 6l1.5 1.5M16.5 16.5 18 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                      <path d="M15.5 10.5a2.5 2.5 0 1 0-5 0v.8h5v-.8Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+                      <path d="M10.8 11.3v3.2h4.4v-3.2" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+                    </svg>
+                  </div>
+                  <h3 class="mt-6 text-xl font-semibold tracking-[-0.03em] text-gray-950 dark:text-white" data-i18n="moat_card_4_title">
+                    低时延部署与机密计算
+                  </h3>
+                  <p class="mt-4 text-sm leading-7 tracking-[-0.01em] text-slate-600 dark:text-slate-400" data-i18n="moat_card_4_desc">
+                    支持面向专属环境的稳定部署方案，在保证响应效率的同时强化数据隔离与安全保护。
+                  </p>
+                </article>
+              </div>
+
+              <p class="mx-auto mt-12 max-w-4xl text-center text-2xl font-semibold tracking-[-0.04em] text-gray-950 dark:text-white sm:text-3xl" data-i18n="moat_closing">
+                以稳健、可审计、可落地的方式，服务高复杂度行业的长期数字化建设。
+              </p>
+            </div>
+          </section>
+
+          <section id="contact" class="px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+            <div class="mx-auto max-w-7xl">
+              <div data-reveal class="glass rounded-[2rem] px-6 py-10 sm:px-8 lg:px-10">
+                <div class="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
+                  <div class="max-w-3xl">
+                    <p class="text-xs uppercase tracking-[0.32em] text-slate-500" data-i18n="contact_eyebrow">部署与咨询</p>
+                    <h2 class="mt-4 text-3xl font-semibold tracking-[-0.05em] text-white sm:text-5xl" data-i18n="contact_title">
+                      了解优破案 4.0 的部署与服务方式。
+                    </h2>
+                    <p class="mt-5 text-lg leading-8 text-slate-400" data-i18n="contact_desc">
+                      我们提供面向管理人团队的演示、部署咨询与本地化实施支持。
+                    </p>
+                  </div>
+                  <div class="flex flex-col gap-3 sm:flex-row">
+                    <a
+                      href="mailto:info@umob.ai"
+                      class="primary-button inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-medium text-white transition-all duration-300"
+                    >
+                      <span data-i18n="contact_cta_primary">预约演示</span>
+                    </a>
+                    <a
+                      href="mailto:info@umob.ai?subject=Architecture%20Review"
+                      class="glass inline-flex items-center justify-center rounded-full px-6 py-3.5 text-sm font-medium text-white transition duration-300 hover:border-cyan/20 hover:bg-white/5"
+                    >
+                      <span data-i18n="contact_cta_secondary">联系团队</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <footer class="px-4 pb-10 pt-2 sm:px-6 lg:px-8">
+          <div class="mx-auto flex max-w-7xl flex-col gap-4 border-t border-white/10 pt-6 text-sm text-slate-500 sm:flex-row sm:items-center sm:justify-between">
+            <p data-i18n="footer_tagline">优破案 4.0，服务破产案件全生命周期的数字化管理平台。</p>
+            <div class="flex flex-wrap items-center gap-4">
+              <a href="mailto:info@umob.ai" class="transition hover:text-white">info@umob.ai</a>
+              <a href="#top" class="transition hover:text-white" data-i18n="footer_back_to_top">返回顶部</a>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </div>
+
+    <script>
+      const translations = {
+        zh: {
+          page_title: "优破案 4.0 | 破产案件数字化解决方案",
+          meta_description: "优破案 4.0 沉淀十余年行业经验，面向破产案件管理提供覆盖全生命周期的数字化解决方案，强调数据主权与本土合规。",
+          nav_features: "能力",
+          nav_stack: "技术栈",
+          nav_runtime: "运行时",
+          nav_access: "联系",
+          nav_cta: "预约演示",
+          hero_badge: "优破案 4.0 · 自 2014 年持续服务行业",
+          hero_title: "优破案 4.0：让破产管理更高效、更专业",
+          hero_subtitle: "沉淀十余年行业经验，深度融合 AI 技术。为管理人提供覆盖全生命周期的破产案件数字化解决方案。",
+          hero_cta_primary: "预约演示",
+          hero_cta_secondary: "查看功能方案",
+          hero_chip_1: "十余年实务经验",
+          hero_chip_2: "数据主权优先",
+          hero_chip_3: "本土合规部署",
+          trust_eyebrow: "自 2014 年起的真实案件服务经验",
+          trust_title: "十余年持续迭代，面向破产案件全生命周期提供稳健支撑。",
+          trust_desc: "从优破案系统上线，到 3.0 的流程化建设，再到 4.0 的智能化升级，我们始终围绕真实案件、真实角色与真实合规要求打磨产品。",
+          trust_card_1_label: "2014 Launch",
+          trust_card_1_desc: "优破案系统发布，开始服务破产案件数字化管理。",
+          trust_card_2_label: "2018 Milestone",
+          trust_card_2_desc: "3.0 版本里程碑，沉淀材料流转、债权核验与协同管理经验。",
+          trust_card_3_label: "2026 AI Evolution",
+          trust_card_3_desc: "4.0 智能化升级，在坚持本土合规与数据主权前提下引入 AI 能力。",
+          runtime_code: `> umob init --core deepseek-r1 --fallback glm-4 --vector-store milvus-secure
+[SYSTEM] 初始化 Umob.AI Agent OS...
+[SOVEREIGN] 绑定 DeepSeek / 智谱 推理配置... READY.
+[RAG] 启动 Milvus 加密向量引擎... DONE.
+[CLOUD] 应用华为云政务专属部署策略... ACTIVE.`,
+          preview_eyebrow: "系统工作界面",
+          preview_title: "面向真实业务流程的案件管理工作界面。",
+          preview_desc: "以案件进度、材料核验、节点提醒和权限控制为核心，帮助管理人团队更稳妥地推进复杂案件的日常执行。",
+          preview_badge: "系统预览",
+          stack_eyebrow: "信创与本土合规",
+          stack_title: "以数据主权和本土合规为优先的部署底座。",
+          stack_desc: "支持本地化部署、私域知识库、权限隔离与过程留痕，满足法院、管理人和政企环境的稳健要求。",
+          stack_card_1_title: "私有化知识与模型底座",
+          stack_card_1_desc: "支持本地部署与专属知识库校对，确保案件核心数据留存在可控环境中。",
+          stack_card_2_title: "数据主权与本土合规",
+          stack_card_2_desc: "围绕本地存储、权限分级、调用审计与流程留痕设计，优先满足法律与政务场景要求。",
+          stack_card_3_title: "政务级专属云部署",
+          stack_card_3_desc: "适配法院、管理人机构与政企客户的专属网络、专属资源与安全管理需求。",
+          stack_card_4_title: "安全审计与边缘加密",
+          stack_card_4_desc: "覆盖传输、存储、调用与导出环节，提供更稳健的数据保护和审计能力。",
+          features_eyebrow: "核心功能",
+          features_title: "围绕破产案件日常管理设计的实用功能。",
+          features_desc: "聚焦材料处理、智能辅助与合规控制，帮助团队在复杂案件中保持一致、可追溯、可执行。",
+          feature_1_label: "材料",
+          feature_1_title: "卷宗解析与检索辅助",
+          feature_1_desc: "支持对申报材料、证据附件和历史文档进行结构化整理与快速检索，减轻人工翻找压力。",
+          feature_1_note: "优先基于私域知识库与案件上下文进行校对，降低误读风险。",
+          feature_2_label: "协同",
+          feature_2_title: "智能辅助工具",
+          feature_2_desc: "围绕通知、核验、汇总与文书起草等高频环节提供稳定辅助，帮助团队提升处理一致性。",
+          feature_2_note: "所有辅助流程均可按角色权限配置，并保留操作留痕。",
+          feature_3_label: "合规",
+          feature_3_title: "数据主权与本土合规",
+          feature_3_desc: "支持本地化部署、权限分级、过程审计与数据隔离，把数据安全和本土合规放在首位。",
+          feature_3_note: "适配法院、管理人和政企客户对安全、审计和交付方式的要求。",
+          discipline_eyebrow: "流程治理",
+          discipline_title: "为复杂案件提供可追溯、可审计的流程控制。",
+          discipline_desc: "围绕材料流转、角色权限、节点进度与文书生成建立稳健控制，帮助团队在真实案件中保持执行质量。",
+          discipline_card_1_title: "状态",
+          discipline_card_1_desc: "统一掌握案件进度、材料状态与待办节点。",
+          discipline_card_2_title: "策略",
+          discipline_card_2_desc: "按角色权限和流程规则配置系统行为。",
+          discipline_card_3_title: "审计",
+          discipline_card_3_desc: "关键操作、修改过程和输出结果可追溯可复核。",
+          flow_eyebrow: "执行流程",
+          flow_1_title: "接收并整理材料",
+          flow_1_desc: "统一归集案件材料、债权申报信息与历史文档，建立清晰的检索入口。",
+          flow_2_title: "智能辅助处理",
+          flow_2_desc: "在核验、汇总、通知和文书起草等环节提供辅助，减轻重复性工作负担。",
+          flow_3_title: "校对并留痕",
+          flow_3_desc: "基于私域知识库、规则校验与审计留痕，确保输出内容更严谨、更可复核。",
+          impact_title: "务实可见的业务价值",
+          impact_desc: "围绕材料处理、债权核验、流程协同和文书起草等核心场景，帮助管理人团队在不改变专业判断前提下提升工作质量与效率。",
+          impact_card_1_stat: "成本优化",
+          impact_card_1_title: "有效优化团队人力成本与沟通损耗",
+          impact_card_1_desc: "通过流程协同、材料归档与节点提醒，减少重复录入与跨角色沟通带来的隐性消耗。",
+          impact_card_2_stat: "流程提效",
+          impact_card_2_title: "显著提升复杂卷宗处理与债权核验效率",
+          impact_card_2_desc: "针对海量材料整理、债权信息比对和节点追踪等高频环节提供稳定辅助，帮助团队更快完成关键工作。",
+          impact_card_3_stat: "< 1%",
+          impact_card_3_title: "法律文书生成严谨性",
+          impact_card_3_desc: "基于私域知识库校对，确保法律文书生成的严谨性。",
+          impact_badge_1: "⚖️ 破产重整",
+          impact_badge_2: "🏛️ 政企合规",
+          impact_badge_3: "📁 卷宗管理",
+          moat_title: "底层能力与合规保障",
+          moat_desc: "结合多年案件实务经验和持续研发投入，为高复杂度业务提供稳健、可审计、可本地化部署的底层支撑。",
+          moat_card_1_title: "知识编排与提示治理",
+          moat_card_1_desc: "围绕材料类型、角色任务与案件阶段配置系统提示和知识来源，提升输出稳定性与可复核性。",
+          moat_card_2_title: "关联关系检索与辅助分析",
+          moat_card_2_desc: "针对股权结构、债权关联和材料引用关系提供更贴近业务语境的辅助检索与分析能力。",
+          moat_card_3_title: "规则校对与安全执行",
+          moat_card_3_desc: "将规则校验、过程限制与输出复核纳入系统流程，降低复杂测算和文书生成环节的偏差风险。",
+          moat_card_4_title: "低时延部署与机密计算",
+          moat_card_4_desc: "支持面向专属环境的稳定部署方案，在保证响应效率的同时强化数据隔离与安全保护。",
+          moat_closing: "以稳健、可审计、可落地的方式，服务高复杂度行业的长期数字化建设。",
+          contact_eyebrow: "部署与咨询",
+          contact_title: "了解优破案 4.0 的部署与服务方式。",
+          contact_desc: "我们提供面向管理人团队的演示、部署咨询与本地化实施支持。",
+          contact_cta_primary: "预约演示",
+          contact_cta_secondary: "联系团队",
+          footer_tagline: "优破案 4.0，服务破产案件全生命周期的数字化管理平台。",
+          footer_back_to_top: "返回顶部"
+        },
+        en: {
+          page_title: "Youpoan 4.0 | Digital Infrastructure For Bankruptcy Case Management",
+          meta_description: "Youpoan 4.0 builds on more than a decade of industry experience to provide end-to-end digital case management for bankruptcy workflows, with data sovereignty and local compliance as priorities.",
+          nav_features: "Features",
+          nav_stack: "Tech Stack",
+          nav_runtime: "Runtime",
+          nav_access: "Access",
+          nav_cta: "Book Demo",
+          hero_badge: "Youpoan 4.0 · Serving the market since 2014",
+          hero_title: "Youpoan 4.0: More Efficient, More Professional Bankruptcy Administration",
+          hero_subtitle: "Built on more than a decade of domain experience and deeply integrated AI capabilities, Youpoan 4.0 provides administrators with a full-lifecycle digital solution for bankruptcy case management.",
+          hero_cta_primary: "Book Demo",
+          hero_cta_secondary: "Explore Capabilities",
+          hero_chip_1: "10+ Years Of Practice",
+          hero_chip_2: "Data Sovereignty First",
+          hero_chip_3: "Local Compliance",
+          trust_eyebrow: "Real case experience since 2014",
+          trust_title: "More than a decade of iteration grounded in real bankruptcy workflows.",
+          trust_desc: "From the initial launch of Youpoan to the 3.0 process milestone and the 4.0 AI upgrade, product decisions have been shaped by real cases, real roles, and real compliance demands.",
+          trust_card_1_label: "2014 Launch",
+          trust_card_1_desc: "The first Youpoan system launched to support digital bankruptcy case management.",
+          trust_card_2_label: "2018 Milestone",
+          trust_card_2_desc: "Version 3.0 formalized workflow, creditor verification, and collaboration practices around real cases.",
+          trust_card_3_label: "2026 AI Evolution",
+          trust_card_3_desc: "Version 4.0 introduces AI capabilities while preserving local compliance and data sovereignty requirements.",
+          runtime_code: `> umob init --core deepseek-r1 --fallback glm-4 --vector-store milvus-secure
+[SYSTEM] Initializing Umob.AI Agent OS...
+[SOVEREIGN] Binding DeepSeek / Zhipu reasoning profile... READY.
+[RAG] Provisioning encrypted Milvus vector engine... DONE.
+[CLOUD] Applying Huawei Gov-Cloud deployment policy... ACTIVE.`,
+          preview_eyebrow: "System Workspace",
+          preview_title: "A practical workspace designed around real case operations.",
+          preview_desc: "Case progress, document verification, milestone reminders, and permission controls are brought together in one workspace for day-to-day execution.",
+          preview_badge: "Workspace Preview",
+          stack_eyebrow: "Trusted Local Stack",
+          stack_title: "Deployment foundations built around data sovereignty and local compliance.",
+          stack_desc: "Supports local deployment, private knowledge bases, permission isolation, and auditable activity for courts, administrators, and public-sector environments.",
+          stack_card_1_title: "Private Knowledge & Model Base",
+          stack_card_1_desc: "Local deployment and private knowledge alignment keep core case data in controlled environments.",
+          stack_card_2_title: "Data Sovereignty & Local Compliance",
+          stack_card_2_desc: "Local storage, permission tiers, call auditing, and workflow traceability are designed for legal and government-grade operating requirements.",
+          stack_card_3_title: "Dedicated Gov-Grade Deployment",
+          stack_card_3_desc: "Supports dedicated networking, resource isolation, and security management for courts, administrators, and public-sector clients.",
+          stack_card_4_title: "Security Audit & Edge Encryption",
+          stack_card_4_desc: "Protects transmission, storage, access, and export processes with stronger safeguards and auditability.",
+          features_eyebrow: "Core Capabilities",
+          features_title: "Practical capabilities designed around daily bankruptcy case management.",
+          features_desc: "Focused on document handling, intelligent support, and compliance controls so teams can operate consistently and traceably in complex matters.",
+          feature_1_label: "Documents",
+          feature_1_title: "Case File Parsing & Retrieval Support",
+          feature_1_desc: "Structure claim materials, evidence attachments, and historical records for faster retrieval and less manual searching.",
+          feature_1_note: "Private knowledge alignment and case context are used first to reduce misreads and improve consistency.",
+          feature_2_label: "Support",
+          feature_2_title: "Intelligent Support Tools",
+          feature_2_desc: "Provides stable assistance for recurring tasks such as notices, verification, summaries, and document drafting.",
+          feature_2_note: "Support flows can be configured by role and remain fully traceable.",
+          feature_3_label: "Compliance",
+          feature_3_title: "Data Sovereignty & Local Compliance",
+          feature_3_desc: "Local deployment, permission controls, process audits, and data isolation put security and local compliance first.",
+          feature_3_note: "Designed to match the delivery, audit, and security expectations of courts, administrators, and public-sector clients.",
+          discipline_eyebrow: "Process Governance",
+          discipline_title: "Traceable and auditable control for complex case operations.",
+          discipline_desc: "Material flow, role permissions, milestone progress, and drafting outputs are governed through stable process controls built for real case work.",
+          discipline_card_1_title: "State",
+          discipline_card_1_desc: "Track case status, material condition, and pending milestones in one place.",
+          discipline_card_2_title: "Policy",
+          discipline_card_2_desc: "Configure behavior with role permissions and explicit workflow rules.",
+          discipline_card_3_title: "Audit",
+          discipline_card_3_desc: "Critical changes, actions, and outputs remain traceable and reviewable.",
+          flow_eyebrow: "Execution Flow",
+          flow_1_title: "Collect and organize materials",
+          flow_1_desc: "Claim materials, supporting evidence, and historical records are gathered into a consistent retrieval structure.",
+          flow_2_title: "Apply intelligent support",
+          flow_2_desc: "Recurring tasks such as verification, summaries, notices, and drafting receive stable assistance without replacing professional judgment.",
+          flow_3_title: "Review and audit",
+          flow_3_desc: "Private knowledge alignment, rule-based checks, and audit trails help outputs remain more rigorous and reviewable.",
+          impact_title: "Practical, Visible Value",
+          impact_desc: "Across document processing, creditor verification, team coordination, and drafting support, the platform improves quality and efficiency without replacing professional decision-making.",
+          impact_card_1_stat: "Cost Optimization",
+          impact_card_1_title: "Reduce labor overhead and coordination loss",
+          impact_card_1_desc: "Workflow coordination, document archiving, and milestone reminders reduce repeat entry and cross-role communication waste.",
+          impact_card_2_stat: "Workflow Efficiency",
+          impact_card_2_title: "Improve complex dossier handling and creditor verification efficiency",
+          impact_card_2_desc: "Stable support for large-scale material organization, information comparison, and milestone tracking helps teams complete critical work faster.",
+          impact_card_3_stat: "< 1%",
+          impact_card_3_title: "Rigor In Legal Drafting",
+          impact_card_3_desc: "Private knowledge-base alignment helps keep generated legal documents more rigorous and reviewable.",
+          impact_badge_1: "⚖️ Bankruptcy Restructuring",
+          impact_badge_2: "🏛️ Public-Sector Compliance",
+          impact_badge_3: "📁 Dossier Management",
+          moat_title: "Core Capabilities & Compliance Safeguards",
+          moat_desc: "Long-term domain experience and continued R&D investment provide stable, auditable, and locally deployable foundations for high-complexity operations.",
+          moat_card_1_title: "Knowledge Orchestration & Prompt Governance",
+          moat_card_1_desc: "System prompts and knowledge sources are configured by material type, user role, and case stage to improve stability and reviewability.",
+          moat_card_2_title: "Relationship Retrieval & Assisted Analysis",
+          moat_card_2_desc: "Supports business-context retrieval and analysis for equity structures, creditor relationships, and citation references across materials.",
+          moat_card_3_title: "Rule Validation & Safe Execution",
+          moat_card_3_desc: "Rule checks, process constraints, and output review are built into workflows to lower the risk of deviations in complex calculations and drafting.",
+          moat_card_4_title: "Low-Latency Deployment & Confidential Computing",
+          moat_card_4_desc: "Dedicated deployment options combine operational responsiveness with stronger data isolation and protection.",
+          moat_closing: "Designed to support long-term digitalization in high-complexity industries through stable, auditable, and deployable systems.",
+          contact_eyebrow: "Deployment & Advisory",
+          contact_title: "Learn how Youpoan 4.0 can be deployed and supported.",
+          contact_desc: "We provide product demos, deployment consultation, and localized implementation support for administrator teams.",
+          contact_cta_primary: "Book Demo",
+          contact_cta_secondary: "Contact Team",
+          footer_tagline: "Youpoan 4.0, a digital platform for full-lifecycle bankruptcy case management.",
+          footer_back_to_top: "Back to top"
+        }
+      };
+
+      const toggle = document.getElementById("menu-toggle");
+      const menu = document.getElementById("mobile-menu");
+
+      toggle?.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
+
+      menu?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => menu.classList.add("hidden"));
+      });
+
+      const media = window.matchMedia("(min-width: 768px)");
+      const switchers = document.querySelectorAll("[data-lang-switcher]");
+      const titleNode = document.getElementById("page-title");
+      const descriptionNode = document.getElementById("page-description");
+      let currentLanguage = localStorage.getItem("umob_lang") || "zh";
+      const closeTimers = new WeakMap();
+
+      function clearCloseTimer(wrapper) {
+        const timer = closeTimers.get(wrapper);
+        if (timer) window.clearTimeout(timer);
+      }
+
+      function scheduleClose(wrapper) {
+        clearCloseTimer(wrapper);
+        const timer = window.setTimeout(() => setLanguageMenuState(wrapper, false), 160);
+        closeTimers.set(wrapper, timer);
+      }
+
+      function applyLanguage(language) {
+        const copy = translations[language] || translations.zh;
+        currentLanguage = language;
+        localStorage.setItem("umob_lang", language);
+        document.documentElement.lang = language === "zh" ? "zh-CN" : "en";
+
+        if (titleNode) titleNode.textContent = copy.page_title;
+        if (descriptionNode) descriptionNode.setAttribute("content", copy.meta_description);
+
+        document.querySelectorAll("[data-i18n]").forEach((node) => {
+          const key = node.getAttribute("data-i18n");
+          if (key && Object.prototype.hasOwnProperty.call(copy, key)) {
+            node.textContent = copy[key];
+          }
+        });
+
+        switchers.forEach((wrapper) => {
+          const current = wrapper.querySelector("[data-lang-current]");
+          if (current) current.textContent = language === "zh" ? "🇨🇳 中文" : "🇺🇸 English";
+
+          wrapper.querySelectorAll("[data-lang-option]").forEach((option) => {
+            const optionLang = option.getAttribute("data-lang-option");
+            const isActive = optionLang === language;
+            option.classList.toggle("font-semibold", isActive);
+            option.classList.toggle("text-slate-900", isActive);
+            option.classList.toggle("dark:text-white", isActive);
+            option.classList.toggle("text-slate-600", !isActive);
+            option.classList.toggle("dark:text-slate-300", !isActive);
+          });
+
+          wrapper.querySelectorAll("[data-lang-check]").forEach((check) => {
+            const checkLang = check.getAttribute("data-lang-check");
+            check.classList.toggle("hidden", checkLang !== language);
+          });
+        });
+      }
+
+      function setLanguageMenuState(wrapper, open) {
+        const trigger = wrapper.querySelector("[data-lang-trigger]");
+        const menu = wrapper.querySelector("[data-lang-menu]");
+        const chevron = wrapper.querySelector("[data-lang-chevron]");
+
+        trigger?.setAttribute("aria-expanded", open ? "true" : "false");
+
+        menu?.classList.toggle("invisible", !open);
+        menu?.classList.toggle("pointer-events-none", !open);
+        menu?.classList.toggle("opacity-0", !open);
+        menu?.classList.toggle("-translate-y-2", !open);
+        menu?.classList.toggle("visible", open);
+        menu?.classList.toggle("pointer-events-auto", open);
+        menu?.classList.toggle("opacity-100", open);
+        menu?.classList.toggle("translate-y-0", open);
+        chevron?.classList.toggle("rotate-180", open);
+      }
+
+      switchers.forEach((wrapper) => {
+        const trigger = wrapper.querySelector("[data-lang-trigger]");
+        const menu = wrapper.querySelector("[data-lang-menu]");
+
+        setLanguageMenuState(wrapper, false);
+
+        trigger?.addEventListener("click", (event) => {
+          event.stopPropagation();
+          const isOpen = trigger.getAttribute("aria-expanded") === "true";
+
+          switchers.forEach((other) => {
+            if (other !== wrapper) setLanguageMenuState(other, false);
+          });
+
+          setLanguageMenuState(wrapper, !isOpen);
+        });
+
+        wrapper.querySelectorAll("[data-lang-option]").forEach((option) => {
+          option.addEventListener("click", (event) => {
+            event.stopPropagation();
+            const nextLanguage = option.getAttribute("data-lang-option") || "zh";
+            applyLanguage(nextLanguage);
+            setLanguageMenuState(wrapper, false);
+          });
+        });
+
+        wrapper.addEventListener("mouseenter", () => {
+          clearCloseTimer(wrapper);
+          if (media.matches) setLanguageMenuState(wrapper, true);
+        });
+
+        wrapper.addEventListener("mouseleave", () => {
+          if (media.matches) scheduleClose(wrapper);
+        });
+
+        menu?.addEventListener("mouseenter", () => clearCloseTimer(wrapper));
+        menu?.addEventListener("mouseleave", () => {
+          if (media.matches) scheduleClose(wrapper);
+        });
+      });
+
+      document.addEventListener("click", (event) => {
+        switchers.forEach((wrapper) => {
+          if (!wrapper.contains(event.target)) setLanguageMenuState(wrapper, false);
+        });
+      });
+
+      applyLanguage(currentLanguage);
+
+      const revealNodes = document.querySelectorAll("[data-reveal]");
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            const node = entry.target;
+            const delay = node.getAttribute("data-delay");
+            if (delay) node.style.transitionDelay = `${delay}ms`;
+            node.classList.add("is-visible");
+            observer.unobserve(node);
+          });
+        },
+        {
+          threshold: 0.14,
+          rootMargin: "0px 0px -8% 0px"
+        }
+      );
+
+      revealNodes.forEach((node) => observer.observe(node));
+    </script>
+  </body>
+</html>
