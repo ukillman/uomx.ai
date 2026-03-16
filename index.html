@@ -3,23 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title id="page-title">Umob.AI Agent OS | 智能体操作系统</title>
+    <title id="page-title">Umob.AI Agent OS</title>
     <meta
       id="page-description"
       name="description"
-      content="Umob.AI Agent OS 是面向高责任场景构建的通用智能体操作系统，以图谱推理、神经符号执行与本地化部署将大模型能力转化为可验证的生产工作流。"
+      content="智能体操作系统"
     />
+    <meta name="title" content="Umob.AI Agent OS" />
+    <meta property="og:title" content="Umob.AI Agent OS" />
+    <meta property="og:description" content="智能体操作系统" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ai.umobai.com/" />
+    <meta property="og:image" content="https://ai.umobai.com/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Umob.AI Agent OS" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Umob.AI Agent OS" />
+    <meta name="twitter:description" content="智能体操作系统" />
+    <meta name="twitter:image" content="https://ai.umobai.com/og-image.png" />
+    <meta name="twitter:image:alt" content="Umob.AI Agent OS" />
+    <meta name="theme-color" content="#050505" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Serif+SC:wght@300;500&family=Raleway:wght@100;300&display=swap"
       rel="stylesheet"
     />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%23050505'/%3E%3Ctext x='50%25' y='53%25' text-anchor='middle' dominant-baseline='middle' font-family='Raleway,Arial,sans-serif' font-weight='100' font-size='38' fill='%23E2E8F0'%3EU%3C/text%3E%3C/svg%3E"
-    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/favicon.png" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
       tailwind.config = {
@@ -1013,6 +1028,76 @@
         pointer-events: none;
       }
 
+      #lang-trigger {
+        gap: 0.5rem;
+        transition: gap 0.24s ease;
+      }
+
+      #lang-trigger[data-open="false"] {
+        gap: 0;
+      }
+
+      .lang-label {
+        max-width: 0;
+        opacity: 0;
+        overflow: hidden;
+        white-space: nowrap;
+        transform: translateX(-6px);
+        transition:
+          max-width 0.24s ease,
+          opacity 0.24s ease,
+          transform 0.24s ease;
+      }
+
+      #lang-trigger[data-open="true"] .lang-label {
+        max-width: 8rem;
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      .metric-head {
+        display: flex;
+        align-items: center;
+        gap: 0.9rem;
+      }
+
+      .metric-icon {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 2.8rem;
+        height: 2.8rem;
+        border-radius: 1rem;
+        background: radial-gradient(circle at 30% 20%, rgba(125, 211, 252, 0.35), rgba(15, 23, 42, 0.16) 62%);
+        border: 1px solid rgba(148, 163, 184, 0.3);
+        box-shadow:
+          0 0 24px rgba(56, 189, 248, 0.22),
+          inset 0 0 16px rgba(248, 250, 252, 0.08);
+        color: rgba(226, 232, 240, 0.92);
+      }
+
+      .metric-icon::before {
+        content: "";
+        position: absolute;
+        inset: 6px;
+        border-radius: 0.7rem;
+        border: 1px solid rgba(125, 211, 252, 0.25);
+        box-shadow: inset 0 0 10px rgba(56, 189, 248, 0.18);
+      }
+
+      .metric-icon-emoji {
+        position: relative;
+        z-index: 1;
+        font-size: 1.28rem;
+        line-height: 1;
+        filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.28));
+      }
+
+      .metric-value {
+        letter-spacing: 0.1em;
+      }
+
       .metric-fill {
         width: var(--metric-width, 50%);
       }
@@ -1279,10 +1364,11 @@
                 type="button"
                 aria-haspopup="true"
                 aria-expanded="false"
-                class="glass-panel inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-light text-zinc-300 transition hover:border-white/20 hover:text-white"
+                data-open="false"
+                class="glass-panel inline-flex items-center rounded-full px-4 py-2.5 text-sm font-light text-zinc-300 transition hover:border-white/20 hover:text-white"
               >
                 <span>🌐</span>
-                <span id="lang-current-label">🇨🇳 中文</span>
+                <span id="lang-current-label" class="lang-label">🇨🇳 中文</span>
               </button>
 
               <div
@@ -1341,7 +1427,6 @@
                   </svg>
                   <p class="brand-lockup hero-brand-glass brand-main">Umob.AI Agent OS</p>
                   <svg class="hero-orbit-svg hero-orbit-svg-front" viewBox="0 0 1200 420" preserveAspectRatio="none" aria-hidden="true" focusable="false">
-                    <use href="#heroOrbitLowerPath" class="hero-orbit-front-arc-glow" data-orbit-path></use>
                     <g class="hero-orbit-comet hero-orbit-comet-front">
                       <ellipse class="hero-orbit-comet-front-halo" cx="-10" cy="0" rx="56" ry="24" fill="url(#heroOrbitFrontHaloGradient)"></ellipse>
                       <ellipse class="hero-orbit-comet-front-tail" cx="-116" cy="0" rx="132" ry="16" fill="url(#heroOrbitFrontTailGradient)"></ellipse>
@@ -1493,7 +1578,7 @@
                             <path d="M9.5 9.5c.8-.6 1.6-.9 2.5-.9 1.8 0 3.2 1.4 3.2 3.2 0 .9-.3 1.7-.9 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
                           </svg>
                         </div>
-                        <p class="mt-4 text-sm font-medium text-white">DeepSeek</p>
+                        <p class="mt-4 text-sm font-medium text-white" data-i18n="stack_1_name">DeepSeek</p>
                         <p class="mt-2 text-xs font-light leading-6 text-zinc-500" data-i18n="stack_1_desc">深度求索高性能推理底座</p>
                       </article>
 
@@ -1504,7 +1589,7 @@
                             <path d="M9 11.5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
                           </svg>
                         </div>
-                        <p class="mt-4 text-sm font-medium text-white">Zhipu GLM</p>
+                        <p class="mt-4 text-sm font-medium text-white" data-i18n="stack_2_name">Zhipu GLM</p>
                         <p class="mt-2 text-xs font-light leading-6 text-zinc-500" data-i18n="stack_2_desc">智谱 GLM 长文本法律认知引擎</p>
                       </article>
 
@@ -1516,7 +1601,7 @@
                             <path d="M5 16.5 12 20l7-3.5" stroke="currentColor" stroke-width="1.5"></path>
                           </svg>
                         </div>
-                        <p class="mt-4 text-sm font-medium text-white">Qwen</p>
+                        <p class="mt-4 text-sm font-medium text-white" data-i18n="stack_3_name">Qwen</p>
                         <p class="mt-2 text-xs font-light leading-6 text-zinc-500" data-i18n="stack_3_desc">通义千问多模态交互中枢</p>
                       </article>
 
@@ -1526,7 +1611,7 @@
                             <path d="M7 17h10a4 4 0 1 0-.9-7.9A5.5 5.5 0 0 0 5 10.5 4.5 4.5 0 0 0 7 17Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
                           </svg>
                         </div>
-                        <p class="mt-4 text-sm font-medium text-white">MiniMax</p>
+                        <p class="mt-4 text-sm font-medium text-white" data-i18n="stack_4_name">MiniMax</p>
                         <p class="mt-2 text-xs font-light leading-6 text-zinc-500" data-i18n="stack_4_desc">MiniMax 生成式表达增强引擎</p>
                       </article>
                     </div>
@@ -1539,8 +1624,8 @@
           <section id="heritage" class="px-4 py-20 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-7xl">
               <div class="reveal text-center">
-                <p class="headline-thin text-xs tracking-[0.28em] text-cyan-300" data-i18n="heritage_eyebrow">Heritage</p>
-                <h2 class="headline-thin mt-5 text-3xl tracking-[0.14em] text-[#D4D4D8] sm:text-4xl" data-i18n="heritage_title">
+                <p class="headline-thin text-xs tracking-[0.28em] text-cyan-300" data-i18n="heritage_eyebrow">发展沿革</p>
+                <h2 class="headline-thin mt-7 text-3xl tracking-[0.14em] text-[#D4D4D8] sm:text-4xl" data-i18n="heritage_title">
                   12 年行业沉淀
                 </h2>
                 <p class="mx-auto mt-5 max-w-3xl text-sm font-light leading-7 text-zinc-500 sm:text-base" data-i18n="heritage_desc">
@@ -1553,22 +1638,22 @@
                 <div class="grid gap-6 md:grid-cols-4">
                   <article class="heritage-node glass-panel reveal rounded-[1.8rem] px-6 pb-6 pt-12 text-center" data-delay="1">
                     <p class="headline-thin text-2xl tracking-[0.18em] text-[#D4D4D8]" data-i18n="heritage_1_year">2014</p>
-                    <p class="mt-4 text-sm font-light leading-7 text-zinc-400" data-i18n="heritage_1_desc">创始团队深耕破产法治信息化。</p>
+                    <p class="mt-4 text-sm font-light leading-7 text-zinc-400" data-i18n="heritage_1_desc">优破案 1.0 - 起源</p>
                   </article>
 
                   <article class="heritage-node glass-panel reveal rounded-[1.8rem] px-6 pb-6 pt-12 text-center" data-delay="2">
-                    <p class="headline-thin text-2xl tracking-[0.18em] text-[#D4D4D8]" data-i18n="heritage_2_year">2018</p>
-                    <p class="mt-4 text-sm font-light leading-7 text-zinc-400" data-i18n="heritage_2_desc">推出 3.0 数字化管理系统，覆盖 100+ 法院。</p>
+                    <p class="headline-thin text-2xl tracking-[0.18em] text-[#D4D4D8]" data-i18n="heritage_2_year">2016</p>
+                    <p class="mt-4 text-sm font-light leading-7 text-zinc-400" data-i18n="heritage_2_desc">优破案 2.0 - 用户至上</p>
                   </article>
 
                   <article class="heritage-node glass-panel reveal rounded-[1.8rem] px-6 pb-6 pt-12 text-center" data-delay="3">
-                    <p class="headline-thin text-2xl tracking-[0.18em] text-[#D4D4D8]" data-i18n="heritage_3_year">2024</p>
-                    <p class="mt-4 text-sm font-light leading-7 text-zinc-400" data-i18n="heritage_3_desc">深度融合 DeepSeek 推理模型，开启 Agent 时代。</p>
+                    <p class="headline-thin text-2xl tracking-[0.18em] text-[#D4D4D8]" data-i18n="heritage_3_year">2019</p>
+                    <p class="mt-4 text-sm font-light leading-7 text-zinc-400" data-i18n="heritage_3_desc">优破案 3.0 - 里程碑</p>
                   </article>
 
                   <article class="heritage-node heritage-node-current glass-panel reveal rounded-[1.8rem] border border-cyan-400/20 px-6 pb-6 pt-12 text-center shadow-[0_0_28px_rgba(56,189,248,0.12)]" data-delay="4">
                     <p class="headline-thin text-2xl tracking-[0.18em] text-white" data-i18n="heritage_4_year">2026</p>
-                    <p class="mt-4 text-sm font-light leading-7 text-zinc-300" data-i18n="heritage_4_desc">Umob.AI Agent OS (优破案 4.0) 震撼发布。</p>
+                    <p class="mt-4 text-sm font-light leading-7 text-zinc-300" data-i18n="heritage_4_desc">Umob.AI Agent OS 优破案4.0</p>
                   </article>
                 </div>
               </div>
@@ -1578,15 +1663,20 @@
           <section id="metrics" class="px-4 py-20 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-7xl">
               <div class="reveal text-center">
-                <p class="headline-thin text-xs tracking-[0.28em] text-cyan-300" data-i18n="metrics_eyebrow">Metrics</p>
-                <h2 class="headline-thin mt-5 text-3xl tracking-[0.14em] text-[#D4D4D8] sm:text-4xl" data-i18n="metrics_title">
+                <p class="headline-thin text-xs tracking-[0.28em] text-cyan-300" data-i18n="metrics_eyebrow">性能标尺</p>
+                <h2 class="headline-thin mt-7 text-3xl tracking-[0.14em] text-[#D4D4D8] sm:text-4xl" data-i18n="metrics_title">
                   关键指标
                 </h2>
               </div>
 
               <div class="mt-12 grid gap-6 lg:grid-cols-3">
                 <article class="glass-panel reveal rounded-[1.8rem] p-6" data-delay="1">
-                  <p class="headline-thin text-4xl text-white">⬇️ 50%</p>
+                  <div class="metric-head">
+                    <span class="metric-icon" aria-hidden="true">
+                      <span class="metric-icon-emoji">📉</span>
+                    </span>
+                    <span class="headline-thin text-4xl text-white metric-value" data-i18n="metric_1_value">50%</span>
+                  </div>
                   <p class="mt-5 text-lg font-light text-[#D4D4D8]" data-i18n="metric_1_title">成本骤降</p>
                   <p class="mt-2 text-sm font-light leading-7 text-zinc-400" data-i18n="metric_1_desc">通过智能审查与自动编排替代重复人工流转，减少显性人力和沟通损耗。</p>
                   <div class="mt-6 flex items-center justify-between text-[11px] uppercase tracking-[0.22em] text-zinc-500">
@@ -1602,7 +1692,12 @@
                 </article>
 
                 <article class="glass-panel reveal rounded-[1.8rem] p-6" data-delay="2">
-                  <p class="headline-thin text-4xl text-white">🚀 10x</p>
+                  <div class="metric-head">
+                    <span class="metric-icon" aria-hidden="true">
+                      <span class="metric-icon-emoji">🚀</span>
+                    </span>
+                    <span class="headline-thin text-4xl text-white metric-value" data-i18n="metric_2_value">10x</span>
+                  </div>
                   <p class="mt-5 text-lg font-light text-[#D4D4D8]" data-i18n="metric_2_title">效能跃升</p>
                   <p class="mt-2 text-sm font-light leading-7 text-zinc-400" data-i18n="metric_2_desc">将复杂卷宗解析、知识召回与专业文书推理压缩到分钟级输出。</p>
                   <div class="mt-6 flex items-center justify-between text-[11px] uppercase tracking-[0.22em] text-zinc-500">
@@ -1618,8 +1713,13 @@
                 </article>
 
                 <article class="glass-panel reveal rounded-[1.8rem] border border-cyan-400/20 p-6 shadow-[0_0_34px_rgba(56,189,248,0.12)]" data-delay="3">
-                  <p class="headline-thin text-4xl text-white">🎯 &lt; 1%</p>
-                  <p class="mt-5 text-lg font-light text-[#D4D4D8]" data-i18n="metric_3_title">事实性幻觉率</p>
+                  <div class="metric-head">
+                    <span class="metric-icon" aria-hidden="true">
+                      <span class="metric-icon-emoji">🎯</span>
+                    </span>
+                    <span class="headline-thin text-4xl text-white metric-value" data-i18n="metric_3_value">小于1%</span>
+                  </div>
+                  <p class="mt-5 text-lg font-light text-[#D4D4D8]" data-i18n="metric_3_title">小于1% 事实性幻觉率</p>
                   <p class="mt-2 text-sm font-light leading-7 text-zinc-400" data-i18n="metric_3_desc">基于私域知识库对齐、图谱检索和符号约束，确保关键结论具备可验证性。</p>
                   <div class="mt-6 flex items-center justify-between text-[11px] uppercase tracking-[0.22em] text-zinc-500">
                     <span data-i18n="metric_3_benchmark_label">行业基线</span>
@@ -1639,8 +1739,8 @@
           <section id="moats" class="px-4 py-20 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-7xl">
               <div class="reveal text-center">
-                <p class="headline-thin text-xs tracking-[0.28em] text-cyan-300" data-i18n="moats_eyebrow">Deep Tech Stack</p>
-                <h2 class="headline-thin mt-5 text-3xl tracking-[0.14em] text-[#D4D4D8] sm:text-4xl" data-i18n="moats_title">
+                <p class="headline-thin text-xs tracking-[0.28em] text-cyan-300" data-i18n="moats_eyebrow">技术底座</p>
+                <h2 class="headline-thin mt-7 text-3xl tracking-[0.14em] text-[#D4D4D8] sm:text-4xl" data-i18n="moats_title">
                   核心技术底座
                 </h2>
                 <p class="mx-auto mt-5 max-w-3xl text-sm font-light leading-7 text-zinc-500 sm:text-base" data-i18n="moats_desc">
@@ -1692,8 +1792,8 @@
           <section id="ecosystem" class="px-4 py-20 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-7xl">
               <div class="reveal text-center">
-                <p class="headline-thin text-xs tracking-[0.28em] text-cyan-300" data-i18n="ecosystem_eyebrow">Elite Wall</p>
-                <h2 class="headline-thin mt-5 text-3xl tracking-[0.14em] text-[#D4D4D8] sm:text-4xl" data-i18n="ecosystem_title">
+                <p class="headline-thin text-xs tracking-[0.28em] text-cyan-300" data-i18n="ecosystem_eyebrow">生态矩阵</p>
+                <h2 class="headline-thin mt-7 text-3xl tracking-[0.14em] text-[#D4D4D8] sm:text-4xl" data-i18n="ecosystem_title">
                   流光生态墙
                 </h2>
                 <p class="mx-auto mt-5 max-w-3xl text-sm font-light leading-7 text-zinc-500 sm:text-base" data-i18n="ecosystem_desc">
@@ -1877,8 +1977,8 @@
           <section id="bottom-cta" class="px-4 py-20 sm:px-6 lg:px-8">
             <div class="mx-auto max-w-5xl">
               <div class="glass-panel reveal rounded-[2rem] px-6 py-10 text-center sm:px-10" data-delay="1">
-                <p class="headline-thin text-xs tracking-[0.28em] text-cyan-300" data-i18n="cta_eyebrow">Early Access</p>
-                <h2 class="headline-thin mt-5 text-3xl tracking-[0.14em] text-[#D4D4D8] sm:text-4xl">
+                <p class="headline-thin text-xs tracking-[0.28em] text-cyan-300" data-i18n="cta_eyebrow">优先接入</p>
+                <h2 class="headline-thin mt-7 text-3xl tracking-[0.14em] text-[#D4D4D8] sm:text-4xl">
                   <span data-i18n="cta_title_prefix">让</span>
                   <span class="hero-brand-inline">Umob.AI Agent OS</span>
                   <span data-i18n="cta_title_suffix">进入真实生产现场</span>
@@ -2023,8 +2123,8 @@
     <script>
       const translations = {
         zh: {
-          page_title: "Umob.AI Agent OS | 智能体操作系统",
-          meta_description: "Umob.AI Agent OS 是面向高责任场景构建的通用智能体操作系统，以图谱推理、神经符号执行与本地化部署将大模型能力转化为可验证的生产工作流。",
+          page_title: "Umob.AI Agent OS",
+          meta_description: "智能体操作系统",
           nav_hero: "首页",
           nav_metrics: "指标",
           nav_moats: "底座",
@@ -2034,38 +2134,52 @@
           hero_subtitle: "从主权部署到跨行业推理系统，Umob.AI Agent OS 面向高责任场景而构建。",
           hero_note: "沉淀十余年行业积淀与深厚研发，深度适配国产大模型生态。",
           hero_cta: "申请内测",
-          heritage_eyebrow: "Heritage",
+          hero_engine_eyebrow: "R&D ENGINE",
+          hero_engine_title: "硅谷 + 杭州双 Base 研发引擎",
+          hero_engine_desc: "前沿 Agent OS 架构研发与深厚破产行业 Know-How 同步迭代，形成模型能力与行业落地的双引擎闭环。",
+          hero_engine_base_1_title: "Silicon Valley Base",
+          hero_engine_base_1_desc: "负责 Agent OS 底层架构、推理引擎与前沿多智能体系统设计。",
+          hero_engine_base_2_title: "Hangzhou Base",
+          hero_engine_base_2_desc: "负责破产法律场景、真实业务数据与产品化实施闭环验证。",
+          heritage_eyebrow: "发展沿革",
           heritage_title: "12 年行业沉淀",
           heritage_desc: "从破产法治信息化到 Agent 原生架构，优破案与 Umob.AI 持续推动行业底层能力演进。",
           heritage_1_year: "2014",
-          heritage_1_desc: "创始团队深耕破产法治信息化。",
-          heritage_2_year: "2018",
-          heritage_2_desc: "推出 3.0 数字化管理系统，覆盖 100+ 法院。",
-          heritage_3_year: "2024",
-          heritage_3_desc: "深度融合 DeepSeek 推理模型，开启 Agent 时代。",
+          heritage_1_desc: "优破案 1.0 起源",
+          heritage_2_year: "2016",
+          heritage_2_desc: "优破案 2.0 用户至上",
+          heritage_3_year: "2019",
+          heritage_3_desc: "优破案 3.0 里程碑",
           heritage_4_year: "2026",
-          heritage_4_desc: "Umob.AI Agent OS (优破案 4.0) 震撼发布。",
+          heritage_4_desc: "Umob.AI Agent OS 优破案4.0",
           stack_title: "主权模型与机密推理底座",
           stack_desc: "深度适配国产大模型与私有化部署体系，以可信推理架构确保安全可靠、数据不出域。",
+          stack_1_name: "DeepSeek",
           stack_1_desc: "深度求索高性能推理底座",
+          stack_2_name: "Zhipu GLM",
           stack_2_desc: "智谱 GLM 长文本法律认知引擎",
+          stack_3_name: "Qwen",
           stack_3_desc: "通义千问多模态交互中枢",
+          stack_4_name: "MiniMax",
           stack_4_desc: "MiniMax 生成式表达增强引擎",
-          metrics_eyebrow: "Metrics",
+          metrics_eyebrow: "性能标尺",
           metrics_title: "关键性能指标",
-          metric_1_title: "⬇️ 50% 成本骤降",
+          metric_1_value: "50%",
+          metric_1_title: "成本骤降",
           metric_1_desc: "通过智能审查与自动编排替代重复人工流转，减少显性人力和沟通损耗。",
           metric_1_benchmark_label: "行业基线",
           metric_1_benchmark_value: "100% 人工流转成本",
-          metric_2_title: "🚀 10x 效能跃升",
+          metric_2_value: "10x",
+          metric_2_title: "效能跃升",
           metric_2_desc: "将复杂卷宗解析、知识召回与专业文书推理压缩到分钟级输出。",
           metric_2_benchmark_label: "行业基线",
           metric_2_benchmark_value: "1x 传统团队处理速度",
-          metric_3_title: "🎯 < 1% 事实性幻觉率",
+          metric_3_value: "小于1%",
+          metric_3_title: "小于1% 事实性幻觉率",
           metric_3_desc: "基于私域知识库对齐、图谱检索和符号约束，确保关键结论具备可验证性。",
           metric_3_benchmark_label: "行业基线",
           metric_3_benchmark_value: "8% - 12% 通用模型偏差",
-          moats_eyebrow: "Deep Tech Stack",
+          moats_eyebrow: "技术底座",
           moats_title: "2x2 硬核技术栈",
           moats_desc: "以图谱推理、沙盒执行、信创适配与机密计算构建真正适用于高责任场景的重型智能平台。",
           moat_1_title: "图谱检索多跳推理",
@@ -2080,10 +2194,10 @@
           moat_4_title: "私有化机密计算",
           moat_4_desc: "数据不出机房，保障国家政务数据安全。",
           moat_4_detail: "支持内网隔离部署、密钥分域管理、审计追踪和机密执行环境，确保案件数据、文书草稿、推理过程与检索索引均在受控边界内完成闭环处理。",
-          ecosystem_eyebrow: "Elite Wall",
+          ecosystem_eyebrow: "生态矩阵",
           ecosystem_title: "流光生态墙",
           ecosystem_desc: "以 OpenAI、NVIDIA、Oracle、Claude 为国际能力接口，以 DeepSeek、智谱与 Qwen 为本土大模型支点，形成高密度推理生态。",
-          cta_eyebrow: "Early Access",
+          cta_eyebrow: "优先接入",
           cta_title_prefix: "让",
           cta_title: "让 Umob.AI Agent OS 进入真实生产现场",
           cta_title_suffix: "进入真实生产现场",
@@ -2110,8 +2224,8 @@
           modal_error: "提交失败，请稍后再试。"
         },
         en: {
-          page_title: "Umob.AI Agent OS | Agent Operating System",
-          meta_description: "Umob.AI Agent OS is a universal agent operating system for high-accountability environments, turning frontier model capability into verifiable production workflows.",
+          page_title: "Umob.AI Agent OS",
+          meta_description: "Agent Operating System",
           nav_hero: "Home",
           nav_metrics: "Metrics",
           nav_moats: "Moats",
@@ -2121,34 +2235,48 @@
           hero_subtitle: "From sovereign deployment to cross-industry reasoning systems, Umob.AI Agent OS is built for high-accountability environments.",
           hero_note: "Built on a decade of domain depth and deep adaptation to sovereign model ecosystems.",
           hero_cta: "Request Early Access",
+          hero_engine_eyebrow: "R&D ENGINE",
+          hero_engine_title: "Silicon Valley + Hangzhou Dual-Base R&D Engine",
+          hero_engine_desc: "Frontier Agent OS architecture research evolves in parallel with deep bankruptcy-domain know-how, forming a dual-engine loop between model capability and real-world deployment.",
+          hero_engine_base_1_title: "Silicon Valley Base",
+          hero_engine_base_1_desc: "Focuses on Agent OS core architecture, reasoning engines, and advanced multi-agent systems design.",
+          hero_engine_base_2_title: "Hangzhou Base",
+          hero_engine_base_2_desc: "Focuses on bankruptcy legal workflows, real operational data, and productization validation in production settings.",
           heritage_eyebrow: "Heritage",
           heritage_title: "Twelve Years of Industry Heritage",
           heritage_desc: "From bankruptcy digital systems to agent-native runtime infrastructure, the founding team has continuously moved the industry baseline forward.",
           heritage_1_year: "2014",
-          heritage_1_desc: "The founding team begins deep work in bankruptcy informatics and legal workflow systems.",
-          heritage_2_year: "2018",
-          heritage_2_desc: "Version 3.0 digital management system launches across 100+ courts.",
-          heritage_3_year: "2024",
-          heritage_3_desc: "DeepSeek reasoning models are integrated to open the Agent era.",
+          heritage_1_desc: "Youpoan 1.0 Origin",
+          heritage_2_year: "2016",
+          heritage_2_desc: "Youpoan 2.0 User First",
+          heritage_3_year: "2019",
+          heritage_3_desc: "Youpoan 3.0 Milestone",
           heritage_4_year: "2026",
-          heritage_4_desc: "Umob.AI Agent OS (Youpoan 4.0) officially launches.",
+          heritage_4_desc: "Umob.AI Agent OS Youpoan 4.0",
           stack_title: "Sovereign Models & Confidential Reasoning Stack",
           stack_desc: "Deeply adapted to domestic frontier models and private deployment architecture, ensuring trusted execution with data fully contained on-premise.",
-          stack_1_desc: "High-performance reasoning substrate by DeepSeek",
-          stack_2_desc: "Long-context legal cognition engine by Zhipu GLM",
-          stack_3_desc: "Multimodal interaction core powered by Qwen",
-          stack_4_desc: "Generative expression enhancement engine by MiniMax",
+          stack_1_name: "OpenAI",
+          stack_1_desc: "Frontier reasoning substrate by OpenAI",
+          stack_2_name: "Germini",
+          stack_2_desc: "Long-context multimodal engine by Germini",
+          stack_3_name: "Claude",
+          stack_3_desc: "High-reliability drafting core powered by Claude",
+          stack_4_name: "xAI",
+          stack_4_desc: "Real-time knowledge and expression engine by xAI",
           metrics_eyebrow: "Metrics",
           metrics_title: "Key Metrics",
-          metric_1_title: "⬇️ 50% Lower Operating Cost",
+          metric_1_value: "50%",
+          metric_1_title: "Lower Operating Cost",
           metric_1_desc: "Replace repetitive manual casework with intelligent review and orchestration.",
           metric_1_benchmark_label: "Industry Baseline",
           metric_1_benchmark_value: "100% manual operating cost",
-          metric_2_title: "🚀 10x Higher Throughput",
+          metric_2_value: "10x",
+          metric_2_title: "Throughput Boost",
           metric_2_desc: "Compress document analysis, retrieval, and drafting into minute-scale output.",
           metric_2_benchmark_label: "Industry Baseline",
           metric_2_benchmark_value: "1x legacy team throughput",
-          metric_3_title: "🎯 < 1% Factual Hallucination",
+          metric_3_value: "Under 1%",
+          metric_3_title: "Under 1% Factual Hallucination",
           metric_3_desc: "Align conclusions against private knowledge, graph retrieval, and symbolic rules.",
           metric_3_benchmark_label: "Industry Baseline",
           metric_3_benchmark_value: "8% - 12% general-model drift",
@@ -2268,11 +2396,15 @@
       langTrigger.addEventListener("click", () => {
         const open = langDropdown.dataset.open === "true";
         langDropdown.dataset.open = open ? "false" : "true";
+        langTrigger.dataset.open = open ? "false" : "true";
+        langTrigger.setAttribute("aria-expanded", open ? "false" : "true");
       });
 
       document.addEventListener("click", (event) => {
         if (!document.getElementById("language-menu").contains(event.target)) {
           langDropdown.dataset.open = "false";
+          langTrigger.dataset.open = "false";
+          langTrigger.setAttribute("aria-expanded", "false");
         }
       });
 
@@ -2280,6 +2412,8 @@
         button.addEventListener("click", () => {
           applyLanguage(button.dataset.lang);
           langDropdown.dataset.open = "false";
+          langTrigger.dataset.open = "false";
+          langTrigger.setAttribute("aria-expanded", "false");
         });
       });
 

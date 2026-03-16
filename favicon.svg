@@ -1,0 +1,45 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" fill="none">
+  <defs>
+    <radialGradient id="bgGlowA" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(124 112) rotate(43.264) scale(226.578 198.423)">
+      <stop stop-color="#145B93" stop-opacity=".68"/>
+      <stop offset="1" stop-color="#145B93" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="bgGlowB" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(386 146) rotate(119.412) scale(196.784 168.271)">
+      <stop stop-color="#14A3A5" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#14A3A5" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="ringGlow" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(256 224) rotate(90) scale(126 130)">
+      <stop stop-color="#0E1726"/>
+      <stop offset=".58" stop-color="#0E1726"/>
+      <stop offset=".82" stop-color="#6FEAFC" stop-opacity=".46"/>
+      <stop offset="1" stop-color="#6FEAFC" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="orbitStroke" x1="82" y1="194" x2="430" y2="154" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6FEAFC" stop-opacity=".18"/>
+      <stop offset=".56" stop-color="#F4FAFC" stop-opacity=".55"/>
+      <stop offset="1" stop-color="#6FEAFC" stop-opacity=".16"/>
+    </linearGradient>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="112" fill="#070A10"/>
+  <rect x="36" y="36" width="440" height="440" rx="104" stroke="#8DA4B6" stroke-opacity=".32" stroke-width="2"/>
+  <rect x="48" y="48" width="416" height="416" rx="96" stroke="white" stroke-opacity=".08"/>
+  <rect width="512" height="512" rx="112" fill="url(#bgGlowA)"/>
+  <rect width="512" height="512" rx="112" fill="url(#bgGlowB)"/>
+  <g opacity=".22">
+    <path d="M72 116H440M72 160H440M72 204H440M72 248H440M72 292H440M72 336H440M72 380H440" stroke="#B4D6EA" stroke-opacity=".12"/>
+    <path d="M116 72V440M160 72V440M204 72V440M248 72V440M292 72V440M336 72V440M380 72V440" stroke="#B4D6EA" stroke-opacity=".12"/>
+  </g>
+  <ellipse cx="256" cy="228" rx="126" ry="126" fill="url(#ringGlow)" filter="url(#softGlow)"/>
+  <path d="M86 196C126 222 189 236 256 236C323 236 386 222 426 196" stroke="#6FEAFC" stroke-opacity=".32" stroke-width="8" stroke-linecap="round" filter="url(#softGlow)"/>
+  <path d="M86 196C126 222 189 236 256 236C323 236 386 222 426 196" stroke="url(#orbitStroke)" stroke-width="4" stroke-linecap="round"/>
+  <path d="M86 244C126 221 189 208 256 208C323 208 386 221 426 244" stroke="#6FEAFC" stroke-opacity=".18" stroke-width="6" stroke-linecap="round" filter="url(#softGlow)"/>
+  <path d="M176 162V276" stroke="#EEF3F7" stroke-width="18" stroke-linecap="round"/>
+  <path d="M336 162V276" stroke="#EEF3F7" stroke-width="18" stroke-linecap="round"/>
+  <path d="M176 276C176 320.183 211.817 356 256 356C300.183 356 336 320.183 336 276" stroke="#EEF3F7" stroke-width="18" stroke-linecap="round"/>
+  <path d="M154 224C172 176 214 142 264 142C302 142 338 162 360 194" stroke="#6FEAFC" stroke-opacity=".7" stroke-width="10" stroke-linecap="round"/>
+  <circle cx="364" cy="154" r="18" fill="#FDFEFF"/>
+  <circle cx="364" cy="154" r="36" stroke="#6FEAFC" stroke-opacity=".36" stroke-width="10" filter="url(#softGlow)"/>
+</svg>

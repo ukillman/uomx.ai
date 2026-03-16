@@ -1,0 +1,1149 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title id="page-title">Umob.AI Agent OS | Universal AI Infrastructure</title>
+    <meta
+      id="page-description"
+      name="description"
+      content="Umob.AI Agent OS 是面向高责任场景构建的通用智能体操作系统，通过图谱推理、神经符号执行与本地化部署，将大模型能力转化为可验证的生产工作流。"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Raleway:wght@100;200;300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='18' fill='%2309090b'/%3E%3Ctext x='50%25' y='53%25' text-anchor='middle' dominant-baseline='middle' font-family='Raleway,Arial,sans-serif' font-weight='100' font-size='40' fill='%2338BDF8'%3EU%3C/text%3E%3C/svg%3E"
+    />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+              display: ["Raleway", "Inter", "system-ui", "sans-serif"]
+            }
+          }
+        }
+      };
+    </script>
+    <style>
+      :root {
+        color-scheme: dark;
+        --scroll-shift: 0px;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", system-ui, sans-serif;
+        background:
+          radial-gradient(circle at 14% 12%, rgba(56, 189, 248, 0.08), transparent 24%),
+          radial-gradient(circle at 84% 16%, rgba(56, 189, 248, 0.05), transparent 20%),
+          radial-gradient(circle at 52% 78%, rgba(34, 211, 238, 0.04), transparent 24%),
+          #09090b;
+      }
+
+      .grid-overlay::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background-image:
+          linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+        background-size: 46px 46px;
+        mask-image: radial-gradient(circle at center, black 10%, transparent 78%);
+        opacity: 0.42;
+      }
+
+      .grid-overlay::after {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        background:
+          radial-gradient(circle at center, transparent 30%, rgba(9, 9, 11, 0.5) 100%),
+          linear-gradient(180deg, rgba(9, 9, 11, 0.02), rgba(9, 9, 11, 0.74));
+      }
+
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(26px);
+        -webkit-backdrop-filter: blur(26px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow:
+          0 18px 70px rgba(0, 0, 0, 0.32),
+          inset 0 1px 0 rgba(255, 255, 255, 0.06);
+      }
+
+      .glass-panel-strong {
+        background: rgba(255, 255, 255, 0.06);
+        backdrop-filter: blur(32px);
+        -webkit-backdrop-filter: blur(32px);
+        border: 1px solid rgba(255, 255, 255, 0.12);
+        box-shadow:
+          0 24px 90px rgba(0, 0, 0, 0.42),
+          inset 0 1px 0 rgba(255, 255, 255, 0.08);
+      }
+
+      .brand-wordmark {
+        font-family: "Raleway", "Inter", system-ui, sans-serif;
+        font-weight: 100;
+        letter-spacing: 0.18em;
+        white-space: nowrap;
+        color: rgba(226, 232, 240, 0.8);
+        text-shadow:
+          -1px -1px 0px rgba(255,255,255,0.3),
+          1px 1px 0px rgba(0,0,0,0.8),
+          0px 0px 20px rgba(56,189,248,0.2);
+      }
+
+      .headline-thin {
+        font-family: "Raleway", "Inter", system-ui, sans-serif;
+        font-weight: 100;
+        letter-spacing: 0.14em;
+      }
+
+      .glass-title {
+        position: relative;
+        display: inline-block;
+        font-family: "Raleway", "Inter", system-ui, sans-serif;
+        font-weight: 100;
+        letter-spacing: 0.18em;
+        line-height: 1.04;
+        color: rgba(226, 232, 240, 0.8);
+        text-shadow:
+          -1px -1px 0px rgba(255,255,255,0.3),
+          1px 1px 0px rgba(0,0,0,0.8),
+          0px 0px 20px rgba(56,189,248,0.2);
+        filter: drop-shadow(0 0 10px rgba(56, 189, 248, 0.16));
+      }
+
+      .glass-title::before {
+        content: attr(data-text);
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        color: rgba(255, 255, 255, 0.08);
+        filter: blur(0.8px);
+      }
+
+      .glass-title::after {
+        content: attr(data-text);
+        position: absolute;
+        inset: 0;
+        pointer-events: none;
+        color: rgba(248, 250, 252, 0.1);
+        opacity: 0.7;
+      }
+
+      .glass-btn {
+        position: relative;
+        overflow: visible;
+        background: rgba(255, 255, 255, 0.05);
+        backdrop-filter: blur(48px);
+        -webkit-backdrop-filter: blur(48px);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow:
+          inset 0 0 15px rgba(255,255,255,0.05),
+          inset 0 1px 0 rgba(255,255,255,0.16),
+          0 20px 50px rgba(0,0,0,0.3);
+      }
+
+      .glass-btn::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        border-top: 1px solid rgba(255,255,255,0.18);
+        pointer-events: none;
+      }
+
+      .glass-btn::after {
+        content: "";
+        position: absolute;
+        left: 16%;
+        right: 16%;
+        bottom: -14px;
+        height: 20px;
+        border-radius: 999px;
+        background: rgba(103, 232, 249, 0.24);
+        filter: blur(16px);
+        pointer-events: none;
+      }
+
+      .hero-slogan {
+        font-family: "Raleway", "Inter", system-ui, sans-serif;
+        font-weight: 300;
+        letter-spacing: 0.5em;
+        color: #9ca3af;
+      }
+
+      .hero-line {
+        position: absolute;
+        height: 1px;
+        border-radius: 999px;
+        background: linear-gradient(
+          90deg,
+          rgba(56, 189, 248, 0),
+          rgba(56, 189, 248, 0.9),
+          rgba(255, 255, 255, 0.05)
+        );
+        filter: drop-shadow(0 0 16px rgba(56, 189, 248, 0.28));
+        transform: translate3d(0, calc(var(--scroll-shift) * -0.08), 0) rotate(var(--rotate, 0deg));
+        transform-origin: left center;
+        opacity: 0.78;
+      }
+
+      .lang-dropdown {
+        transition:
+          opacity 0.24s ease,
+          transform 0.24s ease,
+          visibility 0.24s ease;
+      }
+
+      .lang-dropdown[data-open="true"] {
+        opacity: 1;
+        transform: translateY(0);
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .lang-dropdown[data-open="false"] {
+        opacity: 0;
+        transform: translateY(10px);
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translate3d(0, 28px, 0) scale(0.985);
+        transition:
+          opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .reveal.is-visible {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+
+      .reveal[data-delay="1"] {
+        transition-delay: 0.08s;
+      }
+
+      .reveal[data-delay="2"] {
+        transition-delay: 0.16s;
+      }
+
+      .metric-fill {
+        width: var(--metric-width, 50%);
+      }
+
+      .moat-card .moat-detail {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+        transition:
+          max-height 0.45s ease,
+          opacity 0.45s ease,
+          margin-top 0.45s ease;
+      }
+
+      .moat-card:hover .moat-detail,
+      .moat-card[data-expanded="true"] .moat-detail,
+      .moat-card[data-mobile-open="true"] .moat-detail {
+        max-height: 360px;
+        opacity: 1;
+        margin-top: 1rem;
+      }
+
+      .modal-shell {
+        transition: opacity 0.28s ease, visibility 0.28s ease;
+      }
+
+      .modal-shell[data-open="true"] {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .modal-shell[data-open="false"] {
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+      }
+
+      .modal-card {
+        transition:
+          opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1),
+          transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      .modal-shell[data-open="true"] .modal-card {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+
+      .modal-shell[data-open="false"] .modal-card {
+        opacity: 0;
+        transform: translate3d(0, 22px, 0) scale(0.97);
+      }
+
+      @keyframes pulseSlow {
+        0%, 100% {
+          transform: scale(1);
+          opacity: 0.46;
+        }
+
+        50% {
+          transform: scale(1.12);
+          opacity: 0.86;
+        }
+      }
+
+      @keyframes floatA {
+        0%, 100% {
+          transform: translate3d(0, 0, 0) rotate(-3deg);
+        }
+
+        50% {
+          transform: translate3d(0, -14px, 0) rotate(-1deg);
+        }
+      }
+
+      @keyframes floatB {
+        0%, 100% {
+          transform: translate3d(0, 0, 0) rotate(5deg);
+        }
+
+        50% {
+          transform: translate3d(0, -18px, 0) rotate(7deg);
+        }
+      }
+
+      @keyframes floatC {
+        0%, 100% {
+          transform: translate3d(0, 0, 0) rotate(-6deg);
+        }
+
+        50% {
+          transform: translate3d(0, -12px, 0) rotate(-4deg);
+        }
+      }
+
+      .pulse-slow {
+        animation: pulseSlow 18s ease-in-out infinite;
+      }
+
+      .float-a {
+        animation: floatA 12s ease-in-out infinite;
+      }
+
+      .float-b {
+        animation: floatB 15s ease-in-out infinite;
+      }
+
+      .float-c {
+        animation: floatC 13s ease-in-out infinite;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .pulse-slow,
+        .float-a,
+        .float-b,
+        .float-c,
+        .reveal,
+        .lang-dropdown,
+        .modal-shell,
+        .modal-card {
+          animation: none !important;
+          transition: none !important;
+        }
+
+        .hero-line {
+          transform: rotate(var(--rotate, 0deg));
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-[#09090b] text-[#D4D4D8] antialiased selection:bg-cyan-400/20 selection:text-white">
+    <div class="grid-overlay relative min-h-screen overflow-hidden">
+      <div class="pointer-events-none fixed inset-0">
+        <div class="pulse-slow absolute left-[-10%] top-[-10%] h-[28rem] w-[28rem] rounded-full bg-blue-600/10 blur-[120px]"></div>
+        <div class="pulse-slow absolute right-[-10%] top-[4%] h-[26rem] w-[26rem] rounded-full bg-cyan-400/10 blur-[120px]"></div>
+        <div class="pulse-slow absolute bottom-[-12%] left-[40%] h-[22rem] w-[22rem] rounded-full bg-blue-500/10 blur-[120px]"></div>
+      </div>
+
+      <div class="relative z-10">
+        <nav class="sticky top-0 z-50 border-b border-white/10 bg-zinc-950/55 backdrop-blur-md">
+          <div class="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+            <a href="#top" class="flex items-center gap-3">
+              <span class="glass-panel flex h-10 w-10 items-center justify-center rounded-2xl">
+                <span class="h-4 w-4 rounded-full bg-cyan-300 shadow-[0_0_18px_rgba(56,189,248,0.5)]"></span>
+              </span>
+              <span class="brand-wordmark text-[0.72rem] sm:text-[0.84rem] lg:text-[0.95rem]">Umob.AI Agent OS</span>
+            </a>
+
+            <div class="hidden items-center gap-7 text-sm font-light text-zinc-500 md:flex">
+              <a href="#hero" class="transition hover:text-white" data-i18n="nav_hero">首页</a>
+              <a href="#metrics" class="transition hover:text-white" data-i18n="nav_metrics">指标</a>
+              <a href="#moats" class="transition hover:text-white" data-i18n="nav_moats">底座</a>
+              <a href="#ecosystem" class="transition hover:text-white" data-i18n="nav_ecosystem">生态</a>
+            </div>
+
+            <div class="relative" id="language-menu">
+              <button
+                id="lang-trigger"
+                type="button"
+                aria-haspopup="true"
+                aria-expanded="false"
+                class="glass-panel inline-flex items-center gap-2 rounded-full px-4 py-2.5 text-sm font-light text-zinc-300 transition hover:border-white/20 hover:text-white"
+              >
+                <svg class="h-4 w-4 text-zinc-400" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18Z" stroke="currentColor" stroke-width="1.5"></path>
+                  <path d="M3.6 9h16.8M3.6 15h16.8M12 3c2.2 2.4 3.3 5.4 3.3 9s-1.1 6.6-3.3 9m0-18c-2.2 2.4-3.3 5.4-3.3 9s1.1 6.6 3.3 9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                </svg>
+                <span id="lang-current-label">🇨🇳 中文</span>
+                <svg class="h-4 w-4 text-zinc-500" viewBox="0 0 16 16" fill="none">
+                  <path d="m4 6 4 4 4-4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                </svg>
+              </button>
+
+              <div
+                id="lang-dropdown"
+                data-open="false"
+                class="lang-dropdown glass-panel absolute right-0 top-[calc(100%+0.8rem)] w-44 rounded-2xl p-2"
+              >
+                <button type="button" data-lang="zh" class="flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-sm transition hover:bg-white/5">
+                  <span class="text-white">🇨🇳 中文</span>
+                  <span class="text-xs uppercase tracking-[0.2em] text-cyan-300">CN</span>
+                </button>
+                <button type="button" data-lang="en" class="mt-1 flex w-full items-center justify-between rounded-xl px-3 py-3 text-left text-sm text-zinc-300 transition hover:bg-white/5 hover:text-white">
+                  <span>🇺🇸 English</span>
+                  <span class="text-xs uppercase tracking-[0.2em] text-zinc-500">EN</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </nav>
+
+        <main id="top">
+          <section id="hero" class="px-4 pb-16 pt-24 sm:px-6 lg:px-8 lg:pb-20 lg:pt-28">
+            <div class="mx-auto max-w-7xl">
+              <div class="reveal is-visible text-center">
+                <p class="brand-wordmark mt-8 text-5xl md:text-8xl">
+                  Umob.AI
+                </p>
+
+                <p class="hero-slogan mt-6 text-[11px] sm:text-xs" data-i18n="hero_label">
+                  下一代破产行业商用解决方案
+                </p>
+
+                <h1
+                  class="glass-title mt-8 text-4xl sm:text-5xl lg:text-7xl"
+                  data-i18n-glass="hero_title"
+                  data-text="将确定性智能体平台带入生产环境。"
+                >
+                  将确定性智能体平台带入生产环境。
+                </h1>
+
+                <p class="mx-auto mt-8 max-w-4xl text-base font-light leading-8 text-zinc-400 sm:text-lg" data-i18n="hero_subtitle">
+                  从主权部署到跨行业推理系统，Umob.AI Agent OS 面向高责任、高要求的 AI 场景而构建。
+                </p>
+
+                <p class="mx-auto mt-5 max-w-3xl text-sm font-light leading-7 text-zinc-500 sm:text-base" data-i18n="hero_note">
+                  沉淀十余年行业积淀与深厚研发，深度适配国产大模型生态。
+                </p>
+
+                <div class="mt-10 flex justify-center">
+                  <button
+                    type="button"
+                    class="open-modal-trigger glass-btn inline-flex items-center justify-center rounded-full px-10 py-4 text-base font-medium text-white transition-all duration-300 hover:scale-105 hover:bg-blue-500/20 hover:shadow-[0_0_40px_rgba(103,232,249,0.28)]"
+                    data-i18n="hero_cta"
+                  >
+                    申请内测
+                  </button>
+                </div>
+              </div>
+
+              <div class="reveal relative mx-auto mt-16 w-full max-w-[1120px]" data-delay="1">
+                <div class="grid gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+                  <div class="relative min-h-[430px] sm:min-h-[520px]">
+                    <div class="absolute left-[6%] top-[12%] h-36 w-36 rounded-full bg-cyan-300/10 blur-[88px]"></div>
+                    <div class="absolute right-[8%] top-[8%] h-40 w-40 rounded-full bg-blue-400/10 blur-[96px]"></div>
+                    <div class="absolute bottom-[10%] left-[34%] h-32 w-32 rounded-full bg-cyan-200/10 blur-[82px]"></div>
+
+                    <div class="hero-line left-[8%] top-[28%] w-[52%]" style="--rotate: 14deg;"></div>
+                    <div class="hero-line left-[46%] top-[20%] w-[22%]" style="--rotate: 68deg;"></div>
+                    <div class="hero-line left-[14%] top-[70%] w-[58%]" style="--rotate: -12deg;"></div>
+                    <div class="hero-line left-[55%] top-[50%] w-[18%]" style="--rotate: -70deg;"></div>
+
+                    <div class="glass-panel-strong float-a absolute left-[8%] top-[16%] z-20 w-[74%] rounded-[2rem] p-5 sm:p-6">
+                      <div class="flex items-center justify-between">
+                        <div class="flex gap-2">
+                          <span class="h-2.5 w-2.5 rounded-full bg-zinc-600"></span>
+                          <span class="h-2.5 w-2.5 rounded-full bg-zinc-600"></span>
+                          <span class="h-2.5 w-2.5 rounded-full bg-zinc-600"></span>
+                        </div>
+                        <div class="h-2.5 w-16 rounded-full bg-white/10"></div>
+                      </div>
+                      <div class="mt-6 grid gap-4 sm:grid-cols-[1.2fr_0.8fr]">
+                        <div class="space-y-3">
+                          <div class="h-3 w-3 rounded-full bg-cyan-300 shadow-[0_0_18px_rgba(56,189,248,0.5)]"></div>
+                          <div class="h-3 w-[84%] rounded-full bg-white/10"></div>
+                          <div class="h-3 w-[68%] rounded-full bg-white/10"></div>
+                          <div class="h-24 rounded-[1.2rem] border border-white/10 bg-black/20"></div>
+                        </div>
+                        <div class="rounded-[1.4rem] border border-white/10 bg-black/20 p-4">
+                          <div class="h-20 rounded-[1rem] border border-cyan-400/20 bg-cyan-300/5"></div>
+                          <div class="mt-4 space-y-2">
+                            <div class="h-2.5 w-full rounded-full bg-white/10"></div>
+                            <div class="h-2.5 w-4/5 rounded-full bg-white/10"></div>
+                            <div class="h-2.5 w-3/5 rounded-full bg-white/10"></div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="glass-panel float-b absolute right-[4%] top-[6%] z-30 w-[12.5rem] rounded-[1.6rem] p-4">
+                      <div class="flex items-center justify-between">
+                        <div class="h-2.5 w-12 rounded-full bg-white/10"></div>
+                        <div class="flex h-9 w-9 items-center justify-center rounded-2xl border border-cyan-400/20 bg-cyan-300/10">
+                          <div class="h-3 w-3 rounded-full bg-cyan-300 shadow-[0_0_16px_rgba(56,189,248,0.45)]"></div>
+                        </div>
+                      </div>
+                      <div class="mt-5 flex items-end gap-2">
+                        <div class="h-8 w-4 rounded-full bg-white/10"></div>
+                        <div class="h-12 w-4 rounded-full bg-white/10"></div>
+                        <div class="h-16 w-4 rounded-full bg-cyan-300/60 shadow-[0_0_18px_rgba(56,189,248,0.36)]"></div>
+                        <div class="h-10 w-4 rounded-full bg-white/10"></div>
+                      </div>
+                    </div>
+
+                    <div class="glass-panel float-c absolute bottom-[9%] left-[2%] z-30 w-[11.5rem] rounded-[1.6rem] p-4">
+                      <div class="flex items-center gap-3">
+                        <div class="flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
+                          <svg class="h-4 w-4 text-zinc-300" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 3 5 6v6c0 4.97 3 9.61 7 10 4-0.39 7-5.03 7-10V6l-7-3Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          </svg>
+                        </div>
+                        <div class="flex-1 space-y-2">
+                          <div class="h-2.5 w-4/5 rounded-full bg-white/10"></div>
+                          <div class="h-2.5 w-3/5 rounded-full bg-white/10"></div>
+                        </div>
+                      </div>
+                      <div class="mt-4 rounded-[1rem] border border-white/10 bg-black/20 p-3">
+                        <div class="h-8 rounded-full bg-cyan-300/10"></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="glass-panel rounded-[2rem] p-6 sm:p-7">
+                    <div class="flex items-center justify-between">
+                      <p class="headline-thin text-sm tracking-[0.24em] text-zinc-300" data-i18n="stack_title">
+                        底层技术生态
+                      </p>
+                      <div class="h-2.5 w-2.5 rounded-full bg-cyan-300 shadow-[0_0_14px_rgba(56,189,248,0.5)]"></div>
+                    </div>
+                    <div class="mt-6 grid grid-cols-2 gap-4">
+                      <article class="glass-panel rounded-[1.4rem] p-4 text-center">
+                        <div class="mx-auto flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
+                          <svg class="h-5 w-5 text-zinc-200" viewBox="0 0 24 24" fill="none">
+                            <path d="M12 4c3.866 0 7 3.134 7 7s-3.134 7-7 7-7-3.134-7-7 3.134-7 7-7Z" stroke="currentColor" stroke-width="1.5"></path>
+                            <path d="M9.5 9.5c.8-.6 1.6-.9 2.5-.9 1.8 0 3.2 1.4 3.2 3.2 0 .9-.3 1.7-.9 2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                          </svg>
+                        </div>
+                        <p class="mt-4 text-sm font-medium text-white">DeepSeek</p>
+                        <p class="mt-2 text-xs font-light leading-6 text-zinc-500" data-i18n="stack_1_desc">
+                          深度求索推理底座
+                        </p>
+                      </article>
+
+                      <article class="glass-panel rounded-[1.4rem] p-4 text-center">
+                        <div class="mx-auto flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
+                          <svg class="h-5 w-5 text-zinc-200" viewBox="0 0 24 24" fill="none">
+                            <path d="M6 8.5 12 5l6 3.5v7L12 19l-6-3.5v-7Z" stroke="currentColor" stroke-width="1.5"></path>
+                            <path d="M9 11.5h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"></path>
+                          </svg>
+                        </div>
+                        <p class="mt-4 text-sm font-medium text-white">Zhipu AI</p>
+                        <p class="mt-2 text-xs font-light leading-6 text-zinc-500" data-i18n="stack_2_desc">
+                          智谱本地化认知引擎
+                        </p>
+                      </article>
+
+                      <article class="glass-panel rounded-[1.4rem] p-4 text-center">
+                        <div class="mx-auto flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
+                          <svg class="h-5 w-5 text-zinc-200" viewBox="0 0 24 24" fill="none">
+                            <path d="M5 7.5 12 4l7 3.5-7 3.5-7-3.5Z" stroke="currentColor" stroke-width="1.5"></path>
+                            <path d="M5 12l7 3.5 7-3.5" stroke="currentColor" stroke-width="1.5"></path>
+                            <path d="M5 16.5 12 20l7-3.5" stroke="currentColor" stroke-width="1.5"></path>
+                          </svg>
+                        </div>
+                        <p class="mt-4 text-sm font-medium text-white">Milvus</p>
+                        <p class="mt-2 text-xs font-light leading-6 text-zinc-500" data-i18n="stack_3_desc">
+                          加密向量检索引擎
+                        </p>
+                      </article>
+
+                      <article class="glass-panel rounded-[1.4rem] p-4 text-center">
+                        <div class="mx-auto flex h-11 w-11 items-center justify-center rounded-2xl border border-white/10 bg-white/5">
+                          <svg class="h-5 w-5 text-zinc-200" viewBox="0 0 24 24" fill="none">
+                            <path d="M7 17h10a4 4 0 1 0-.9-7.9A5.5 5.5 0 0 0 5 10.5 4.5 4.5 0 0 0 7 17Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+                          </svg>
+                        </div>
+                        <p class="mt-4 text-sm font-medium text-white">Huawei Cloud</p>
+                        <p class="mt-2 text-xs font-light leading-6 text-zinc-500" data-i18n="stack_4_desc">
+                          华为云政务级部署
+                        </p>
+                      </article>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="metrics" class="px-4 py-20 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-7xl">
+              <div class="reveal text-center">
+                <p class="headline-thin text-xs tracking-[0.28em] text-cyan-300" data-i18n="metrics_eyebrow">Metrics</p>
+                <h2 class="headline-thin mt-5 text-3xl tracking-[0.14em] text-[#D4D4D8] sm:text-4xl" data-i18n="metrics_title">
+                  以确定性压缩成本、提速交付、抑制幻觉
+                </h2>
+              </div>
+
+              <div class="mt-12 grid gap-6 lg:grid-cols-3">
+                <article class="glass-panel reveal rounded-[1.8rem] p-6" data-delay="1">
+                  <div class="flex items-center justify-between">
+                    <p class="headline-thin text-4xl text-white">⬇️ 50%</p>
+                    <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.22em] text-zinc-400">Cost</span>
+                  </div>
+                  <p class="mt-6 text-lg font-light text-[#D4D4D8]" data-i18n="metric_1_title">降低运营成本</p>
+                  <p class="mt-2 text-sm font-light leading-7 text-zinc-400" data-i18n="metric_1_desc">通过智能审查与自动编排替代重复人工流转，减少显性人力和沟通损耗。</p>
+                  <div class="mt-6 h-2 rounded-full bg-white/5">
+                    <div class="metric-fill h-2 rounded-full bg-gradient-to-r from-cyan-300 to-sky-400 shadow-[0_0_16px_rgba(56,189,248,0.34)]" style="--metric-width: 50%;"></div>
+                  </div>
+                </article>
+
+                <article class="glass-panel reveal rounded-[1.8rem] p-6" data-delay="2">
+                  <div class="flex items-center justify-between">
+                    <p class="headline-thin text-4xl text-white">🚀 10x</p>
+                    <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs uppercase tracking-[0.22em] text-zinc-400">Speed</span>
+                  </div>
+                  <p class="mt-6 text-lg font-light text-[#D4D4D8]" data-i18n="metric_2_title">提升协作效率</p>
+                  <p class="mt-2 text-sm font-light leading-7 text-zinc-400" data-i18n="metric_2_desc">将复杂卷宗解析、知识召回与专业文书推理压缩到分钟级输出。</p>
+                  <div class="mt-6 h-2 rounded-full bg-white/5">
+                    <div class="metric-fill h-2 rounded-full bg-gradient-to-r from-cyan-300 to-sky-400 shadow-[0_0_16px_rgba(56,189,248,0.34)]" style="--metric-width: 78%;"></div>
+                  </div>
+                </article>
+
+                <article class="glass-panel reveal rounded-[1.8rem] border border-cyan-400/20 p-6 shadow-[0_0_34px_rgba(56,189,248,0.12)]" data-delay="3">
+                  <div class="flex items-center justify-between">
+                    <p class="headline-thin text-4xl text-white">🎯 &lt; 1%</p>
+                    <span class="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-xs uppercase tracking-[0.22em] text-cyan-200">Factual</span>
+                  </div>
+                  <p class="mt-6 text-lg font-light text-[#D4D4D8]" data-i18n="metric_3_title">事实性幻觉率</p>
+                  <p class="mt-2 text-sm font-light leading-7 text-zinc-400" data-i18n="metric_3_desc">基于私域知识库对齐、图谱检索和符号约束，确保关键结论具备可验证性。</p>
+                  <div class="mt-6 h-2 rounded-full bg-white/5">
+                    <div class="metric-fill h-2 rounded-full bg-gradient-to-r from-cyan-300 to-[#E4A783] shadow-[0_0_18px_rgba(56,189,248,0.34)]" style="--metric-width: 96%;"></div>
+                  </div>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <section id="moats" class="px-4 py-20 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-7xl">
+              <div class="reveal text-center">
+                <p class="headline-thin text-xs tracking-[0.28em] text-cyan-300" data-i18n="moats_eyebrow">Deep Tech Moats</p>
+                <h2 class="headline-thin mt-5 text-3xl tracking-[0.14em] text-[#D4D4D8] sm:text-4xl" data-i18n="moats_title">
+                  世界级 AI 基础设施
+                </h2>
+              </div>
+
+              <div class="mt-12 grid gap-6 md:grid-cols-2">
+                <article class="moat-card glass-panel reveal rounded-[1.8rem] p-7" data-delay="1">
+                  <button type="button" class="w-full text-left">
+                    <p class="headline-thin text-lg tracking-[0.16em] text-[#D4D4D8]" data-i18n="moat_1_title">大模型编译与自举引擎</p>
+                    <p class="mt-4 text-sm font-light leading-7 text-zinc-400" data-i18n="moat_1_desc">摒弃脆弱的静态提示词，通过声明式 AI 框架实现零样本自举进化。</p>
+                    <p class="moat-detail text-sm font-light leading-7 text-zinc-400" data-i18n="moat_1_detail">
+                      传统 Prompt 极易崩溃。我们引入自动化编译引擎，通过评价指标与推理轨迹反向优化，让模型在真实业务反馈里持续修正与强化。
+                    </p>
+                  </button>
+                </article>
+
+                <article class="moat-card glass-panel reveal rounded-[1.8rem] border border-cyan-400/20 p-7 shadow-[0_0_28px_rgba(56,189,248,0.12)]" data-delay="2" data-expanded="true">
+                  <button type="button" class="w-full text-left moat-toggle">
+                    <div class="flex items-center justify-between">
+                      <p class="headline-thin text-lg tracking-[0.16em] text-white" data-i18n="moat_2_title">图谱检索多跳推理</p>
+                      <span class="flex h-8 w-8 items-center justify-center rounded-full border border-cyan-400/20 bg-cyan-300/10">
+                        <span class="h-2.5 w-2.5 rounded-full bg-cyan-300 shadow-[0_0_14px_rgba(56,189,248,0.5)]"></span>
+                      </span>
+                    </div>
+                    <p class="mt-4 text-sm font-light leading-7 text-zinc-300" data-i18n="moat_2_desc">超越扁平化向量检索，洞悉复杂股权穿透与嵌套债权关系。</p>
+                    <p class="moat-detail text-sm font-light leading-7 text-zinc-300" data-i18n="moat_2_detail">
+                      面对错综复杂的集团关联重组，单纯语义匹配毫无用处。系统在底层构建动态实体关系图谱，顺着资金流向、控制链条与权利顺位进行多跳穿透，在超长上下文里维持完整、可回溯的全局认知。
+                    </p>
+                  </button>
+                </article>
+
+                <article class="moat-card glass-panel reveal rounded-[1.8rem] p-7" data-delay="1">
+                  <button type="button" class="w-full text-left">
+                    <p class="headline-thin text-lg tracking-[0.16em] text-[#D4D4D8]" data-i18n="moat_3_title">神经-符号双轨执行沙盒</p>
+                    <p class="mt-4 text-sm font-light leading-7 text-zinc-400" data-i18n="moat_3_desc">大模型负责认知，符号逻辑负责计算，实现 100% 业务确定性。</p>
+                    <p class="moat-detail text-sm font-light leading-7 text-zinc-400" data-i18n="moat_3_detail">
+                      生成式模型解析卷宗与上下文，复杂法定顺位、息费测算与规则校验由受限执行沙盒进行确定性计算，确保关键步骤不受生成式幻觉干扰。
+                    </p>
+                  </button>
+                </article>
+
+                <article class="moat-card glass-panel reveal rounded-[1.8rem] p-7" data-delay="2">
+                  <button type="button" class="w-full text-left">
+                    <p class="headline-thin text-lg tracking-[0.16em] text-[#D4D4D8]" data-i18n="moat_4_title">极速推理与机密计算</p>
+                    <p class="mt-4 text-sm font-light leading-7 text-zinc-400" data-i18n="moat_4_desc">基于投机采样与硬件级机密计算，构建面向政企的安全推理栈。</p>
+                    <p class="moat-detail text-sm font-light leading-7 text-zinc-400" data-i18n="moat_4_detail">
+                      通过高吞吐推理与可信执行环境，在长文本、多工具、多角色协作下保持低延迟响应，同时确保敏感案件数据“可用不可见”。
+                    </p>
+                  </button>
+                </article>
+              </div>
+            </div>
+          </section>
+
+          <section id="ecosystem" class="px-4 py-20 sm:px-6 lg:px-8">
+            <div class="mx-auto max-w-7xl">
+              <div class="glass-panel-strong reveal rounded-[2rem] px-6 py-12 text-center sm:px-10">
+                <p class="headline-thin text-xs tracking-[0.28em] text-cyan-300" data-i18n="cta_eyebrow">Request Early Access</p>
+                <h2 class="headline-thin mt-5 text-3xl tracking-[0.14em] text-[#D4D4D8] sm:text-4xl" data-i18n="cta_title">
+                  将确定性智能体平台带入生产环境。
+                </h2>
+                <p class="mx-auto mt-5 max-w-2xl text-base font-light leading-8 text-zinc-400" data-i18n="cta_desc">
+                  从主权部署到跨行业推理系统，Umob.AI Agent OS 为高责任、高要求的 AI 场景而构建。
+                </p>
+                <div class="mt-10 flex justify-center">
+                  <button
+                    type="button"
+                    class="open-modal-trigger glass-btn inline-flex items-center justify-center rounded-full px-10 py-4 text-base font-medium text-white transition-all duration-300 hover:scale-105 hover:bg-blue-500/20 hover:shadow-[0_0_40px_rgba(103,232,249,0.28)]"
+                    data-i18n="cta_button"
+                  >
+                    申请内测
+                  </button>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+
+        <footer class="px-4 pb-8 sm:px-6 lg:px-8">
+          <div class="mx-auto max-w-7xl">
+            <p class="text-center text-base font-light text-zinc-400 sm:text-lg" data-i18n="closing_statement">
+              这不仅是破产案件的革命，更是所有高复杂度行业走向智能化的终极底座。
+            </p>
+            <div class="mt-16 border-t border-white/5 pt-8 pb-8 text-center text-sm font-light text-zinc-600">
+              © 2026 Umobai.com. All rights reserved.
+            </div>
+          </div>
+        </footer>
+
+        <div
+          id="early-access-modal"
+          data-open="false"
+          class="modal-shell fixed inset-0 z-50 flex items-center justify-center bg-black/80 px-4 backdrop-blur-2xl"
+        >
+          <div class="modal-card glass-panel-strong relative w-full max-w-lg rounded-[2rem] border border-white/5 bg-zinc-950/70 p-8">
+            <button id="close-modal" class="absolute right-6 top-6 text-zinc-500 transition hover:text-white">
+              <svg class="h-6 w-6" viewBox="0 0 24 24" fill="none">
+                <path d="M6 18 18 6M6 6l12 12" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"></path>
+              </svg>
+            </button>
+
+            <div id="modal-form-shell">
+              <p class="headline-thin text-xs tracking-[0.26em] text-cyan-300" data-i18n="modal_eyebrow">REQUEST EARLY ACCESS</p>
+              <h3 class="headline-thin mt-4 text-2xl tracking-[0.12em] text-[#D4D4D8]" data-i18n="modal_title">申请专属内测名额</h3>
+              <p class="mt-4 text-sm font-light leading-7 text-zinc-400" data-i18n="modal_desc">
+                请留下您的机构信息。系统将通过加密通道发送至 Umob.AI 实施团队，用于安排后续接入与方案沟通。
+              </p>
+
+              <form id="early-access-form" class="mt-6 space-y-4">
+                <input type="hidden" name="access_key" value="2a48fb21-047a-4304-b7da-e9c55697fa69" />
+                <input type="hidden" name="redirect" value="false" />
+                <input type="hidden" name="subject" value="🚨 新内测申请 - Umob.AI Agent OS" />
+                <input type="hidden" name="from_name" value="Umob.AI 官网" />
+
+                <div>
+                  <label class="mb-2 block text-sm font-light text-zinc-400" data-i18n="modal_name_label">姓名 / Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    required
+                    class="glass-panel w-full rounded-2xl px-4 py-3 text-white outline-none transition focus:border-cyan-300/30 focus:bg-white/10"
+                    data-i18n-placeholder="modal_name_placeholder"
+                    placeholder="请输入您的姓名"
+                  />
+                </div>
+
+                <div>
+                  <label class="mb-2 block text-sm font-light text-zinc-400" data-i18n="modal_org_label">机构 / Organization</label>
+                  <input
+                    type="text"
+                    name="organization"
+                    required
+                    class="glass-panel w-full rounded-2xl px-4 py-3 text-white outline-none transition focus:border-cyan-300/30 focus:bg-white/10"
+                    data-i18n-placeholder="modal_org_placeholder"
+                    placeholder="请输入所在机构"
+                  />
+                </div>
+
+                <div>
+                  <label class="mb-2 block text-sm font-light text-zinc-400" data-i18n="modal_phone_label">联系电话 / Phone</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    required
+                    class="glass-panel w-full rounded-2xl px-4 py-3 text-white outline-none transition focus:border-cyan-300/30 focus:bg-white/10"
+                    data-i18n-placeholder="modal_phone_placeholder"
+                    placeholder="请输入联系电话"
+                  />
+                </div>
+
+                <div>
+                  <label class="mb-2 block text-sm font-light text-zinc-400" data-i18n="modal_message_label">核心痛点 / Pain Points</label>
+                  <textarea
+                    name="message"
+                    rows="3"
+                    class="glass-panel w-full rounded-2xl px-4 py-3 text-white outline-none transition focus:border-cyan-300/30 focus:bg-white/10"
+                    data-i18n-placeholder="modal_message_placeholder"
+                    placeholder="请简述业务痛点、部署需求或目标场景"
+                  ></textarea>
+                </div>
+
+                <button
+                  id="submit-button"
+                  type="submit"
+                  class="glass-btn inline-flex w-full items-center justify-center rounded-full px-10 py-4 text-base font-medium text-white transition-all duration-300 hover:scale-[1.01] hover:bg-blue-500/20"
+                  data-i18n="modal_submit"
+                >
+                  提交申请
+                </button>
+
+                <p id="form-message" class="hidden text-center text-sm font-light"></p>
+              </form>
+            </div>
+
+            <div id="success-state" class="hidden py-8 text-center">
+              <div class="mx-auto flex h-16 w-16 items-center justify-center rounded-full border border-cyan-300/20 bg-cyan-300/10 text-3xl shadow-[0_0_24px_rgba(56,189,248,0.28)]">
+                ✅
+              </div>
+              <h3 class="headline-thin mt-6 text-2xl tracking-[0.12em] text-[#D4D4D8]" data-i18n="modal_success_title">提交成功</h3>
+              <p class="mx-auto mt-4 max-w-sm text-sm font-light leading-7 text-zinc-400" data-i18n="modal_success_desc">
+                如果您提供的信息有效，我们将尽快与您联系。
+              </p>
+              <button
+                type="button"
+                id="close-success"
+                class="glass-panel mt-8 inline-flex items-center justify-center rounded-full px-8 py-3 text-sm font-medium text-white transition hover:bg-white/10"
+                data-i18n="modal_close"
+              >
+                关闭窗口
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const translations = {
+        zh: {
+          page_title: "Umob.AI Agent OS | Universal AI Infrastructure",
+          meta_description: "Umob.AI Agent OS 是面向高责任场景构建的通用智能体操作系统，通过图谱推理、神经符号执行与本地化部署，将大模型能力转化为可验证的生产工作流。",
+          nav_hero: "首页",
+          nav_metrics: "指标",
+          nav_moats: "底座",
+          nav_ecosystem: "生态",
+          hero_label: "下一代破产行业商用解决方案",
+          hero_title: "将确定性智能体平台带入生产环境。",
+          hero_subtitle: "从主权部署到跨行业推理系统，Umob.AI Agent OS 面向高责任、高要求的 AI 场景而构建。",
+          hero_note: "沉淀十余年行业积淀与深厚研发，深度适配国产大模型生态。",
+          hero_cta: "申请内测",
+          stack_title: "底层技术生态",
+          stack_1_desc: "深度求索推理底座",
+          stack_2_desc: "智谱本地化认知引擎",
+          stack_3_desc: "加密向量检索引擎",
+          stack_4_desc: "华为云政务级部署",
+          metrics_eyebrow: "Metrics",
+          metrics_title: "以确定性压缩成本、提速交付、抑制幻觉",
+          metric_1_title: "⬇️ 50% 降低运营成本",
+          metric_1_desc: "通过智能审查与自动编排替代重复人工流转，减少显性人力和沟通损耗。",
+          metric_2_title: "🚀 10x 提升协作效率",
+          metric_2_desc: "将复杂卷宗解析、知识召回与专业文书推理压缩到分钟级输出。",
+          metric_3_title: "🎯 < 1% 事实性幻觉率",
+          metric_3_desc: "基于私域知识库对齐、图谱检索和符号约束，确保关键结论具备可验证性。",
+          moats_eyebrow: "Deep Tech Moats",
+          moats_title: "世界级 AI 基础设施",
+          moat_1_title: "大模型编译与自举引擎",
+          moat_1_desc: "摒弃脆弱的静态提示词，通过声明式 AI 框架实现零样本自举进化。",
+          moat_1_detail: "传统 Prompt 极易崩溃。我们引入自动化编译引擎，通过评价指标与推理轨迹反向优化，让模型在真实业务反馈里持续修正与强化。",
+          moat_2_title: "图谱检索多跳推理",
+          moat_2_desc: "超越扁平化向量检索，洞悉复杂股权穿透与嵌套债权关系。",
+          moat_2_detail: "面对错综复杂的集团关联重组，单纯语义匹配毫无用处。系统在底层构建动态实体关系图谱，顺着资金流向、控制链条与权利顺位进行多跳穿透，在超长上下文里维持完整、可回溯的全局认知。",
+          moat_3_title: "神经-符号双轨执行沙盒",
+          moat_3_desc: "大模型负责认知，符号逻辑负责计算，实现 100% 业务确定性。",
+          moat_3_detail: "生成式模型解析卷宗与上下文，复杂法定顺位、息费测算与规则校验由受限执行沙盒进行确定性计算，确保关键步骤不受生成式幻觉干扰。",
+          moat_4_title: "极速推理与机密计算",
+          moat_4_desc: "基于投机采样与硬件级机密计算，构建面向政企的安全推理栈。",
+          moat_4_detail: "通过高吞吐推理与可信执行环境，在长文本、多工具、多角色协作下保持低延迟响应，同时确保敏感案件数据“可用不可见”。",
+          cta_eyebrow: "Request Early Access",
+          cta_title: "将确定性智能体平台带入生产环境。",
+          cta_desc: "从主权部署到跨行业推理系统，Umob.AI Agent OS 为高责任、高要求的 AI 场景而构建。",
+          cta_button: "申请内测",
+          closing_statement: "这不仅是破产案件的革命，更是所有高复杂度行业走向智能化的终极底座。",
+          modal_eyebrow: "REQUEST EARLY ACCESS",
+          modal_title: "申请专属内测名额",
+          modal_desc: "请留下您的机构信息。系统将通过加密通道发送至 Umob.AI 实施团队，用于安排后续接入与方案沟通。",
+          modal_name_label: "姓名 / Name",
+          modal_name_placeholder: "请输入您的姓名",
+          modal_org_label: "机构 / Organization",
+          modal_org_placeholder: "请输入所在机构或律所",
+          modal_phone_label: "联系电话 / Phone",
+          modal_phone_placeholder: "请输入联系电话",
+          modal_message_label: "核心痛点 / Pain Points",
+          modal_message_placeholder: "请简述业务痛点、部署需求或目标场景",
+          modal_submit: "提交申请",
+          modal_submit_loading: "正在加密提交...",
+          modal_retry: "重新提交",
+          modal_success_title: "提交成功",
+          modal_success_desc: "如果您提供的信息有效，我们将尽快与您联系。",
+          modal_close: "关闭窗口",
+          modal_error: "提交失败，请稍后再试。"
+        },
+        en: {
+          page_title: "Umob.AI Agent OS | Universal AI Infrastructure",
+          meta_description: "Umob.AI Agent OS is a universal agent operating system for high-accountability environments, combining graph reasoning, neuro-symbolic execution, and sovereign deployment.",
+          nav_hero: "Home",
+          nav_metrics: "Metrics",
+          nav_moats: "Moats",
+          nav_ecosystem: "Ecosystem",
+          hero_label: "Next-Generation Commercial AI for Bankruptcy Operations",
+          hero_title: "Bring deterministic agent infrastructure into production.",
+          hero_subtitle: "From sovereign deployment to cross-industry reasoning systems, Umob.AI Agent OS is built for high-accountability, high-demand AI environments.",
+          hero_note: "Built on a decade of domain depth and deep adaptation to sovereign model ecosystems.",
+          hero_cta: "Request Early Access",
+          stack_title: "Tech Stack Wall",
+          stack_1_desc: "DeepSeek reasoning substrate",
+          stack_2_desc: "Localized cognitive engine by Zhipu",
+          stack_3_desc: "Encrypted vector retrieval engine",
+          stack_4_desc: "Government-grade Huawei Cloud deployment",
+          metrics_eyebrow: "Metrics",
+          metrics_title: "Compress cost, accelerate delivery, suppress hallucination",
+          metric_1_title: "⬇️ 50% Lower Operating Cost",
+          metric_1_desc: "Replace repetitive manual casework with intelligent review and orchestration.",
+          metric_2_title: "🚀 10x Higher Collaboration Throughput",
+          metric_2_desc: "Compress document analysis, retrieval, and drafting into minute-scale output.",
+          metric_3_title: "🎯 < 1% Factual Hallucination",
+          metric_3_desc: "Align conclusions against private knowledge, graph retrieval, and symbolic rules.",
+          moats_eyebrow: "Deep Tech Moats",
+          moats_title: "World-Class AI Infrastructure",
+          moat_1_title: "LLM Compiler & Bootstrapping",
+          moat_1_desc: "Replace brittle prompts with declarative AI programs for zero-shot evolution.",
+          moat_1_detail: "Our compiler optimizes reasoning traces against evaluation metrics, allowing agents to improve using real production feedback rather than static prompt hacks.",
+          moat_2_title: "Graph Retrieval & Multi-hop Reasoning",
+          moat_2_desc: "Go beyond flat vector retrieval to understand nested ownership and obligation chains.",
+          moat_2_detail: "Complex restructurings cannot be solved by semantic similarity alone. Dynamic entity graphs allow agents to traverse capital flows, control links, and liability sequences with lossless global context.",
+          moat_3_title: "Neuro-Symbolic Execution Sandbox",
+          moat_3_desc: "Neural models handle cognition while symbolic logic enforces 100% deterministic outcomes.",
+          moat_3_detail: "The model interprets records and context, while constrained sandboxes perform deterministic ordering, calculation, and rule enforcement beyond hallucination risk.",
+          moat_4_title: "Ultra-Low Latency & Confidential Computing",
+          moat_4_desc: "Build a sovereign-grade secure inference stack with speculative decoding and trusted execution.",
+          moat_4_detail: "High-throughput inference and trusted execution environments keep sensitive case data usable yet never exposed in plain form.",
+          cta_eyebrow: "Request Early Access",
+          cta_title: "Bring deterministic agent infrastructure into production.",
+          cta_desc: "From sovereign deployment to cross-industry reasoning systems, Umob.AI Agent OS is built for high-accountability, high-demand AI environments.",
+          cta_button: "Request Early Access",
+          closing_statement: "This is not only a reinvention of bankruptcy operations. It is the terminal intelligence substrate for every high-complexity industry moving toward autonomy.",
+          modal_eyebrow: "REQUEST EARLY ACCESS",
+          modal_title: "Request Exclusive Early Access",
+          modal_desc: "Submit your organization details through the encrypted intake channel. Our implementation team will review and contact you for next-step onboarding.",
+          modal_name_label: "Name",
+          modal_name_placeholder: "Enter your full name",
+          modal_org_label: "Organization",
+          modal_org_placeholder: "Enter your organization or law firm",
+          modal_phone_label: "Phone",
+          modal_phone_placeholder: "Enter your contact number",
+          modal_message_label: "Pain Points",
+          modal_message_placeholder: "Describe your use case, deployment needs, or operational pain points",
+          modal_submit: "Submit Request",
+          modal_submit_loading: "Submitting...",
+          modal_retry: "Retry",
+          modal_success_title: "Submitted Successfully",
+          modal_success_desc: "If your information is valid, our team will contact you shortly.",
+          modal_close: "Close",
+          modal_error: "Submission failed. Please try again later."
+        }
+      };
+
+      const titleNode = document.getElementById("page-title");
+      const descriptionNode = document.getElementById("page-description");
+      const langTrigger = document.getElementById("lang-trigger");
+      const langDropdown = document.getElementById("lang-dropdown");
+      const langCurrentLabel = document.getElementById("lang-current-label");
+      const langButtons = document.querySelectorAll("[data-lang]");
+      const revealNodes = document.querySelectorAll(".reveal");
+      const root = document.documentElement;
+      const modal = document.getElementById("early-access-modal");
+      const openModalButtons = document.querySelectorAll(".open-modal-trigger");
+      const closeModal = document.getElementById("close-modal");
+      const closeSuccess = document.getElementById("close-success");
+      const form = document.getElementById("early-access-form");
+      const submitButton = document.getElementById("submit-button");
+      const formShell = document.getElementById("modal-form-shell");
+      const successState = document.getElementById("success-state");
+      const formMessage = document.getElementById("form-message");
+      const moatCards = document.querySelectorAll(".moat-card");
+      let currentLanguage = localStorage.getItem("umob_index2_lang") || "zh";
+
+      function applyLanguage(language) {
+        const copy = translations[language] || translations.zh;
+        titleNode.textContent = copy.page_title;
+        descriptionNode.setAttribute("content", copy.meta_description);
+
+        document.querySelectorAll("[data-i18n]").forEach((node) => {
+          const key = node.dataset.i18n;
+          if (copy[key]) node.textContent = copy[key];
+        });
+
+        document.querySelectorAll("[data-i18n-placeholder]").forEach((node) => {
+          const key = node.dataset.i18nPlaceholder;
+          if (copy[key]) node.setAttribute("placeholder", copy[key]);
+        });
+
+        document.querySelectorAll("[data-i18n-glass]").forEach((node) => {
+          const key = node.dataset.i18nGlass;
+          if (copy[key]) {
+            node.textContent = copy[key];
+            node.dataset.text = copy[key];
+          }
+        });
+
+        langCurrentLabel.textContent = language === "zh" ? "🇨🇳 中文" : "🇺🇸 English";
+        submitButton.textContent = copy.modal_submit;
+        currentLanguage = language;
+        localStorage.setItem("umob_index2_lang", language);
+      }
+
+      function setModalOpen(open) {
+        modal.dataset.open = open ? "true" : "false";
+        if (!open) {
+          setTimeout(() => {
+            form.reset();
+            formShell.classList.remove("hidden");
+            successState.classList.add("hidden");
+            formMessage.className = "hidden text-center text-sm font-light";
+            formMessage.textContent = "";
+            submitButton.disabled = false;
+            submitButton.textContent = translations[currentLanguage].modal_submit;
+          }, 220);
+        }
+      }
+
+      openModalButtons.forEach((button) => {
+        button.addEventListener("click", () => setModalOpen(true));
+      });
+
+      closeModal.addEventListener("click", () => setModalOpen(false));
+      closeSuccess.addEventListener("click", () => setModalOpen(false));
+
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) setModalOpen(false);
+      });
+
+      langTrigger.addEventListener("click", () => {
+        const open = langDropdown.dataset.open === "true";
+        langDropdown.dataset.open = open ? "false" : "true";
+      });
+
+      document.addEventListener("click", (event) => {
+        if (!document.getElementById("language-menu").contains(event.target)) {
+          langDropdown.dataset.open = "false";
+        }
+      });
+
+      langButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          applyLanguage(button.dataset.lang);
+          langDropdown.dataset.open = "false";
+        });
+      });
+
+      form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        submitButton.disabled = true;
+        submitButton.textContent = translations[currentLanguage].modal_submit_loading;
+        formMessage.className = "hidden text-center text-sm font-light";
+        formMessage.textContent = "";
+
+        const delay = new Promise((resolve) => setTimeout(resolve, 1500));
+        const formData = new FormData(form);
+
+        try {
+          const [response] = await Promise.all([
+            fetch("https://api.web3forms.com/submit", {
+              method: "POST",
+              body: formData
+            }),
+            delay
+          ]);
+
+          const data = await response.json();
+          if (!data.success) throw new Error("submit_failed");
+
+          formShell.classList.add("hidden");
+          successState.classList.remove("hidden");
+        } catch (error) {
+          formMessage.textContent = translations[currentLanguage].modal_error;
+          formMessage.className = "mt-2 text-center text-sm font-light text-red-400";
+          submitButton.disabled = false;
+          submitButton.textContent = translations[currentLanguage].modal_retry;
+        }
+      });
+
+      moatCards.forEach((card) => {
+        const toggle = card.querySelector(".moat-toggle");
+        if (!toggle) return;
+        toggle.addEventListener("click", () => {
+          if (window.innerWidth < 768) {
+            const isOpen = card.dataset.mobileOpen === "true";
+            card.dataset.mobileOpen = isOpen ? "false" : "true";
+          }
+        });
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) entry.target.classList.add("is-visible");
+        });
+      }, { threshold: 0.18 });
+
+      revealNodes.forEach((node) => observer.observe(node));
+
+      window.addEventListener("scroll", () => {
+        root.style.setProperty("--scroll-shift", `${window.scrollY}px`);
+      }, { passive: true });
+
+      applyLanguage(currentLanguage);
+    </script>
+  </body>
+</html>
