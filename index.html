@@ -141,6 +141,23 @@
         filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.08));
       }
 
+      .hero-brand-inline {
+        display: inline-block;
+        font-family: "Avenir Next", "Raleway", "Helvetica Neue", "Inter", sans-serif;
+        font-weight: 100;
+        letter-spacing: 0.18em;
+        line-height: inherit;
+        white-space: nowrap;
+        color: transparent;
+        -webkit-text-stroke: 0.9px rgba(248, 250, 252, 0.82);
+        text-shadow:
+          -1px -1px 0 rgba(255, 255, 255, 0.18),
+          1px 1px 0 rgba(0, 0, 0, 0.78),
+          0 0 14px rgba(56, 189, 248, 0.12),
+          0 0 28px rgba(56, 189, 248, 0.06);
+        filter: drop-shadow(0 0 8px rgba(56, 189, 248, 0.08));
+      }
+
       .hero-orbit-shell {
         --hero-orbit-duration: 8.8s;
         position: relative;
@@ -1861,18 +1878,9 @@
             <div class="mx-auto max-w-5xl">
               <div class="glass-panel reveal rounded-[2rem] px-6 py-10 text-center sm:px-10" data-delay="1">
                 <p class="headline-thin text-xs tracking-[0.28em] text-cyan-300" data-i18n="cta_eyebrow">Early Access</p>
-                <h2 class="headline-thin cta-orbit-title mt-5 text-3xl tracking-[0.14em] text-[#D4D4D8] sm:text-4xl">
+                <h2 class="headline-thin mt-5 text-3xl tracking-[0.14em] text-[#D4D4D8] sm:text-4xl">
                   <span data-i18n="cta_title_prefix">让</span>
-                  <span class="orbit-brand">
-                    <span class="orbit-brand-visual" aria-hidden="true">
-                      <span class="orbit-apex-flare"></span>
-                      <span class="orbit-eclipse"></span>
-                      <span class="orbit-core"></span>
-                    </span>
-                    <span class="orbit-sweeper" aria-hidden="true"></span>
-                    <span class="brand-inline-glass orbit-brand-text">Umob.AI Agent OS</span>
-                    <span class="orbit-brand-front" aria-hidden="true"></span>
-                  </span>
+                  <span class="hero-brand-inline">Umob.AI Agent OS</span>
                   <span data-i18n="cta_title_suffix">进入真实生产现场</span>
                 </h2>
                 <p class="mx-auto mt-5 max-w-3xl text-sm font-light leading-7 text-zinc-500 sm:text-base" data-i18n="cta_desc">
@@ -2077,8 +2085,8 @@
           ecosystem_desc: "以 OpenAI、NVIDIA、Oracle、Claude 为国际能力接口，以 DeepSeek、智谱与 Qwen 为本土大模型支点，形成高密度推理生态。",
           cta_eyebrow: "Early Access",
           cta_title_prefix: "让",
-          cta_title_suffix: "进入真实生产现场",
           cta_title: "让 Umob.AI Agent OS 进入真实生产现场",
+          cta_title_suffix: "进入真实生产现场",
           cta_desc: "深耕法律破产行业，以十二年行业经验和重型技术底座支持高责任场景落地。",
           bottom_cta: "申请内测",
           closing_statement: "这不仅是破产案件的革命，更是所有高复杂度行业走向智能化的终极底座。",
@@ -2164,8 +2172,8 @@
           ecosystem_desc: "A dense ecosystem anchored by OpenAI, NVIDIA, Oracle, and Claude globally, alongside domestic model pillars including DeepSeek, Zhipu, and Qwen.",
           cta_eyebrow: "Early Access",
           cta_title_prefix: "Bring",
-          cta_title_suffix: "into real production",
           cta_title: "Bring Umob.AI Agent OS into real production",
+          cta_title_suffix: "into real production",
           cta_desc: "Built on deep bankruptcy and legal domain heritage, supported by twelve years of industry expertise and a heavyweight technical substrate.",
           bottom_cta: "Request Early Access",
           closing_statement: "This is not only a reinvention of bankruptcy operations. It is the terminal intelligence substrate for every high-complexity industry moving toward autonomy.",
